@@ -1,0 +1,18 @@
+
+<h4 md-dialog-title>Confirm</h4>
+<button md-dialog-close class="close-confirm-box"><span class="fa fa-remove"></span></button>
+
+<md-dialog-content>
+
+  <p>{{ data }}</p>
+
+</md-dialog-content>
+
+<md-dialog-actions>
+
+  <div class="fill-space"></div>
+
+  <button md-raised-button md-dialog-close>Cancel</button>
+  <button md-raised-button class="edit" (click)="confirm()">Confirm</button>
+
+</md-dialog-actions>

@@ -1,0 +1,35 @@
+.editable-list-container {
+
+  .editable-list-items{
+    border: solid 1px #eaeaea;
+    border-top: none;
+    padding: 0.3rem 0.3rem 0 0.3rem;
+  }
+
+  input.form-control {
+    border-bottom-left-radius: 0;
+  }
+
+  .input-group-addon {
+    cursor: pointer;
+    border-bottom-right-radius: 0;
+
+    &:disabled {
+      color: lightgrey;
+    }
+
+  }
+
+}
+
+.error-list {
+  margin-top: 0.5rem;
+
+  p {
+    margin: 0;
+  }
+
+  .alert-sm {
+    padding: 0.3rem;
+  }
+}

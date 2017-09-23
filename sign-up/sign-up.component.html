@@ -1,0 +1,48 @@
+<md-card class="login">
+
+  <md-card-title>Lets Get Started</md-card-title>
+
+  <md-card-content>
+
+    <div class="messages">
+      <p class="alert alert-warning" *ngFor="let message of messages">{{ message }}</p>
+    </div>
+
+    <form [formGroup]="signup_form" novalidate>
+      <md-list>
+
+        <md-list-item>
+
+          <md-input-container class="fullwidth">
+            <input mdInput type="email" placeholder="Email" 
+              (keydown.enter)="signup()"
+              formControlName="email" name="email">
+          </md-input-container>
+
+        </md-list-item>
+
+        <app-form-errors [element]="signup_form.get('email')"></app-form-errors>
+
+        <md-list-item>
+
+          <md-input-container class="fullwidth">
+            <input mdInput type="password" placeholder="Password" 
+              (keydown.enter)="signup()"
+              formControlName="password" name="password">
+          </md-input-container>
+
+        </md-list-item>
+        
+        <app-form-errors [element]="signup_form.get('password')"></app-form-errors>
+
+      </md-list>
+
+    </form>
+
+  </md-card-content>
+
+  <md-card-actions>
+      <button md-button class="fullwidth" color="primary" (click)="signup()">Sign Up</button>
+  </md-card-actions>
+
+</md-card>

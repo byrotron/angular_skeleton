@@ -1,0 +1,24 @@
+<div fxLayout="column" fxFlexFill style="overflow:hidden">
+
+  <div fxFlex="auto">
+    <ng-content selector="website-menu"></ng-content>
+  </div>
+
+  <div fxLayout="column" fxFlex="100%">
+
+    <div class="loader" fxLayout="column" fxLayoutAlign="center center"
+      [style.top]='top'
+      [@fadetoggle]="web.loading">
+      <md-spinner></md-spinner>
+      <p *ngIf="web.loading_message">{{ web.loading_message }}</p>
+    </div>
+
+    <div class="sktn-website-main" fxFlex="100%" [class.noscroll]="web.loading === 'show'">
+      <router-outlet></router-outlet>
+    </div>
+  
+  </div>
+    
+  <sktn-messages></sktn-messages>
+
+</div>

@@ -1,0 +1,68 @@
+<form [formGroup]="user_form" class="is-form" novalidate>
+
+  <h4 md-dialog-title>User Form</h4>
+  <button md-dialog-close class="close-form"><span class="fa fa-remove"></span></button>
+
+  <md-dialog-content>
+
+    <div class="form-group">
+      
+      <label>Name</label>
+      <input type="text"placeholder="Name" formControlName="name" name="name" class="form-control">
+
+    </div>
+    
+    <div class="form-group">
+
+      <label>Surname</label>
+      <input type="text"placeholder="Surname" formControlName="surname" name="surname" class="form-control">
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Email</label>
+      <input type="text"placeholder="Email" formControlName="email" name="email" class="form-control">
+
+    </div>
+
+    <div class="form-group">
+      
+      <label class="custom-control custom-radio">
+        <input formControlName="status" name="radio" type="radio" class="custom-control-input" [value]="0">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Active</span>
+      </label>
+      <label class="custom-control custom-radio">
+        <input formControlName="status" name="radio" type="radio" class="custom-control-input" [value]="0">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Inactive</span>
+      </label>
+
+    </div>
+
+    <div class="form-group">
+
+      <select formControlName="role" name="role" class="form-control">
+
+        <option value="">--Select--</option>
+        <option *ngFor="let role of roles" [value]="role.id"> {{ role.name }}</option>
+
+      </select>
+      
+    </div>
+
+  </md-dialog-content>
+
+  <md-dialog-actions>
+
+    <div class="fill-space"></div>
+
+    <button md-raised-button class="edit" [disabled]="loading === true" (click)="submit()" [disabled]="!user_form.valid">
+      <span *ngIf="loading === false"><span class="fa fa-pencil"></span> Add</span>
+      <span *ngIf="loading === true" class="fa fa-spin fa-cog"></span>
+    </button>
+
+  </md-dialog-actions>
+
+</form>

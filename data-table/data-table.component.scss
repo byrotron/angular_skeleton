@@ -1,0 +1,41 @@
+
+.sktn-data-table {
+  overflow-x: auto;
+  
+  .sktn-data-table-header {
+
+    
+    input.sktn-data-table-filter {
+      background: none;
+      border:solid 1px #eaeaea;
+      margin-right: 0.3rem;
+      padding: 0.5rem;
+    }
+
+  }
+
+  .sktn-data-table-actions {
+    cursor: pointer;
+
+    button {
+      margin-right: 0.3rem;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+  }
+
+  .icon {
+    max-width: 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:first-of-type {
+      max-width: 2.5rem;
+      padding-left: 0.5rem;
+    }
+
+  }
+}

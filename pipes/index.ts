@@ -1,0 +1,1 @@
+export { SktnUcWordsPipe } from './ucwords.pipe';

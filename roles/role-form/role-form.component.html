@@ -1,0 +1,28 @@
+<form [formGroup]="role_form" class="is-form" novalidate>
+
+  <h4 md-dialog-title>Role Form</h4>
+  <button md-dialog-close class="close-form"><span class="fa fa-remove"></span></button>
+  
+  <md-dialog-content>
+
+    <div class="form-group">
+
+      <label for="name">Name</label>
+      <input type="text" class="form-control" formControlName="name" name="name" />
+    
+    </div>
+
+  </md-dialog-content>
+
+  <md-dialog-actions>
+
+    <div class="fill-space"></div>
+
+    <button md-raised-button class="edit" [disabled]="loading === true || !role_form.valid" (click)="submit()">
+      <span *ngIf="loading === false"><span class="fa fa-pencil"></span> Add</span>
+      <span *ngIf="loading === true" class="fa fa-spin fa-cog"></span>
+    </button>
+
+  </md-dialog-actions>
+
+</form>

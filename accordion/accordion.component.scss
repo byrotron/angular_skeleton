@@ -1,0 +1,22 @@
+.is-accordion {
+  overflow: hidden;
+  margin: 0.5rem 0;
+  border-color: #eaeaea;;
+  padding: 0.5rem;
+  
+  .is-accordion-label {
+    cursor: pointer;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    font-weight: bold;
+  }
+
+  &.border {
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  .hidden {
+    display: none;
+  }
+}

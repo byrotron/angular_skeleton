@@ -1,0 +1,19 @@
+<a *ngIf="link && !image" md-button>
+  <span class="sktn-menubar-item" 
+    [class.fa]="icon" 
+    [class.icon]="icon"
+    [ngClass]="icon">{{ text ? text : '' }}</span>
+</a>
+
+<a *ngIf="image">
+  <img class="sktn-menubar-item" [src]="image" alt="our logo here"/>
+</a>
+
+<span *ngIf="!link" class="sktn-menubar-item" 
+  [class.fa]="icon" 
+  [class.icon]="icon"
+  [ngClass]="icon">{{ text ? text : '' }}</span>
+
+
+
+

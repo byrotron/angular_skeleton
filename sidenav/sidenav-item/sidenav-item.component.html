@@ -1,0 +1,11 @@
+<div *ngIf="item.group" class="sidenav-group">{{ item.group }}</div>
+
+<div *ngIf="item.label" class="sidenav-item" 
+  [class.disabled]="item.disabled" 
+  [ngClass]="item.classes" 
+  [class.active]="item.active"
+  (click)="activate()">
+
+  <p><span class="fa" *ngIf="item.icon" [ngClass]="item.icon"></span> {{ item.label }}</p>
+  
+</div>

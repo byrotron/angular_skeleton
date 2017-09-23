@@ -1,0 +1,70 @@
+.upload-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: solid 1px #eaeaea;
+  
+    .remove-upload-image {
+      position: absolute;
+      background: white;
+      top:0.5rem;
+      right: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .upload-backdrops{
+      position: absolute;
+      top: 0;
+      left:0;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      background: #eaeaea;
+      z-index: 100;
+      opacity: 0.5;
+
+      .drop,
+      .drag {
+        color: #eaeaea;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+    }
+
+  
+
+  .upload-image-elements {
+      position: absolute;
+      left: 0;
+      width: 100%;
+
+      &.button {
+        bottom: -35.6px;
+      }
+
+      &.no-button {
+        bottom:-5px;
+      }
+      
+      .file-input {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+
+      .select-upload-image {
+        text-align: center;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        border: solid 1px #eaeaea;
+        cursor: pointer;
+      }
+  }
+
+  
+}

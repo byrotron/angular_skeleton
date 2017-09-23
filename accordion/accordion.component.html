@@ -1,0 +1,9 @@
+<div class="is-accordion" [class.border]="border">
+
+  <div class="is-accordion-label" (click)="toggleAccordion()">{{ label }}</div>
+
+  <div class="is-accordion-content" [@slideToggle]="show">
+    <ng-content></ng-content>
+  </div>
+
+</div>

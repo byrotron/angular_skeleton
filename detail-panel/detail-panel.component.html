@@ -1,0 +1,53 @@
+
+  <md-card class="is-panel">
+
+    <div class="is-panel-header">{{ title }}</div>
+
+    <md-card-content>
+
+      <form class="is-form" [formGroup]="form" novalidate>
+
+        <div class="is-panel-content">
+          
+          <ng-content></ng-content>
+
+        </div>
+
+      </form>
+
+    </md-card-content>
+
+    <div class="is-panel-footer">
+
+        <div class="fill-space"></div>
+
+        <button 
+          md-raised-button
+          *ngIf="editing === false"
+          [disabled]="disabled"
+          type="button"
+          (click)="startEditing()">
+          <span class="fa fa-pencil edit"></span> Edit</button>
+        
+        <button type="button"
+          md-raised-button
+          *ngIf="editing === true"
+          type="button"
+          [disabled]="loading === true"
+          (click)="stopEditing()">
+          Close</button>
+
+        <button type="button"
+          md-raised-button
+          *ngIf="editing === true" 
+          [disabled]="(panel.form.pristine || !panel.form.valid) || loading === true"
+          type="button"
+          (click)="update()">
+          <span *ngIf="loading === false" class="fa fa-pencil edit"></span> 
+          <span *ngIf="loading === false">Send</span>
+          <span *ngIf="loading === true" class="fa fa-spin fa-cog"></span></button>
+
+      </div>
+
+  </md-card>
+

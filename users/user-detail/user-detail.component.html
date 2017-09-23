@@ -1,0 +1,62 @@
+<div class="container-fluid">
+
+  <div class="row">
+
+    <div class="col-sm-12 col-md-6">
+
+      <sktn-detail-panel 
+        *ngIf="user.current_user"
+        [form]="user_form"
+        [(editing)]="editing"
+        [(loading)]="loading"
+        [disabled]="!user.actions.update"
+        (submit)="update()"
+        title="Users Detail">
+        
+        <sktn-detail-item 
+          title="Name"
+          name="name" 
+          type="text">
+        </sktn-detail-item>
+
+        <sktn-detail-item 
+          title="Surname" 
+          name="surname" 
+          type="text">
+        </sktn-detail-item>
+
+        <sktn-detail-item 
+          title="Email" 
+          name="email" 
+          type="text">
+        </sktn-detail-item>
+
+        <sktn-detail-item 
+          title="Status" 
+          name="status" 
+          type="boolean">
+        </sktn-detail-item>
+
+        <sktn-detail-item 
+          title="Role" 
+          name="role" 
+          type="select"
+          [list]="[{id: 1, name: 'Super User'}, {id: 2, name: 'User'}]">
+          
+        </sktn-detail-item>
+
+        <sktn-detail-item 
+          title="Last Login" 
+          [value]="user.current_user.last_login ? user.current_user.last_login.date : false" 
+          type="datetime"
+          editable="false">
+
+        </sktn-detail-item>
+
+      </sktn-detail-panel>
+
+    </div>
+
+  </div>
+
+</div>

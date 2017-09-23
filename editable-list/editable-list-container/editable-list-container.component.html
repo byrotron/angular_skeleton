@@ -1,0 +1,24 @@
+
+  <div class="editable-list-container">
+
+    <div class="input-group">
+      <input type="text" class="form-control" [disabled]="list.loading === true" [(ngModel)]="new_item" placeholder="Add Item Here" (keydown.enter)="create()">
+      <button class="input-group-addon fa fa-plus" [disabled]="!new_item || new_item.length === 0 || list.loading === true" (click)="create()"></button>
+    </div>
+
+    <div class="editable-list-items">
+
+      <sktn-editable-list-item *ngFor="let item of items; let i='index'"
+        [(item)]="items[i]">
+      </sktn-editable-list-item>
+
+    </div>
+
+  </div>
+
+  <div class="error-list" *ngIf="list.errors.length > 0" >
+    <p>Errors</p>
+    <div class="alert-sm alert-danger error" *ngFor="let err of list.errors">{{ err.message }}</div>
+  </div>
+
+  <button md-raised-button (click)="save()">Save</button>

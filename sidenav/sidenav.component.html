@@ -1,0 +1,10 @@
+<div class="is-sidenav" *ngIf="sidenav.items.length > 0">
+
+  <sktn-sidenav-item 
+    *ngFor="let item of sidenav.items"  
+    [item]="item">  
+  </sktn-sidenav-item>
+
+  <ng-content></ng-content>
+  
+</div>

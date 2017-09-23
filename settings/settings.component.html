@@ -1,0 +1,40 @@
+<div class="is-settings" fxLayout="column">
+
+  <div fxLayout="row" fxLayoutGap="1rem">
+
+    <div fxFlex="0 1 8rem" fx>
+
+      <button md-raised-button type="button" [routerLink]="['/admin', 'users']">
+        <div fxLayout="column" class="settings-icon">
+          <span class="fa fa-users"></span>
+          <p class="settings-title">Users</p>
+        </div>
+      </button>
+      
+    </div>
+
+    <div fxFlex="0 1 8rem" fx>
+
+      <button md-raised-button type="button" [routerLink]="['/admin', 'settings', 'privileges']">
+        <div fxLayout="column" class="settings-icon">
+          <span class="fa fa-unlock-alt"></span>
+          <p class="settings-title">Privileges</p>
+        </div>
+      </button>
+      
+    </div>
+
+    <div fxFlex="0 1 8rem">
+
+      <button md-raised-button type="button" [routerLink]="['/admin', 'settings', 'roles']">
+        <div fxLayout="column" class="settings-icon">
+          <span class="fa fa-users"></span>
+          <p class="settings-title">Roles</p>
+        </div>
+      </button>
+      
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,42 @@
+<div fxLayout="row" fxLayoutAlign="start center" *ngIf="show" class="app-pagination">
+
+  <div class="pagination-item prev" 
+    fxFlex="1 1 2.5rem"
+    (click)="prev()" 
+    [class.disabled]="current_page == 1 || active === false">
+    <span class="fa fa-chevron-left"></span>
+  </div>
+
+  <md-input-container fxFlex="1 1 2.5rem">
+    <input mdInput 
+      #pageselect 
+      [value]="current_page"
+      [disabled]="active === false"
+      (blur)="selectPage(pageselect.value)" 
+      (keydown.enter)="selectPage(pageselect.value)"/>
+  </md-input-container>
+
+  <div fxFlex="1 1 3rem">
+    <span> / {{ total_pages }}</span>
+  </div>
+
+  <div class="pagination-item next"
+    fxFlex="1 1 2.5rem"
+    (click)="next()" 
+    [class.disabled]="current_page == total_pages || active === false">
+    <span class="fa fa-chevron-right"></span>
+  </div>
+
+  <md-select 
+    fxFlex="1 1 2.5rem"
+    [(ngModel)]="limit"
+    (change)="changeLimit()"
+    [disabled]="!active">
+
+    <md-option *ngFor="let limit of limits" [value]="limit">
+        {{ limit }}
+    </md-option>
+
+  </md-select>
+
+</div>

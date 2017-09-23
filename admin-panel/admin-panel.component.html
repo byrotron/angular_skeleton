@@ -1,0 +1,42 @@
+<div fxLayout="column" fxFlexFill style="overflow:hidden">
+
+  <!-- Menubar Section -->
+  <div id="AdminMenu" fxFlex="auto">
+    <ng-content select="[admin-menubar]"></ng-content>
+  </div>
+  <!-- End Menubar Section -->
+
+  <div id="Admin" fxLayout="row" fxFlex="100%"> 
+
+    <!-- Sidenav Section -->
+    <div id="Sidenav" fxFlex="12%" [@sidenavtoggle]="admin.toggle_sidenav">
+      <ng-content select="[admin-sidebar]"></ng-content>
+    </div>
+    <!-- End Sidenav Section -->
+
+    <div id="Content" fxLayout="column" fxFlex="100%">
+      
+       <!-- Breadcrumbs Section -->
+      <sktn-breadcrumbs fxFlex="auto"></sktn-breadcrumbs>
+      <!-- End Breadcrumbs Section -->
+
+      <div id="Main" fxFlex="100%" [class.noscroll]="admin.loading === 'show'">
+
+        <div class="loader" fxLayout="column" fxLayoutAlign="center center"
+          [style.top]="'top'"
+          [@fadetoggle]="admin.loading">
+          <md-spinner></md-spinner>
+          <p *ngIf="admin.loading_message">{{ admin.loading_message }}</p>
+        </div>
+
+        <router-outlet></router-outlet>
+
+      </div>
+
+      <sktn-action-bar fxFlex="auto"></sktn-action-bar>
+
+    </div>
+
+  </div>
+  <sktn-messages></sktn-messages>
+</div>

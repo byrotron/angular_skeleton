@@ -1,0 +1,17 @@
+<div fxLayout="row" fxLayoutGap="0.5rem" class="sktn-message" 
+  (mouseenter)="onEnter()"
+  (mouseleave)="onExit()"
+  (click)="onClick()"
+  
+  [@fadetoggle]="show"
+  (@fadetoggle.done)="removeMessage($event, message)">
+
+  <div fxLayout fxLayoutAlign="center center" fxFlex="1 1 2.5rem" class="box" [ngClass]="message.type" >
+    <span class="fa fa-check"></span>
+  </div>
+
+  <div fxFlex="4 4 auto" class="content">
+    <h4>{{ message.title }}</h4>
+    <p>{{ message.message }}</p>
+  </div>
+</div>

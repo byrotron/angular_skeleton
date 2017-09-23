@@ -1,0 +1,44 @@
+<div class="sktn-data-table">
+
+  <div fxLayout.md="row" fxLayout.xs="column" class="sktn-data-table-header">
+
+    <div fxFlex *ngIf="pagination">
+      <app-pagination #pagination
+        [current_page]="table_data.page"
+        [limit]="table_data.limit"
+        [total_items]="total_items"
+        [active]="active">
+      </app-pagination>
+    </div>
+
+    <div class="fill-space"></div>
+
+    <md-input-container *ngIf="filter" fxFlex class="example-full-width">
+      <input mdInput 
+        placeholder="Filter Results" 
+        [disabled]="!active"
+        #filterinput/>
+    </md-input-container>
+    
+    <div fxFlex>
+      <ng-content select="[data-table-actions]"></ng-content>
+    </div>
+
+    <div fxFlex>
+      <button 
+        md-raised-button 
+        (click)="refresh()" 
+        [disabled]="active">
+        <span class="fa fa-refresh"></span>
+      </button>
+    </div>
+    
+  </div>
+
+  <div *ngIf="total_items > 0">
+    <ng-content select="[data-table]"></ng-content>
+  </div>
+  
+  <div *ngIf="total_items == 0">No data found</div>
+
+</div>

@@ -1,0 +1,33 @@
+<div class="upload-image-container">
+
+  <img *ngIf="src" [src]="src" />
+  
+  <div class="upload-image" fxLayout="column">
+
+    <div fxLayout="column" fxFlex="1 1 auto" class="upload-backdrops"
+      (drop)="drop($event)"
+      (dragover)="preventDefault($event)" 
+      (dragenter)="startDrop($event)" 
+      (dragleave)="stopDrop($event)" >
+      
+      <span *ngIf="src" class="fa fa-remove remove-upload-image" (click)="removeImage()"></span>
+      <span [class.hidden]="drop_ready" class="drag">Drag Image Here</span>
+      <span [class.hidden]="!drop_ready" class="drop">Drop Image Here</span>
+    </div>
+
+  </div>
+
+  <div class="upload-image-elements"  [class.button]="show_btn" [class.no-button]="!show_btn">
+    <section>
+      <md-progress-bar
+          color="primary"
+          mode="determinate"
+          [value]="progress">
+      </md-progress-bar>
+    </section>
+
+    <div *ngIf="show_btn" class="select-upload-image" (click)="fileinput.click()">Select Image</div>
+    <input class="file-input" (change)="uploadImage(fileinput.files)" #fileinput type="file"/>
+  </div>
+
+</div>

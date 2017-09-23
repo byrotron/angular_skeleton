@@ -1,0 +1,25 @@
+
+
+<input style="position:absolute; left:-9999px; top:-99999px;" type="file" #fileinput [attr.multiple]="this.max > 1" 
+    (change)="fileSelected(fileinput.files)"/>
+
+<md-card>
+  <h3 mdSubheader>Medical Certificates</h3>
+  
+  <md-list>
+      
+    <ng-template ngFor let-file let-i="index" [ngForOf]="files">
+      <md-list-item >
+          <p md-line> {{ file.name }} </p>
+          <md-icon mdListIcon (click)="removeFile(i)"><span class="fa fa-remove"></span></md-icon>
+      </md-list-item>
+      <md-divider></md-divider>
+    </ng-template>
+  
+  </md-list>
+
+  <md-card-actions>
+    <button md-raised-button color="accent" (click)="fileinput.click()" [disabled]="files.length === max">Choose</button>
+    <button md-raised-button color="accent" (click)="uploadFile(fileinput.files)" [disabled]="files.length === 0">Upload</button>
+  </md-card-actions>
+</md-card>

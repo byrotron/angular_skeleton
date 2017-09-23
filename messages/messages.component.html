@@ -1,0 +1,9 @@
+<div class="sktn-messages" [ngClass]="position" *ngIf="msg.messages.length > 0">
+
+  <sktn-message 
+    *ngFor="let message of msg.messages" 
+    [message]="message" 
+    [delay]="delay">
+  </sktn-message>
+
+</div>

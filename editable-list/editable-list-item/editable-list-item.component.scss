@@ -1,0 +1,21 @@
+.editable-list-item {
+  position: relative;
+  padding: 0.3rem 0.75rem;
+  margin-bottom: 0.25rem;
+
+  span.editable-list-item-actions {
+    position:absolute;
+    top:.3rem;
+    right: 0.75rem;
+
+    span {
+      cursor: pointer;
+      margin-right: 0.5rem;
+      opacity: 0.5;
+    }
+
+    span:hover {
+      opacity: 1;
+    }
+  }
+}

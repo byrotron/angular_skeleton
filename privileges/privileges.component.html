@@ -1,0 +1,32 @@
+<div id="Privileges">
+
+  <div>
+
+    <sktn-accordion *ngFor="let item of data" [label]="item.label.toUpperCase()" [border]="true">
+      
+      <p *ngIf="item.description">{{ item.description }}</p>
+      
+      <sktn-accordion *ngFor="let role of item.roles" [label]="role.name">
+        
+        <div *ngFor="let action of role.actions">
+
+          <div style="margin-left: 1rem;">
+            <md-slide-toggle
+              [checked]="find_privilege_status(action.id, role.id)"
+              (change)="update_privilege($event, action.id, role.id)"
+              [disabled]="!privs.actions.update">
+              {{ action.label }}
+            </md-slide-toggle>
+            <p *ngIf="action.description">{{ action.description }}</p>
+            
+          </div>
+          
+        </div>
+
+      </sktn-accordion>
+
+    </sktn-accordion>
+
+  </div>
+  
+</div>

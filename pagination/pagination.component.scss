@@ -1,0 +1,20 @@
+.app-pagination {
+  
+ text-align: center;
+
+ .pagination-item {
+   cursor: pointer;
+   color: highlight;
+   opacity: 0.5;
+
+   &:hover {
+     opacity: 1;
+   }
+
+   &.disabled {
+     color: lightgrey;
+   }
+ }
+
+}
+

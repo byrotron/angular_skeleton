@@ -1,0 +1,14 @@
+:host {
+
+  .sktn-website-main {
+    position:relative;
+    z-index: 97;
+    padding: 1rem;
+    overflow-y: scroll;
+
+    &.noscroll {
+      overflow-y: hidden;
+    }
+
+  }
+}

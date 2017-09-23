@@ -1,0 +1,44 @@
+<div [ngClass]="group_class" class="editable-list-container">
+
+  <label *ngIf="label">
+    <span *ngIf="list_service.loading === true" class="fa fa-cog fa-spin"></span> {{ label }}</label>
+
+  <ng-template [ngIf]="editable">
+    <div class="edit-icon" *ngIf="editing === false && !inline" (click)="editing = true">Edit</div>
+    <div class="edit-icon" *ngIf="editing === true && !inline" (click)="editing = false">Close</div>
+  </ng-template>
+
+  <div fxLayout="row" *ngIf="list">
+    
+    <select fxFlex="1 1 auto"
+      *ngIf="editing === false || inline === true" 
+      [class.inline]="inline" 
+      [ngClass]="control_class"  
+      [disabled]="list.loading === true"
+      [(ngModel)]="value"
+      (change)="onChange()">
+
+      <option value="">--Select--</option>
+      <option *ngFor="let item of list.items"
+        [hidden]="!item.status"
+        [value]="item.id">{{ item.value }}</option>
+    </select>
+    
+    <ng-template [ngIf]="editable">
+      <div fxFlex="1 1 auto" class="icon inline" *ngIf="inline" (click)="openEditor()">
+        <span class="fa fa-pencil"></span>
+      </div>
+    </ng-template>
+
+  </div>
+
+  <sktn-editable-list-container 
+    *ngIf="!inline && editing === true" 
+    [id]="list.id"
+    [name]="name"
+    [group]="group"
+    [(items)]="list.items">
+  </sktn-editable-list-container>
+
+</div>
+

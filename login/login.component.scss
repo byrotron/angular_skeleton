@@ -1,0 +1,52 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .login {
+    width :25%;
+
+    .form-group {
+      margin-top: 1rem;
+    }
+
+    div.login-submit {
+
+      margin-bottom: 2rem;
+    
+      button {
+        padding: 0.8rem;
+        text-align: center;
+        border: none;
+
+        &:disabled {
+          background: lightgrey;
+          color: grey;
+          cursor: not-allowed;
+        }
+
+      }
+
+     }
+
+    .login-extras {
+      display:flex;
+
+      > * {
+        flex-grow: 1;
+      }
+
+      .remember-me {
+        margin-top: 0.5rem;
+      }
+
+      .forgot-my-password {
+        margin-top: 0.5rem;
+        text-align: right;
+      }
+    }
+    
+  }
+}

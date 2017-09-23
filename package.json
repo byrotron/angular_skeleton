@@ -1,0 +1,15 @@
+{
+  "name": "angular_skeleton",
+  "version": "1.0.5",
+  "description": "Angulat 2 frontend setup to integrate with PHP backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "isArray.com Byron Georgiou",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/byrotron/angular_skeleton.git"
+  }
+}

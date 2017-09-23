@@ -1,0 +1,57 @@
+<md-card class="login">
+
+  <md-card-title>Log In</md-card-title>
+
+  <md-card-content>
+
+    <form [formGroup]="login_form" novalidate>
+
+      <md-list>
+
+        <md-list-item>
+
+          <md-input-container class="fullwidth">
+            <input mdInput type="email" placeholder="Email" 
+              (keydown.enter)="login()"
+              formControlName="email" name="email">
+          </md-input-container>
+
+        </md-list-item>
+
+        <app-form-errors [element]="login_form.get('email')"></app-form-errors>
+
+        <md-list-item>
+
+          <md-input-container class="fullwidth">
+            <input mdInput type="password" placeholder="Password" 
+              (keydown.enter)="login()"
+              formControlName="password" name="password">
+          </md-input-container>
+
+        </md-list-item>
+        
+        <app-form-errors [element]="login_form.get('password')"></app-form-errors>
+
+      </md-list>
+
+      <md-list-item>
+          <div class="login-extras">
+            <div class="remember-me">
+                <md-checkbox [color]="'primary'">Remember Me</md-checkbox>
+            </div>
+            <div class="hyperlink forgot-my-password" [routerLink]="['/reset-account']">Forgot your password?</div>
+          </div>
+      </md-list-item>
+
+    </form>
+
+  </md-card-content>
+
+  <md-card-actions>
+    <button md-button class="fullwidth" type="button" (click)="login()">
+      <span *ngIf="logging_in === false">Sign In</span>
+      <span *ngIf="logging_in === true"  class="fa fa-spin fa-cog"></span>
+    </button>
+  </md-card-actions>
+
+</md-card>
