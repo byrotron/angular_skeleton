@@ -17,7 +17,8 @@ import { SktnSidenavService } from './sidenav.service';
     SktnSidenavItemComponent
   ],
   exports: [
-    SktnSidenavComponent
+    SktnSidenavComponent,
+    SktnSidenavItemComponent
   ],
   providers: [
     SktnSidenavService

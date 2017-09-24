@@ -1,12 +1,14 @@
 import { 
   Component, 
   OnInit,
+  ContentChild,
+  ViewChild,
+  forwardRef,
   trigger, 
   state, 
   style, 
   animate,
-  transition,
-  ChangeDetectorRef
+  transition
 } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 
@@ -18,6 +20,10 @@ import { ISktnSidenav } from './../sidenav';
 import { FadeToggle } from './../animations/animations';
 
 import { Observable, Observer } from 'rxjs';
+
+import { SktnSidenavComponent } from './../sidenav';
+import { SktnActionBarComponent } from './../action-bar';
+import { SktnBreadcrumbsComponent } from './../breadcrumbs';
 
 @Component({
   selector: 'sktn-admin-panel',
@@ -41,36 +47,34 @@ import { Observable, Observer } from 'rxjs';
       ),
       transition( 'show => hide', animate( '800ms ease-out', style({ opacity: 0 } ) ) ),
       transition( 'hide => show', animate( '0ms', style({ opacity: 1 } ) ) )
-    ]),
-    trigger("sidenavtoggle", [
-      state('hide',
-        style({
-          'max-width': '0%'
-        })
-      ),
-      state('show',
-        style({
-          'max-width': '12%'
-        })
-      ),
-      transition('hide=>show', [
-        animate('300ms ease-in', style({
-          'max-width': '12%'
-        }))
-      ]),
-      transition('show=>hide', [
-        animate('300ms ease-out', style({
-          'max-width':'0%'
-        }))
-      ])
     ])
   ]
 })
 export class SktnAdminPanelComponent {
 
+  @ContentChild(forwardRef(() => 'leftsidenav')) left_nav: SktnSidenavComponent;
+  @ContentChild(forwardRef(() => 'rightsidenav')) right_nav: SktnSidenavComponent;
+
+  @ViewChild(SktnActionBarComponent) action_bar: SktnActionBarComponent;
+  @ViewChild(SktnBreadcrumbsComponent) breadcrumbs: SktnBreadcrumbsComponent;
+
   constructor(
-    protected ref: ChangeDetectorRef,
     public admin: SktnAdminPanelService
   ) { }
 
-}
+  ngAfterViewInit() {
+    console.log(this.action_bar);
+
+    this.admin.action_bar = this.action_bar;
+    this.admin.breadcrumbs = this.breadcrumbs; 
+    
+  }
+
+  ngAfterContentInit() {
+    
+    this.admin.left_nav = this.left_nav;
+    this.admin.right_nav = this.right_nav;
+
+  }
+
+} 

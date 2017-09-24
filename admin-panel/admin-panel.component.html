@@ -1,20 +1,19 @@
 <div fxLayout="column" fxFlexFill style="overflow:hidden">
 
   <!-- Menubar Section -->
-  <div id="AdminMenu" fxFlex="auto">
+  <div id="AdminMenu">
     <ng-content select="[admin-menubar]"></ng-content>
   </div>
   <!-- End Menubar Section -->
 
   <div id="Admin" fxLayout="row" fxFlex="100%"> 
 
-    <!-- Sidenav Section -->
-    <div id="Sidenav" fxFlex="12%" [@sidenavtoggle]="admin.toggle_sidenav">
-      <ng-content select="[admin-sidebar]"></ng-content>
-    </div>
+    <!-- Left Sidenav Section -->
+    <ng-content select="[admin-left-sidebar]"></ng-content>
+
     <!-- End Sidenav Section -->
 
-    <div id="Content" fxLayout="column" fxFlex="100%">
+    <div id="Content"  fxLayout="column" fxFlex="100%">
       
        <!-- Breadcrumbs Section -->
       <sktn-breadcrumbs fxFlex="auto"></sktn-breadcrumbs>
@@ -33,10 +32,15 @@
 
       </div>
 
-      <sktn-action-bar fxFlex="auto"></sktn-action-bar>
+      <sktn-action-bar show="show"></sktn-action-bar>
 
     </div>
 
+    <!-- Right Sidenav Section -->
+    <ng-content select="[admin-right-sidebar]"></ng-content>
+
   </div>
+
   <sktn-messages></sktn-messages>
+
 </div>

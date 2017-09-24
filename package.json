@@ -1,15 +1,84 @@
 {
-  "name": "angular_skeleton",
-  "version": "1.0.5",
+  "_args": [
+    [
+      {
+        "raw": "pangular",
+        "scope": null,
+        "escapedName": "pangular",
+        "name": "pangular",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\packages\\pang_skeleton\\public_html"
+    ]
+  ],
+  "_from": "pangular@latest",
+  "_id": "pangular@0.0.1",
+  "_inCache": true,
+  "_location": "/pangular",
+  "_nodeVersion": "6.11.2",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/pangular-0.0.1.tgz_1506172528869_0.6049435678869486"
+  },
+  "_npmUser": {
+    "name": "byrotron",
+    "email": "byron@isarray.com"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "pangular",
+    "scope": null,
+    "escapedName": "pangular",
+    "name": "pangular",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/pangular/-/pangular-0.0.1.tgz",
+  "_shasum": "5b7c036012d08c77f07ead2a2f1af16412663101",
+  "_shrinkwrap": null,
+  "_spec": "pangular",
+  "_where": "D:\\packages\\pang_skeleton\\public_html",
+  "author": {
+    "name": "isArray.com Byron Georgiou"
+  },
+  "bugs": {
+    "url": "https://github.com/byrotron/pangular/issues"
+  },
+  "dependencies": {},
   "description": "Angulat 2 frontend setup to integrate with PHP backend",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "5b7c036012d08c77f07ead2a2f1af16412663101",
+    "tarball": "https://registry.npmjs.org/pangular/-/pangular-0.0.1.tgz"
+  },
+  "gitHead": "f7bf7e3b6714d43d40901b9c0d01e7d44e75da70",
+  "homepage": "https://github.com/byrotron/pangular#readme",
+  "license": "ISC",
   "main": "index.js",
+  "maintainers": [
+    {
+      "name": "byrotron",
+      "email": "byron@isarray.com"
+    }
+  ],
+  "name": "pangular",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byrotron/pangular.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "isArray.com Byron Georgiou",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/byrotron/angular_skeleton.git"
-  }
+  "version": "0.0.1"
 }

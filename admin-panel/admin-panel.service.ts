@@ -6,27 +6,25 @@ import { ISktnResponse } from './../interfaces/interfaces';
 import { SktnMessageService } from './../messages';
 import { Observable, Observer, BehaviorSubject } from 'rxjs';
 
+import { SktnSidenavComponent } from './../sidenav';
+import { SktnActionBarComponent } from './../action-bar';
+import { SktnBreadcrumbsComponent } from './../breadcrumbs';
 
 @Injectable()
 export class SktnAdminPanelService {
 
   loading_message: string;
   loading: 'hide' | 'show' = 'show';
-  toggle_sidenav: 'hide' | 'show' = 'show';
+
+  left_nav: SktnSidenavComponent;
+  right_nav: SktnSidenavComponent;
+  action_bar: SktnActionBarComponent;
+  breadcrumbs: SktnBreadcrumbsComponent;
 
   constructor(
     public sidenav: SktnSidenavService,
     public messages: SktnMessageService
   ){}
-
- 
-  toggleSidenav() {
-    if(this.toggle_sidenav === 'show') {
-      this.toggle_sidenav = 'hide';
-    } else if(this.toggle_sidenav === 'hide') {
-      this.toggle_sidenav = 'show';
-    }
-  }
 
   startLoading() {
     if(this.loading === 'hide') {

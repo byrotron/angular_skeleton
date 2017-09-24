@@ -44,28 +44,7 @@ export const FadeOut = trigger("fadeout", [
   ])
 ]);
 
-export const SlideVerticalToggle = trigger("slidetoggle", [
-  state('hide',
-    style({
-      transform: "translateY(100%)"
-    })
-  ),
-  state('show',
-    style({
-      transform: "translateY(0)"
-    })
-  ),
-  transition('show=>hide', [
-    animate('500ms ease-in', style({
-      transform: "translateY(100%)"
-    }))
-  ]),
-   transition('hide=>show', [
-    animate('500ms ease-out', style({
-      transform: "translateY(0)"
-    }))
-  ])
-]);
+
 
 export const FadeToggle = trigger("fadetoggle", [
   state('hide',

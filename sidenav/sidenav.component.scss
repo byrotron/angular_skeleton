@@ -1,7 +1,27 @@
 
 :host {
 
-  overflow: hidden;
   background: white;
-  
+  z-index: 99;
+
+  .sktn-sidenav {
+    background:white;
+    position:relative;
+    height:100%;
+    overflow: hidden;
+
+    &.left {
+      border-right: solid 1px #eaeaea;;
+      box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
+      border-left: none;
+    }
+
+    &.right {
+      border-left: solid 1px #eaeaea;;
+      box-shadow: -1px 0 3px rgba(0, 0, 0, 0.3);
+      border-right: none;
+    }
+
+  }
+
 }
