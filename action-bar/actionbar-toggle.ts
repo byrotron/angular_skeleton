@@ -10,25 +10,25 @@ export const ActionbarToggle =  trigger("slidetoggle", [
   state('hide',
     style({
       transform: "translateY(100%)",
-      height: 0
+      height: '0px'
     })
   ),
   state('show',
     style({
       transform: "translateY(0)",
-      height: 'auto'
+      height: '*'
     })
   ),
   transition('show=>hide', [
-    animate('500ms ease-in', style({
+    animate('300ms ease-in', style({
       transform: "translateY(100%)",
-      height: 0,
+      height: '0px',
     }))
   ]),
    transition('hide=>show', [
-    animate('500ms ease-out', style({
+    animate('300ms ease-out', style({
       transform: "translateY(0)",
-      height: 'auto'
+      height: '*'
     }))
   ])
 ]);

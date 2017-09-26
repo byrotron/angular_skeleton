@@ -11,16 +11,28 @@
         "type": "tag"
       },
       "D:\\packages\\pang_skeleton\\public_html"
+    ],
+    [
+      {
+        "raw": "pangular@0.0.2",
+        "scope": null,
+        "escapedName": "pangular",
+        "name": "pangular",
+        "rawSpec": "0.0.2",
+        "spec": "0.0.2",
+        "type": "version"
+      },
+      "D:\\packages\\pang_skeleton\\public_html"
     ]
   ],
-  "_from": "pangular@latest",
-  "_id": "pangular@0.0.1",
+  "_from": "pangular@0.0.2",
+  "_id": "pangular@0.0.2",
   "_inCache": true,
   "_location": "/pangular",
   "_nodeVersion": "6.11.2",
   "_npmOperationalInternal": {
     "host": "s3://npm-registry-packages",
-    "tmp": "tmp/pangular-0.0.1.tgz_1506172528869_0.6049435678869486"
+    "tmp": "tmp/pangular-0.0.2.tgz_1506279062322_0.2760638357140124"
   },
   "_npmUser": {
     "name": "byrotron",
@@ -29,22 +41,22 @@
   "_npmVersion": "3.10.10",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "pangular",
+    "raw": "pangular@0.0.2",
     "scope": null,
     "escapedName": "pangular",
     "name": "pangular",
-    "rawSpec": "",
-    "spec": "latest",
-    "type": "tag"
+    "rawSpec": "0.0.2",
+    "spec": "0.0.2",
+    "type": "version"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/pangular/-/pangular-0.0.1.tgz",
-  "_shasum": "5b7c036012d08c77f07ead2a2f1af16412663101",
+  "_resolved": "https://registry.npmjs.org/pangular/-/pangular-0.0.2.tgz",
+  "_shasum": "e3a389919627675d7a089fe5ad0e21608bac7d42",
   "_shrinkwrap": null,
-  "_spec": "pangular",
+  "_spec": "pangular@0.0.2",
   "_where": "D:\\packages\\pang_skeleton\\public_html",
   "author": {
     "name": "isArray.com Byron Georgiou"
@@ -57,8 +69,8 @@
   "devDependencies": {},
   "directories": {},
   "dist": {
-    "shasum": "5b7c036012d08c77f07ead2a2f1af16412663101",
-    "tarball": "https://registry.npmjs.org/pangular/-/pangular-0.0.1.tgz"
+    "shasum": "e3a389919627675d7a089fe5ad0e21608bac7d42",
+    "tarball": "https://registry.npmjs.org/pangular/-/pangular-0.0.2.tgz"
   },
   "gitHead": "f7bf7e3b6714d43d40901b9c0d01e7d44e75da70",
   "homepage": "https://github.com/byrotron/pangular#readme",
@@ -80,5 +92,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.2"
+  "version": "0.0.3"
 }
