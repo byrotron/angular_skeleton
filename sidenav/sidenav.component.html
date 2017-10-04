@@ -1,5 +1,14 @@
 <div class="sktn-sidenav" [ngClass]="position">
 
+  <ng-template [ngIf]="sidenav && sidenav.items.length > 0">
+
+    <sktn-sidenav-item 
+      *ngFor="let item of sidenav.items"
+      [item]="item">  
+    </sktn-sidenav-item>
+
+  </ng-template>
+
   <ng-content></ng-content>
   
 </div>

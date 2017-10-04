@@ -12,7 +12,8 @@ export interface ISktnEditableList {
   group: ISktnEditableListGroup;
   items?: ISktnEditableListItem[];
   status: 'waiting' | 'requesting' | 'complete';
-  
+  loading?: boolean;
+
 }
 
 export interface ISktnEditableListItem {
@@ -20,5 +21,5 @@ export interface ISktnEditableListItem {
   id?: number;
   value: string;
   status?: boolean;
-
+  
 }

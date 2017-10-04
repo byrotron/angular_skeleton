@@ -12,6 +12,9 @@ export class SktnUploadFileComponent {
   files: File[] = [];
 
   @Input()
+  title: string;
+
+  @Input()
   allowed: string[] = [];
 
   @Input()

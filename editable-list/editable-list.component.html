@@ -1,4 +1,4 @@
-<div [ngClass]="group_class" class="editable-list-container">
+<div class="editable-list-container">
 
   <label *ngIf="label">
     <span *ngIf="list_service.loading === true" class="fa fa-cog fa-spin"></span> {{ label }}</label>
@@ -8,15 +8,12 @@
     <div class="edit-icon" *ngIf="editing === true && !inline" (click)="editing = false">Close</div>
   </ng-template>
 
-  <div fxLayout="row" *ngIf="list">
+  <div class="editable-list-selector" fxLayout="row" *ngIf="list">
     
-    <select fxFlex="1 1 auto"
-      *ngIf="editing === false || inline === true" 
-      [class.inline]="inline" 
-      [ngClass]="control_class"  
-      [disabled]="list.loading === true"
-      [(ngModel)]="value"
-      (change)="onChange()">
+    <select
+      *ngIf="editing === false || inline === true"
+      [class.inline]="inline"
+      [(ngModel)]="value">
 
       <option value="">--Select--</option>
       <option *ngFor="let item of list.items"
@@ -25,7 +22,7 @@
     </select>
     
     <ng-template [ngIf]="editable">
-      <div fxFlex="1 1 auto" class="icon inline" *ngIf="inline" (click)="openEditor()">
+      <div class="icon inline" *ngIf="inline" (click)="openEditor()">
         <span class="fa fa-pencil"></span>
       </div>
     </ng-template>

@@ -4,7 +4,7 @@
     (change)="fileSelected(fileinput.files)"/>
 
 <md-card>
-  <h3 mdSubheader>Medical Certificates</h3>
+  <h3>{{ title }}</h3>
   
   <md-list>
       
@@ -20,6 +20,5 @@
 
   <md-card-actions>
     <button md-raised-button color="accent" (click)="fileinput.click()" [disabled]="files.length === max">Choose</button>
-    <button md-raised-button color="accent" (click)="uploadFile(fileinput.files)" [disabled]="files.length === 0">Upload</button>
   </md-card-actions>
 </md-card>

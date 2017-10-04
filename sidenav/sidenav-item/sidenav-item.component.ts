@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { ISktnSidenavItem } from './../interfaces';
-import { SktnSidenavService } from './../sidenav.service';
 
 @Component({
   selector: 'sktn-sidenav-item',
@@ -19,8 +17,7 @@ export class SktnSidenavItemComponent {
   active: boolean;
 
   constructor(
-    public router: Router,
-    public sidenav: SktnSidenavService
+    public router: Router
   ) {}
 
   ngOnInit() {

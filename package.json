@@ -14,18 +14,18 @@
     ],
     [
       {
-        "raw": "pangular@0.0.2",
+        "raw": "pangular",
         "scope": null,
         "escapedName": "pangular",
         "name": "pangular",
-        "rawSpec": "0.0.2",
-        "spec": "0.0.2",
-        "type": "version"
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
       },
-      "D:\\packages\\pang_skeleton\\public_html"
+      "D:\\workspace\\admed\\public_html"
     ]
   ],
-  "_from": "pangular@0.0.2",
+  "_from": "pangular",
   "_id": "pangular@0.0.2",
   "_inCache": true,
   "_location": "/pangular",
@@ -41,13 +41,13 @@
   "_npmVersion": "3.10.10",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "pangular@0.0.2",
+    "raw": "pangular",
     "scope": null,
     "escapedName": "pangular",
     "name": "pangular",
-    "rawSpec": "0.0.2",
-    "spec": "0.0.2",
-    "type": "version"
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
   },
   "_requiredBy": [
     "#USER",
@@ -56,8 +56,8 @@
   "_resolved": "https://registry.npmjs.org/pangular/-/pangular-0.0.2.tgz",
   "_shasum": "e3a389919627675d7a089fe5ad0e21608bac7d42",
   "_shrinkwrap": null,
-  "_spec": "pangular@0.0.2",
-  "_where": "D:\\packages\\pang_skeleton\\public_html",
+  "_spec": "pangular",
+  "_where": "D:\\workspace\\admed\\public_html",
   "author": {
     "name": "isArray.com Byron Georgiou"
   },
@@ -92,5 +92,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.3"
+  "version": "0.0.2"
 }

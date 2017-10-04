@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 
-import { ISktnSidenav, SktnSidenavService } from './../sidenav';
+import { ISktnSidenav } from './../sidenav';
 import { ISktnResponse } from './../interfaces/interfaces';
 import { SktnMessageService } from './../messages';
 import { Observable, Observer, BehaviorSubject } from 'rxjs';
@@ -22,7 +22,6 @@ export class SktnAdminPanelService {
   breadcrumbs: SktnBreadcrumbsComponent;
 
   constructor(
-    public sidenav: SktnSidenavService,
     public messages: SktnMessageService
   ){}
 

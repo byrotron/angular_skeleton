@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
-import { ControlValueAccessor,  NG_VALUE_ACCESSOR  } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef, ContentChild } from '@angular/core';
+import { ControlValueAccessor,  NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, FormControl, NgModel } from '@angular/forms';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { SktnEditableListService } from './editable-list.service';
@@ -18,7 +18,7 @@ import { SktnEditableListContainerComponent } from './editable-list-container/ed
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SktnEditableListComponent),
       multi: true,
-    } 
+    }
   ]
 })
 export class SktnEditableListComponent implements OnInit, ControlValueAccessor  {
@@ -44,6 +44,8 @@ export class SktnEditableListComponent implements OnInit, ControlValueAccessor  
   @Input()
   group_class: string;
 
+  control: FormControl = new FormControl();;
+
   id: number;
 
   editing = false;
@@ -52,18 +54,16 @@ export class SktnEditableListComponent implements OnInit, ControlValueAccessor  
 
   list: ISktnEditableList;
 
+  _value: any;
   propagateChange: Function;
-
-  value: any;
 
   constructor(
     public list_service: SktnEditableListService,
     protected dialog: MdDialog
   ) { }
 
-  
   ngOnInit() {
-    
+
     this.list_service.loading = true;
     this.list_service.getList(this.group, this.name).subscribe(
       (val: any) => {
@@ -75,24 +75,24 @@ export class SktnEditableListComponent implements OnInit, ControlValueAccessor  
 
   }
 
+  get value() {
+    return this._value;
+  }
+
+  set value(val: any) {
+    this._value = val;
+    this.propagateChange(this._value);
+  }
+
   public writeValue(val: any) {
-    if (val) {
-      this.value = val;
-    }
+    this._value = val;
   }
 
   public registerOnChange(fn: any) {
-      this.propagateChange = fn;
+    this.propagateChange = fn;
   }
   
   public registerOnTouched() { }
-
-  // change events from the textarea
-  private onChange() {
-    if(this.propagateChange) {
-      this.propagateChange(this.value);
-    }
-  }
 
   openEditor() {
 
@@ -109,8 +109,6 @@ export class SktnEditableListComponent implements OnInit, ControlValueAccessor  
       }
     });
 
-
   }
-
 
 }

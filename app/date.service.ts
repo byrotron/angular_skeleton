@@ -15,7 +15,7 @@ export class SktnDateService {
     return moment(date, format).isValid();
   }
 
-  newDate(date: string, format: string) {
+  newDate(date: any, format?: string) {
     return moment(date, format);
   }
 }
