@@ -12,4 +12,8 @@
     <p><span class="fa fa-exclamation"></span> {{ name ? name : 'This' }} field must be at most {{ element.errors.maxlength.requiredLength }}, and currently it is {{ element.errors.maxlength.actualLength - element.errors.maxlength.requiredLength }} over</p>
   </div>
 
+  <div *ngIf="element.errors.number" class="form-control-feedback">
+    <p><span class="fa fa-exclamation"></span> {{ name ? name : 'This' }} must be a number</p>
+  </div>
+
 </div>
