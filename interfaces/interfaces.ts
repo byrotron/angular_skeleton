@@ -1,10 +1,7 @@
 export interface ISktnResponse {
 
-  status: boolean;
-  message: string;
-
-  code?: number;
+  status?: boolean;
+  message?: string;
   result?: any;
-  error?: any;
   
 }

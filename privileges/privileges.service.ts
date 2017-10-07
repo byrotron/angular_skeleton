@@ -4,7 +4,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 
 import { SktnAdminPanelService } from './../admin-panel/admin-panel.service';
-import { SktnAuthService, SktnAppService } from './../app';
+import { SktnHttpHelperService } from './../app';
 import { ISktnResponse } from './../interfaces/interfaces';
 
 @Injectable()
@@ -22,9 +22,8 @@ export class SktnPrivilegesService {
 
   constructor(
     protected http: Http,
-    protected app: SktnAppService,
-    protected admin: SktnAdminPanelService,
-    protected auth: SktnAuthService,
+    protected helper: SktnHttpHelperService
+
   ) {}
 
   getPrivileges() {
@@ -34,10 +33,10 @@ export class SktnPrivilegesService {
       return response.json() as ISktnResponse
     })
     .retryWhen((request: Observable<Response>) => {
-        return this.app.reconnect(request);
+      return this.helper.reconnect(request);
     })
     .catch((err: Response) => {
-      return this.admin.handleError(err);
+      return this.helper.handleError(err);
     });
 
   }
@@ -53,18 +52,16 @@ export class SktnPrivilegesService {
       return response.json() as ISktnResponse
     })
     .retryWhen((request: Observable<Response>) => {
-        return this.app.reconnect(request);
+      return this.helper.reconnect(request);
     })
     .catch((err: Response) => {
-      return this.admin.handleError(err);
+      return this.helper.handleError(err);
     });
 
   }
 
   setPrivileges() {
     // Set the privileges
-
-    this.actions.update = this.auth.validateAction('update_privilege');
   }
 
 }

@@ -3,8 +3,9 @@ import { Http, RequestOptions, Headers, Response, URLSearchParams } from '@angul
 
 import { Observable } from 'rxjs';
 
+import { ISktnDataTableEvent } from './../data-table/interfaces';
 import { SktnAdminPanelService } from './../admin-panel/admin-panel.service';
-import { SktnAuthService, SktnAppService } from './../app';
+import { SktnHttpHelperService } from './../app';
 import { ISktnResponse } from './../interfaces/interfaces';
 import { ISktnUser } from './../users/interfaces';
 
@@ -17,100 +18,103 @@ export class SktnUserService {
 
   current_user: ISktnUser;
 
-  actions = {
-    create: false,
-    read: false,
-    update: false,
-    delete: false
-  }
-
-  headers = new Headers({
-    'Content-Type': 'application/json'
-  });
-
-  options = new RequestOptions({ headers: this.headers });
+  actions: any;
 
   constructor(
     public http: Http,
-    public app: SktnAppService,
-    public admin: SktnAdminPanelService,
-    public auth: SktnAuthService
+    protected helper: SktnHttpHelperService
   ) { }
 
   getUser(id: any) {
 
     let params: URLSearchParams = new URLSearchParams();
-    params.set('id', String(id));
-    this.options.params = params;
+    let options = new RequestOptions( this.helper.headers );
 
-    return this.http.get('/api/users/view-user', this.options)
+    params.set('id', String(id));
+    options.params = params;
+
+    return this.http.get('/api/users/view-user', options)
     .map((response: Response) => {
       return response.json() as ISktnResponse
     })
     .retryWhen((request: Observable<Response>) => {
-        return this.app.reconnect(request);
+      return this.helper.reconnect(request);
     })
     .catch((err: Response) => {
-      return this.admin.handleError(err);
+      return this.helper.handleError(err);
     });
     
   }
 
-  getUsers(page: number, limit: number, order_by: string, order_style: string, filter?: string): Observable<ISktnResponse> {
+  getUsers(event: ISktnDataTableEvent): Observable<ISktnResponse> {
 
     let params: URLSearchParams = new URLSearchParams();
-    params.set('page', String(page));
-    params.set('limit', String(limit));
-    params.set('orderby', order_by);
-    params.set('direction', order_style);
+    let options = new RequestOptions( this.helper.headers );
+
+    params.set('page', String(event.page));
+    params.set('limit', String(event.limit));
+    params.set('orderby', event.orderby);
+    params.set('direction', event.direction);
     
-    if(filter) {
-      params.set('filter', filter);
+    if(event.filter) {
+      params.set('filter', event.filter);
     }
     
-    this.options.params = params;
+    options.params = params;
 
-    return this.http.get('/api/users/view-users', this.options)  
+    return this.http.get('/api/users/view-users', options)  
       .map((response: Response) => {
         return response.json() as ISktnResponse
       })
       .retryWhen((request: Observable<Response>) => {
-        return this.app.reconnect(request);
+        return this.helper.reconnect(request);
       })
       .catch((err: Response) => {
-        return this.admin.handleError(err);
+        return this.helper.handleError(err);
       });
 
   }
 
   create(user: ISktnUser) {
+    
     if(this.actions.create === true) {
+      let options = new RequestOptions( this.helper.headers );
+
       return this.http.post('/api/users/create-user', {
         user: user
-      }, this.options)
+      }, options)
       .map((response: Response) => {
         return response.json() as ISktnResponse
       })
+      .retryWhen((request: Observable<Response>) => {
+        return this.helper.reconnect(request);
+      })
       .catch((err: any) => {
-        return this.admin.handleError(err);
+        return this.helper.handleError(err);
       });
     }
   }
 
   update(id: string | number, user: any) {
+    
     if(this.actions.update === true) {
+
+      let options = new RequestOptions( this.helper.headers );
       let params: URLSearchParams = new URLSearchParams();
       params.set('id', String(id));
-      this.options.params = params;
+      options.params = params;
 
       return this.http.put('/api/users/update-user', {
         user: user
-      }, this.options)
+      }, options)
       .map((response: Response) => {
         return response.json() as ISktnResponse
       })
+      .retryWhen((request: Observable<Response>) => {
+        return this.helper.reconnect(request);
+      })
       .catch((err: any) => {
-        return this.admin.handleError(err);
+        return this.helper.handleError(err);
       });
     }
   }
@@ -118,16 +122,21 @@ export class SktnUserService {
   delete(id: number | string) {
     
     if(this.actions.delete) {
+
+      let options = new RequestOptions( this.helper.headers );
       let params: URLSearchParams = new URLSearchParams();
       params.set('id', String(id));
-      this.options.params = params;
+      options.params = params;
 
-      return this.http.delete('/api/users/delete-user', this.options)
+      return this.http.delete('/api/users/delete-user', options)
         .map((response: Response) => {
           return response.json() as ISktnResponse
         })
+        .retryWhen((request: Observable<Response>) => {
+          return this.helper.reconnect(request);
+        })
         .catch((err: any) => {
-          return this.admin.handleError(err);
+          return this.helper.handleError(err);
         });
     }
 
@@ -136,10 +145,12 @@ export class SktnUserService {
   setPrivileges() {
 
     // Set the privileges
-    this.actions.create = this.auth.validateAction('create_user_action');
-    this.actions.read = this.auth.validateAction('view_user_action');
-    this.actions.update = this.auth.validateAction('update_user_action');
-    this.actions.delete = this.auth.validateAction('delete_user_action');
+    this.actions = this.helper.validateActions({
+      create: 'create_user_action',
+      read: 'view_user_action',
+      update: 'update_user_action',
+      delete: 'delete_user_action'
+    });
     
   }
 }

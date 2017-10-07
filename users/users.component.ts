@@ -67,7 +67,7 @@ export class SktnUsersComponent {
   updateTable(event: ISktnDataTableEvent) {
 
     // this.user_service.admin.loading = 'show';
-    this.user_service.getUsers(event.page, event.limit, event.orderby, event.direction, event.filter)
+    this.user_service.getUsers(event)
       .subscribe(
         (response: ISktnResponse) => {
           if(response.status) {

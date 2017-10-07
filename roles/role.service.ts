@@ -3,7 +3,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { Observable } from 'rxjs';
 
-import { SktnAppService, SktnAuthService } from './../app';
+import { SktnHttpHelperService } from './../app';
 import { ISktnResponse  } from './../interfaces/interfaces';
 import { SktnAdminPanelService } from './../admin-panel';
 import { ISktnRole } from './interfaces';
@@ -23,89 +23,90 @@ export class SktnRoleService {
     delete: false
   }
 
-  headers = new Headers({
-    'Content-Type': 'application/json'
-  });
-
-  options = new RequestOptions({ headers: this.headers });
-
   constructor(
     protected http: Http,
-    protected app: SktnAppService,
-    public admin: SktnAdminPanelService,
-    protected auth: SktnAuthService
+    protected helper: SktnHttpHelperService
   ) { }
 
   getRoles() {
 
-    return this.http.get('/api/roles/view-roles', this.options)
+    let options = new RequestOptions(this.helper.headers);
+    return this.http.get('/api/roles/view-roles', options)
     .map((response: Response) => {
       return response.json() as ISktnResponse
     })
     .retryWhen((request: Observable<Response>) => {
-        return this.app.reconnect(request);
+      return this.helper.reconnect(request);
     })
     .catch((err: Response) => {
-      return this.admin.handleError(err);
+      return this.helper.handleError(err);
     });
 
   }
 
   createRole(name: string) {
+
+    let options = new RequestOptions(this.helper.headers);
     return this.http.post('/api/roles/create-role', {
       name: name
-    }, this.options)
+    }, options)
     .map((response: Response) => {
       return response.json() as ISktnResponse
     })
     .retryWhen((request: Observable<Response>) => {
-        return this.app.reconnect(request);
+      return this.helper.reconnect(request);
     })
     .catch((err: Response) => {
-      return this.admin.handleError(err);
+      return this.helper.handleError(err);
     });
   }
 
   updateRole(id: number, name: string) {
 
+    let options = new RequestOptions(this.helper.headers);
     return this.http.post('/api/roles/update-role', {
       id: id,
       name: name
-    }, this.options)
+    }, options)
     .map((response: Response) => {
       return response.json() as ISktnResponse
     })
     .retryWhen((request: Observable<Response>) => {
-        return this.app.reconnect(request);
+      return this.helper.reconnect(request);
     })
     .catch((err: Response) => {
-      return this.admin.handleError(err);
+      return this.helper.handleError(err);
     });
 
   }
 
   deleteRole(id: number) {
 
+    let options = new RequestOptions(this.helper.headers);
     return this.http.post('/api/roles/delete-role', {
       id: id,
-    }, this.options)
+    }, options)
     .map((response: Response) => {
       return response.json() as ISktnResponse
     })
     .retryWhen((request: Observable<Response>) => {
-        return this.app.reconnect(request);
+      return this.helper.reconnect(request);
     })
     .catch((err: Response) => {
-      return this.admin.handleError(err);
+      return this.helper.handleError(err);
     });
 
   }
 
   setPrivileges() {
+
     // Set the privileges
-    this.actions.create = this.auth.validateAction('create_user_action');
-    this.actions.update = this.auth.validateAction('update_user_action');
-    this.actions.delete = this.auth.validateAction('delete_user_action');
+    this.actions = this.helper.validateActions({
+      create: 'create_role_action',
+      update: 'update_role_action',
+      delete: 'delete_role_action'
+    });
+    
   }
 
 }

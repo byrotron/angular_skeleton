@@ -52,34 +52,4 @@ export class SktnAdminPanelService {
 
   }
 
-  handleError(error: Response) {
-
-      let title: string;
-      let type: 'error' | 'success' | 'info' | 'warn' = 'error';
-
-      switch(error.status) {
-        case 401: 
-            title = 'Not Authenticated';
-          break;
-        case 403:
-            title = 'Not Authorised';
-          break;
-        case 404: 
-            title = 'Not Found';
-          break;
-        case 500: 
-            title = 'Server Error';
-          break;
-        case 504: 
-            title = 'Connection Error';
-          break;
-      }
-
-      let body:ISktnResponse = error.json();
-
-      this.addAdminMessage(type, title, body.message);
-      return Observable.throw(error);
-
-    }
-
 }

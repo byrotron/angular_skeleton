@@ -26,8 +26,9 @@ export class SktnUserDetailComponent implements OnInit {
   updater: any;
   
   constructor(
-    public route: ActivatedRoute,
+    protected route: ActivatedRoute,
     protected form: FormBuilder,
+    protected admin_panel: SktnAdminPanelService,
     public user: SktnUserService
   ) {
     this.createForm();
@@ -35,21 +36,11 @@ export class SktnUserDetailComponent implements OnInit {
 
   createForm() {
     this.user_form = this.form.group({
-      name: [
-        "", [Validators.required]
-      ],
-      surname: [
-        "", [Validators.required]
-      ],
-      email: [
-        "", [Validators.required]
-      ],
-      status: [
-        "", [Validators.required]
-      ],
-      role: [
-        "", [Validators.required]
-      ]
+      name: ["", Validators.required],
+      surname: ["", Validators.required],
+      email: ["", Validators.required],
+      status: ["", Validators.required],
+      role: ["", Validators.required]
     });
   }
 
@@ -70,11 +61,6 @@ export class SktnUserDetailComponent implements OnInit {
             
             } 
 
-          },
-          (err: Error) => {
-          },
-          () => {
-            // this.user.admin.loading = 'hide';
           }
 
         );
@@ -133,7 +119,7 @@ export class SktnUserDetailComponent implements OnInit {
 
           } else {
 
-            this.user.admin.addAdminMessage('warn', 'Warning', response.message);
+            this.admin_panel.addAdminMessage('warn', 'Warning', response.message);
 
           }
 

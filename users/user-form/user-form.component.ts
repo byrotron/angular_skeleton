@@ -32,9 +32,7 @@ export class SktnUserFormComponent {
 
   createForm() {
     this.user_form = this.form.group({
-      name: [
-        "", Validators.required
-      ],
+      name: ["", Validators.required],
       surname: "",
       email: "",
       status: "",
