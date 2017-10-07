@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Response } from '@angular/http';
-
+import { MdDialogRef, MdDialog } from '@angular/material';
+import { SktnConnectionComponent } from './../connection';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -9,8 +10,12 @@ export class SktnAppService {
   connection: Observable<boolean>;
   connected: boolean;
   connection_attempt: number = 0;
+
+  connection_dialog: MdDialogRef<SktnConnectionComponent>;
   
-  constructor() {
+  constructor(
+    public dialog: MdDialog
+  ) {
     this.connection = Observable.merge(
       Observable.of(navigator.onLine),
       Observable.fromEvent(window, 'online').map(() => true),
@@ -41,6 +46,27 @@ export class SktnAppService {
       }, 0);
   }
 
+  checkConnection() {
+
+      this.connection.subscribe(
+        (connection: boolean) => {
+  
+          if(connection === false) {
+  
+            this.connection_dialog = this.dialog.open(SktnConnectionComponent, {
+              disableClose: true
+            });
+            this.connected = false;
+  
+          } else if(connection === true && this.connected === false) {
+            this.connection_dialog.close();
+            this.connected = true;
+          }
+          
+        }
+      );
+
+  }
   
 
 }

@@ -8,6 +8,5 @@ import {MD_DIALOG_DATA} from '@angular/material';
 })
 export class SktnConnectionComponent {
 
-  
 
 }
