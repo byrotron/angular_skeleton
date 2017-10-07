@@ -2,37 +2,40 @@
 
   <div fxLayout.md="row" fxLayout.xs="column" class="sktn-data-table-header">
 
-    <div fxFlex *ngIf="pagination">
-      <app-pagination #pagination
+    <div fxFlex fxFlexAlign="start start" *ngIf="pagination">
+
+      <sktn-pagination
         [current_page]="table_data.page"
         [limit]="table_data.limit"
         [total_items]="total_items"
         [active]="active">
-      </app-pagination>
+      </sktn-pagination>
+
     </div>
 
-    <div class="fill-space"></div>
+    <div fxLayout.md="row" fxLayoutAlign="end start" fxLayoutGap="0.5rem" fxFlex fxFlexAlign="end start">
 
-    <md-input-container *ngIf="filter" fxFlex class="example-full-width">
-      <input mdInput 
-        placeholder="Filter Results" 
-        [disabled]="!active"
-        #filterinput/>
-    </md-input-container>
-    
-    <div fxFlex>
-      <ng-content select="[data-table-actions]"></ng-content>
+      <md-input-container *ngIf="filter">
+        <input mdInput 
+          placeholder="Filter Results" 
+          [disabled]="!active"
+          #filterinput/>
+      </md-input-container>
+      
+      <div class="sktn-data-table-actions" fxLayout.md="row" fxLayoutGap="0.5rem" fxLayoutAlign="start start">
+        <ng-content select="[data-table-actions]"></ng-content>
+        
+        <button 
+          md-raised-button
+          class="add"
+          (click)="refresh()" 
+          [disabled]="!active">
+          <span class="fa fa-refresh"></span>
+        </button>
+      </div>
+
     </div>
 
-    <div fxFlex>
-      <button 
-        md-raised-button 
-        (click)="refresh()" 
-        [disabled]="active">
-        <span class="fa fa-refresh"></span>
-      </button>
-    </div>
-    
   </div>
 
   <div *ngIf="total_items > 0">

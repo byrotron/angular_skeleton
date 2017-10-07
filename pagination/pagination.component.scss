@@ -1,19 +1,30 @@
-.app-pagination {
+.sktn-pagination {
   
- text-align: center;
+  text-align: center;
 
- .pagination-item {
-   cursor: pointer;
-   color: highlight;
-   opacity: 0.5;
+  md-input-container.sktn-pagination-input {
+    width: 3rem;
+  }
+  md-select.sktn-pagination-input {
+    width: 4rem;
+  }
 
-   &:hover {
-     opacity: 1;
-   }
+  .sktn-pagination-item {
+    line-height: 4.125rem;
 
-   &.disabled {
-     color: lightgrey;
-   }
+    &.link {
+      color: highlight;
+      opacity: 0.7;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.disabled {
+      color: lightgrey;
+      cursor: default;
+    }
  }
 
 }

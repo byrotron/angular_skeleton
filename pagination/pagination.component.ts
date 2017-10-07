@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { ISktnPagination, ISktnPaginationEvent } from './interfaces';
 
 @Component ({
-    selector: "app-pagination",
+    selector: "sktn-pagination",
     templateUrl: "./pagination.component.html",
     styleUrls: [
         './pagination.component.scss'
