@@ -13,6 +13,9 @@ export class SktnFormErrorsComponent {
   element: FormControl;
 
   @Input()
+  reactive: boolean = false;
+
+  @Input()
   name: string;
   
 }

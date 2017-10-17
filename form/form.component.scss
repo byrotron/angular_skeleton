@@ -1,0 +1,27 @@
+div.sktn-form {
+
+  position:relative;
+
+  h4 {
+    margin: 0.5rem 0 1rem;
+    font-size: 1.25rem;
+  }
+  
+  .close {
+    position: absolute;
+    top: -1rem;
+    right: 0;
+    color: firebrick;
+    opacity: 0.6;
+    font-size: 1.25rem;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+}
+
+.sktn-form-actions {
+  padding-top: 1rem;
+}

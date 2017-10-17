@@ -1,18 +1,18 @@
-<div *ngIf="element.dirty && element.errors" class="sktn-form-error">
+<div *ngIf="element.dirty && element.errors" class="sktn-form-error" [class.reactive]="reactive">
 
-  <div *ngIf="element.errors.required"  class="form-control-feedback">
+  <div *ngIf="element.hasError('required')"  class="form-control-feedback">
     <p><span class="fa fa-exclamation"></span> {{ name ? name : 'This' }} field is required</p>
   </div>
 
-  <div *ngIf="element.errors.minlength" class="form-control-feedback">
-    <p><span class="fa fa-exclamation"></span> {{ name ? name : 'This' }} field must be at least {{ element.errors.minlength.requiredLength }}, and currently it is {{ element.errors.minlength.actualLength }} of {{ element.errors.minlength.requiredLength }}</p>
+  <div *ngIf="element.hasError('minlength')" class="form-control-feedback">
+    <p><span class="fa fa-exclamation"></span> {{ name ? name : 'This' }} field must be at least {{ element.getError('minlength').requiredLength }}, and currently it is {{ element.getError('minlength').actualLength }} of {{ element.getError('minlength').requiredLength }}</p>
   </div>
 
-  <div *ngIf="element.errors.maxlength" class="form-control-feedback">
-    <p><span class="fa fa-exclamation"></span> {{ name ? name : 'This' }} field must be at most {{ element.errors.maxlength.requiredLength }}, and currently it is {{ element.errors.maxlength.actualLength - element.errors.maxlength.requiredLength }} over</p>
+  <div *ngIf="element.hasError('maxlength')" class="form-control-feedback">
+    <p><span class="fa fa-exclamation"></span> {{ name ? name : 'This' }} field must be at most {{ element.getError('maxlength').requiredLength }}, and currently it is {{ element.getError('maxlength').actualLength - element.getError('maxlength').requiredLength }} over</p>
   </div>
 
-  <div *ngIf="element.errors.number" class="form-control-feedback">
+  <div *ngIf="element.hasError('number')" class="form-control-feedback">
     <p><span class="fa fa-exclamation"></span> {{ name ? name : 'This' }} must be a number</p>
   </div>
 

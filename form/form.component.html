@@ -1,0 +1,19 @@
+<div class="sktn-form">
+
+  <h4>{{ title }}</h4>
+  
+  <span class="fa fa-remove close link" (click)="close()"></span>
+    
+  <ng-content></ng-content>
+
+</div>
+
+<div fxLayout="row" fxLayoutGap="0.5rem" fxLayoutAlign="end center" class="sktn-form-actions">
+  
+  <button form-actions md-button color="accent" class="edit" (click)="close()">
+    <span class="fa fa-remove"></span> Close</button>
+  
+  <ng-content select="[form-actions]"></ng-content>
+  
+</div>
+
