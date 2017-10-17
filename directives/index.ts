@@ -1,0 +1,1 @@
+export { NgForIn } from './for-in.directive';

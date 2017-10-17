@@ -8,8 +8,10 @@ export * from './confirm-box';
 export * from './connection';
 export * from './data-table';
 export * from './detail-panel';
+export * from './directives';
 export * from './editable-list';
 export * from './email-verification';
+export * from './form';
 export * from './form-errors';
 export * from './interfaces/interfaces';
 export * from './loader';
@@ -19,7 +21,6 @@ export * from './messages'
 export * from './pagination';
 export * from './pipes';
 export * from './privileges';
-export * from './profile';
 export * from './reset-account';
 export * from './roles';
 export * from './settings';

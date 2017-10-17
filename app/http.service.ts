@@ -55,7 +55,7 @@ export class SktnHttpHelperService {
 
   validateActions(actions: any) {
 
-    let updated_actions;
+    let updated_actions = [];
 
     for(let action in actions) {
 

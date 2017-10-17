@@ -11,19 +11,21 @@ export const SidenavToggle = trigger("sidenavtoggle", [
   state('hideleft',
     style({
       'max-width': '0%',
-      'transform': 'translate(-100%)'
+      'transform': 'translate(-100%)',
+      'display': 'none'
     })
   ),
   state('showleft',
     style({
       'max-width': '12%',
-      'transform': 'translate(0%)'
+      'transform': 'translate(0%)',
+      'display': 'initial'
     })
   ),
   transition('hideleft=>showleft', [
     animate('300ms ease-in', style({
       'max-width': '12%',
-      'transform': 'translate(0%)'
+      'transform': 'translate(0%)',
     }))
   ]),
   transition('showleft=>hideleft', [
@@ -36,13 +38,15 @@ export const SidenavToggle = trigger("sidenavtoggle", [
   state('hideright',
     style({
         'max-width': '0%',
-        'transform': 'translate(-100%)'
+        'transform': 'translate(-100%)',
+        'display': 'none'
       })
     ),
     state('showright',
       style({
         'max-width': '12%',
-        'transform': 'translate(0%)'
+        'transform': 'translate(0%)',
+        'display': 'initial'
       })
     ),
     transition('hideright=>showright', [

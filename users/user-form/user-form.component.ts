@@ -15,14 +15,14 @@ import { ISktnResponse } from './../../interfaces/interfaces';
 })
 export class SktnUserFormComponent {
 
-  user_form: FormGroup;
+  form: FormGroup;
 
   loading: boolean = false;
 
   roles: ISktnRole[] = [];
 
   constructor(
-    public form: FormBuilder,
+    public fb: FormBuilder,
     public user: SktnUserService,
     public role: SktnRoleService,
     public dialog: MdDialogRef<SktnUserFormComponent>
@@ -31,7 +31,7 @@ export class SktnUserFormComponent {
   }
 
   createForm() {
-    this.user_form = this.form.group({
+    this.form = this.fb.group({
       name: ["", Validators.required],
       surname: "",
       email: "",
@@ -39,25 +39,29 @@ export class SktnUserFormComponent {
       role: ""
     });
   }
+
+  close() {
+    this.dialog.close();
+  }
   
   submit() {
     
     this.loading = true;
 
-    this.user.create(this.user_form.value).subscribe(
-      (response: ISktnResponse) => {
+    if(this.form.valid) {
 
-        this.user.users.push(response.result);
-        this.dialog.close();
+      this.user.create(this.form.value).subscribe(
+        (response: ISktnResponse) => {
+  
+          this.user.users.push(response.result);
+          this.loading = false;
+          this.dialog.close();
+  
+        }
+      );
 
-      },
-      (err: Error) => {
-
-      },
-      () =>{
-        this.loading = false;
-      }
-    );
+    }
+    
 
   }
 

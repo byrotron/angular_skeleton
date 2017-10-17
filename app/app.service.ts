@@ -48,6 +48,7 @@ export class SktnAppService {
 
   checkConnection() {
 
+    setTimeout(() => {
       this.connection.subscribe(
         (connection: boolean) => {
   
@@ -65,6 +66,7 @@ export class SktnAppService {
           
         }
       );
+    }, 1);
 
   }
   

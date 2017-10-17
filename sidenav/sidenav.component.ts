@@ -27,10 +27,10 @@ export class SktnSidenavComponent {
     public router: Router
   ) { }
 
-  @Input()
   @HostBinding('@sidenavtoggle')
   binding: string;
 
+  @Input()
   show: 'show' | 'hide' = 'show';
 
   @Input()

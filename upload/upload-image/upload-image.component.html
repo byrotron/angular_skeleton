@@ -7,8 +7,8 @@
     <div fxLayout="column" fxFlex="1 1 auto" class="upload-backdrops"
       (drop)="drop($event)"
       (dragover)="preventDefault($event)" 
-      (dragenter)="startDrop($event)" 
-      (dragleave)="stopDrop($event)" >
+      (dragenter)="startDrop()" 
+      (dragleave)="stopDrop()" >
       
       <span *ngIf="src" class="fa fa-remove remove-upload-image" (click)="removeImage()"></span>
       <span [class.hidden]="drop_ready" class="drag">Drag Image Here</span>

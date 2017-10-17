@@ -6,7 +6,9 @@ import {
   state, 
   style, 
   transition, 
-  animate 
+  animate,
+  OnInit,
+  OnChanges
 } from '@angular/core';
 
 @Component({
@@ -34,9 +36,11 @@ import {
     ])
   ]
 })
-export class SktnLoaderComponent {
+export class SktnLoaderComponent implements OnInit, OnChanges {
 
   @Input()
+  loading: boolean = false;
+
   show: 'show' | 'hide';
 
   @Input()
@@ -48,16 +52,19 @@ export class SktnLoaderComponent {
     protected element: ElementRef
   ) { }
 
+  ngOnInit() {
+    this.toggleLoader();
+  }
+
   ngOnChanges() {
-    console.log("ngOnChanges");
-    console.log(this.show);
-    if(this.show === 'show') {
+    this.toggleLoader();
+  }
 
-      var html: HTMLElement = this.element.nativeElement;
-      var parent = html.parentElement;
-      var scroll = parent.scrollTop;
-      this.top = scroll + 'px';
-
+  toggleLoader() {
+    if(this.loading === true) {
+      this.show = 'show';
+    } else {
+      this.show = 'hide';
     }
   }
 

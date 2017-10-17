@@ -1,55 +1,60 @@
-<sktn-data-table
-  fxFlex
-  orderby="id"
-  [total_items]="total_items"
-  (onChange)="updateTable($event)">
+<div class="container-fluid">
 
-  <button type="button" md-raised-button data-table-actions
-    [disabled]="!user_service.actions.create"
-    (click)="open_form()">
-    <span class="fa fa-plus add"></span> Add User
-  </button>
+  <h1>Users</h1>
 
-  <md-table #table [dataSource]="data_source" data-table>
+  <sktn-data-table
+    fxFlex
+    orderby="id"
+    [total_items]="total_items"
+    (onChange)="updateTable($event)">
 
-    <ng-container cdkColumnDef="name">
-      <md-header-cell *cdkHeaderCellDef>Name</md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
-    </ng-container>
+    <button type="button" md-raised-button data-table-actions
+      [disabled]="!user_service.actions.create"
+      (click)="open_form()">
+      <span class="fa fa-plus add"></span> Add User
+    </button>
 
-    <ng-container cdkColumnDef="surname">
-      <md-header-cell *cdkHeaderCellDef>Surname</md-header-cell>
-      <md-cell *cdkCellDef="let row">{{row.surname}}</md-cell>
-    </ng-container>
+    <md-table #table [dataSource]="data_source" data-table>
 
-    <ng-container cdkColumnDef="email">
-      <md-header-cell *cdkHeaderCellDef>Email</md-header-cell>
-      <md-cell *cdkCellDef="let row">{{row.email}}</md-cell>
-    </ng-container>
+      <ng-container cdkColumnDef="name">
+        <md-header-cell *cdkHeaderCellDef>Name</md-header-cell>
+        <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+      </ng-container>
 
-    <ng-container cdkColumnDef="status">
-      <md-header-cell *cdkHeaderCellDef>Status</md-header-cell>
-      <md-cell *cdkCellDef="let row" 
-        [style.color]="row.status.id == 1 ? 'darkGreen' : 'firebrick'">
-        {{ row.status.name }}</md-cell>
-    </ng-container>
+      <ng-container cdkColumnDef="surname">
+        <md-header-cell *cdkHeaderCellDef>Surname</md-header-cell>
+        <md-cell *cdkCellDef="let row">{{row.surname}}</md-cell>
+      </ng-container>
 
-    <ng-container cdkColumnDef="role">
-      <md-header-cell *cdkHeaderCellDef>Role</md-header-cell>
-      <md-cell *cdkCellDef="let row">{{ row.role.name }}</md-cell>
-    </ng-container>
+      <ng-container cdkColumnDef="email">
+        <md-header-cell *cdkHeaderCellDef>Email</md-header-cell>
+        <md-cell *cdkCellDef="let row">{{row.email}}</md-cell>
+      </ng-container>
 
-    <ng-container cdkColumnDef="last_login">
-      <md-header-cell *cdkHeaderCellDef>Last Login</md-header-cell>
-      <md-cell *cdkCellDef="let row">
-        <span *ngIf="row.last_login">{{ row.last_login.date | date :'dd-MM-y HH:mm' }}</span>
-      </md-cell>
-    </ng-container>
+      <ng-container cdkColumnDef="status">
+        <md-header-cell *cdkHeaderCellDef>Status</md-header-cell>
+        <md-cell *cdkCellDef="let row" 
+          [style.color]="row.status.id == 1 ? 'darkGreen' : 'firebrick'">
+          {{ row.status.name }}</md-cell>
+      </ng-container>
 
-    <md-header-row *cdkHeaderRowDef="headers"></md-header-row>
-    <md-row *cdkRowDef="let row; columns: headers;"></md-row>
+      <ng-container cdkColumnDef="role">
+        <md-header-cell *cdkHeaderCellDef>Role</md-header-cell>
+        <md-cell *cdkCellDef="let row">{{ row.role.name }}</md-cell>
+      </ng-container>
 
-  </md-table>
+      <ng-container cdkColumnDef="last_login">
+        <md-header-cell *cdkHeaderCellDef>Last Login</md-header-cell>
+        <md-cell *cdkCellDef="let row">
+          <span *ngIf="row.last_login">{{ row.last_login.date | date :'dd-MM-y HH:mm' }}</span>
+        </md-cell>
+      </ng-container>
 
-</sktn-data-table>
+      <md-header-row *cdkHeaderRowDef="headers"></md-header-row>
+      <md-row *cdkRowDef="let row; columns: headers;"></md-row>
 
+    </md-table>
+
+  </sktn-data-table>
+
+</div>

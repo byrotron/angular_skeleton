@@ -7,7 +7,6 @@
   <div fxLayout="column" fxFlex="100%">
 
     <div class="loader" fxLayout="column" fxLayoutAlign="center center"
-      [style.top]='top'
       [@fadetoggle]="web.loading">
       <md-spinner></md-spinner>
       <p *ngIf="web.loading_message">{{ web.loading_message }}</p>

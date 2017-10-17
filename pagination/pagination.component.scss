@@ -13,12 +13,16 @@
     line-height: 4.125rem;
 
     &.link {
-      color: highlight;
+      color: #359FF4;
       opacity: 0.7;
     }
 
     &:hover {
       opacity: 1;
+
+      &.disabled {
+        opacity: 0.7;
+      }
     }
 
     &.disabled {

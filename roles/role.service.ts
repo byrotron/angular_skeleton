@@ -17,7 +17,7 @@ export class SktnRoleService {
 
   current_role: ISktnRole;
 
-  actions = {
+  actions: any = {
     create: false,
     update: false,
     delete: false

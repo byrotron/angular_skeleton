@@ -32,9 +32,10 @@ export class SktnUsersComponent {
   data_source: SktnDataTableSource;
 
   constructor(
-    public router: Router,
-    public user_service: SktnUserService,
-    public dialog: MdDialog
+    protected router: Router,
+    protected admin_panel: SktnAdminPanelService,
+    protected dialog: MdDialog,
+    public user_service: SktnUserService
   ) {}
 
   ngOnInit() {
@@ -73,6 +74,7 @@ export class SktnUsersComponent {
           if(response.status) {
             this.data_source.rows.next(response.result.users);
             this.total_items = response.result.total_items;
+            this.admin_panel.stopLoading();
           }
         },
         (error: any) => {
@@ -82,10 +84,6 @@ export class SktnUsersComponent {
         }
       );
 
-  }
-
-  ngAfterViewInit() {
-    // this.user_service.admin.loading = 'hide';
   }
 
   deleteUser(user: ISktnUser) {

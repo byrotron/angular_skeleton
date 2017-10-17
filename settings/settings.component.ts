@@ -12,14 +12,14 @@ import { SktnAdminPanelService } from './../admin-panel/admin-panel.service';
 export class SktnSettingsComponent implements OnInit {
 
   constructor(
-    protected admin: SktnAdminPanelService
+    protected admin_panel: SktnAdminPanelService
   ) { }
 
   ngOnInit() {
   }
 
   ngAfterViewInit() {
-    // this.admin.loading = 'hide';
+    this.admin_panel.stopLoading();
   }
 
 }
