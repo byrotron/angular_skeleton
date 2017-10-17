@@ -30,6 +30,9 @@ export class SktnDataTableComponent {
   filter: boolean = true;
 
   @Input()
+  actions: boolean = true;
+
+  @Input()
   page: number = 1;
 
   @Input()
@@ -90,6 +93,7 @@ export class SktnDataTableComponent {
   ngAfterViewInit() {
     
     // This is the filter affect and debounces it for fast typing
+    if(this.filter) {
     this.subscriptions.push(Observable.fromEvent(this._filter.nativeElement, 'keyup')
       .debounceTime(500)
       .distinctUntilChanged()
@@ -97,18 +101,21 @@ export class SktnDataTableComponent {
         this.table_data.filter = this._filter.nativeElement.value;
         this._registerChange();
       }));
-    
-    // Pagination changes
-    this.subscriptions.push(this._page.onChange
-      .debounceTime(250)
-      .distinctUntilChanged()
-      .subscribe(
-        (page: ISktnPaginationEvent) => {
-          this.table_data.page = page.page;
-          this.table_data.limit = page.limit;
-          this._registerChange();
-        }
-      ));
+    }
+
+    if(this.pagination) {
+      // Pagination changes
+      this.subscriptions.push(this._page.onChange
+        .debounceTime(250)
+        .distinctUntilChanged()
+        .subscribe(
+          (page: ISktnPaginationEvent) => {
+            this.table_data.page = page.page;
+            this.table_data.limit = page.limit;
+            this._registerChange();
+          }
+        ));
+    }
   }
   
   _registerChange() {

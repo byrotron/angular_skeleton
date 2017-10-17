@@ -3,11 +3,18 @@
   overflow-x: auto;
 
   .sktn-data-table-header {
-    padding: 0 1.5rem;
+    padding: 0rem 1.5rem;
+    background: rgba(64, 64, 64, 0.06);
+    border: solid 1px rgba(0, 0, 0, 0.12);
+    border-bottom: 0;
     
     .sktn-data-table-actions {
       padding-top: 0.5em;
     }
+  }
+
+  .sktn-data-table-content {
+    border: solid 1px rgba(0, 0, 0, 0.12);
   }
  
 

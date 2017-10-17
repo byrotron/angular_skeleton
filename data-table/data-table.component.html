@@ -22,7 +22,7 @@
           #filterinput/>
       </md-input-container>
       
-      <div class="sktn-data-table-actions" fxLayout.md="row" fxLayoutGap="0.5rem" fxLayoutAlign="start start">
+      <div class="sktn-data-table-actions" fxLayout.md="row" fxLayoutGap="0.5rem" fxLayoutAlign="start start" *ngIf="actions">
         <ng-content select="[data-table-actions]"></ng-content>
         
         <button 
@@ -38,10 +38,10 @@
 
   </div>
 
-  <div *ngIf="total_items > 0">
+  <div class="sktn-data-table-content" *ngIf="total_items > 0 || pagination === false">
     <ng-content select="[data-table]"></ng-content>
   </div>
   
-  <div *ngIf="total_items == 0">No data found</div>
+  <div *ngIf="total_items == 0 && pagination === true">No data found</div>
 
 </div>
