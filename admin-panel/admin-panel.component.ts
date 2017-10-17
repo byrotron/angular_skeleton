@@ -63,7 +63,6 @@ export class SktnAdminPanelComponent {
   ) { }
 
   ngAfterViewInit() {
-    console.log(this.action_bar);
 
     this.admin.action_bar = this.action_bar;
     this.admin.breadcrumbs = this.breadcrumbs; 

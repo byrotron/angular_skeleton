@@ -34,6 +34,7 @@ export class SktnAdminPanelService {
   stopLoading() {
     if(this.loading === 'show') {
       this.loading = 'hide';
+      this.loading_message = undefined;
     }
   }
 
