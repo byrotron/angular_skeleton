@@ -9,6 +9,7 @@ import { Observable, Observer, BehaviorSubject } from 'rxjs';
 import { SktnSidenavComponent } from './../sidenav';
 import { SktnActionBarComponent } from './../action-bar';
 import { SktnBreadcrumbsComponent } from './../breadcrumbs';
+import { SktnAuthService } from './../app';
 
 @Injectable()
 export class SktnAdminPanelService {
@@ -21,11 +22,18 @@ export class SktnAdminPanelService {
   action_bar: SktnActionBarComponent;
   breadcrumbs: SktnBreadcrumbsComponent;
 
+  error: {
+    type: string,
+    message?: string
+  };
+
   constructor(
-    public messages: SktnMessageService
+    public messages: SktnMessageService,
+    public auth: SktnAuthService
   ){}
 
   startLoading() {
+    this.endError();
     if(this.loading === 'hide') {
       this.loading = 'show';
     }
@@ -36,6 +44,21 @@ export class SktnAdminPanelService {
       this.loading = 'hide';
       this.loading_message = undefined;
     }
+  }
+
+  startError(type: string, message?:string) {
+    
+    this.error ={
+      type: type,
+      message: message
+    };
+
+    this.stopLoading();
+
+  }
+
+  endError() {
+    this.error = undefined;
   }
 
   addAdminMessage(type: 'error' | 'success' | 'info' | 'warn', title:string, message: string) {

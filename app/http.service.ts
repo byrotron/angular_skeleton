@@ -19,14 +19,17 @@ export class SktnHttpHelperService {
     })
   }
 
+  getResponse(result: any): Observable<ISktnResponse> {
+    return Observable.of({
+      status: true,
+      result: result
+    })
+  }
+
   handleError(error: Response): Observable<ISktnResponse> { 
     
-    let body:ISktnResponse = error.json();
-
-    body.status = false;
-    body.message = "Fatal Error: There seems to have been an issue with your request";
-
-    return Observable.throw(body); 
+    let response:ISktnResponse = error.json();
+    return Observable.throw(response);
 
   } 
     

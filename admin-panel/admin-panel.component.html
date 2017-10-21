@@ -15,11 +15,12 @@
 
     <div id="Content"  fxLayout="column" fxFlex="100%">
       
-       <!-- Breadcrumbs Section -->
-      <sktn-breadcrumbs fxFlex="auto"></sktn-breadcrumbs>
+
+        <!-- Breadcrumbs Section -->
+      <sktn-breadcrumbs fxFlex="auto" [class.hide]="admin.error"></sktn-breadcrumbs>
       <!-- End Breadcrumbs Section -->
 
-      <div id="Main" fxFlex="100%" [class.noscroll]="admin.loading === 'show'">
+      <div id="Main" fxFlex="100%" [class.noscroll]="admin.loading === 'show'" [class.hide]="admin.error">
 
         <div class="loader" fxLayout="column" fxLayoutAlign="center center"
           [style.top]="'top'"
@@ -32,7 +33,12 @@
 
       </div>
 
-      <sktn-action-bar show="hide"></sktn-action-bar>
+      <sktn-action-bar show="hide" [class.hide]="admin.error"></sktn-action-bar>
+      
+
+      <ng-template [ngIf]="admin.error">
+        <ng-content select="[admin-errors]"></ng-content>
+      </ng-template>
 
     </div>
 

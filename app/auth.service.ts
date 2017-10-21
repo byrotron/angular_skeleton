@@ -16,8 +16,6 @@ export class SktnAuthService {
     'Content-Type': 'application/json'
   });
 
-  options = new RequestOptions({ headers: this.headers });
-
   constructor(
     public http: Http,
     public router: Router,
@@ -25,10 +23,11 @@ export class SktnAuthService {
 
   login(email: string, password: string): Observable<ISktnResponse> {
 
+    let options = new RequestOptions({ headers: this.headers });
     return this.http.post('/api/auth/login', {
       email: email,
       password: password
-    }, this.options)
+    }, options)
     .map((response: Response) => {
       return response.json() as ISktnResponse;
     })
@@ -38,6 +37,32 @@ export class SktnAuthService {
       return Observable.of<ISktnResponse>(body);
     });
 
+  }
+
+  getPrivilege(action: string) {
+
+    if(this.privileges.length > 0) {
+      let priv = this.privileges.find((priviledge: any) => {
+        return priviledge.action === action;
+      })
+
+      if(priv) {
+        return priv.status;
+      } else {
+        return false;
+      }
+      
+    } else {
+
+      if(this.current_user.status.id === 1) {
+        return true;
+      } else {
+        // Probably should do another call here, however only if the timed request is set
+        return false;
+      }
+      
+    }
+    
   }
 
   validateAction(privilege_name: string) {
@@ -65,7 +90,9 @@ export class SktnAuthService {
 
   logout() {
 
-    return this.http.get('/api/auth/logout', this.options)
+    let options = new RequestOptions({ headers: this.headers });
+
+    return this.http.get('/api/auth/logout', options)
     .map((response: Response) => {
       return response.json() as ISktnResponse;
     })
@@ -77,11 +104,12 @@ export class SktnAuthService {
   }
 
   signup(email: string, password: string) {
-    
+
+    let options = new RequestOptions({ headers: this.headers });
     return this.http.post('/api/auth/sign-up', {
       email: email,
       password: password
-    }, this.options)
+    }, options)
     .map((response: Response) => {
       return response.json() as ISktnResponse;
     });
@@ -90,15 +118,16 @@ export class SktnAuthService {
 
   isAuthenticated(): Observable<ISktnResponse> {
 
-    return this.http.get('/api/auth/is_authd', this.options)
-    .map((response: Response) => {
-      return response.json() as ISktnResponse;
-    })
-    .catch((err: any) => {
-      let body:ISktnResponse = err.json();
+    let options = new RequestOptions({ headers: this.headers });
+    return this.http.get('/api/auth/is_authd', options)
+      .map((response: Response) => {
+        return response.json() as ISktnResponse;
+      })
+      .catch((err: any) => {
+        let body:ISktnResponse = err.json();
 
-      return Observable.of<ISktnResponse>(body);
-    });
+        return Observable.of<ISktnResponse>(body);
+      });
 
   }
 
