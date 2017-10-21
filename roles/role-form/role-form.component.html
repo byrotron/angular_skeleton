@@ -1,28 +1,16 @@
-<form [formGroup]="role_form" class="is-form" novalidate>
-
-  <h4 md-dialog-title>Role Form</h4>
-  <button md-dialog-close class="close-form"><span class="fa fa-remove"></span></button>
-  
-  <md-dialog-content>
-
-    <div class="form-group">
-
-      <label for="name">Name</label>
-      <input type="text" class="form-control" formControlName="name" name="name" />
+<md-dialog-content>
     
-    </div>
+  <sktn-form title="Role Form" [formGroup]="form" (onClose)="close()">
 
-  </md-dialog-content>
+    <md-form-field mdLine class="fullwidth">
+      <input mdInput type="text"placeholder="Name" formControlName="name" name="name">
+      <sktn-form-errors mdLine [element]="form.get('name')" [reactive]="true"></sktn-form-errors>
+    </md-form-field> 
 
-  <md-dialog-actions>
+    <button form-actions md-raised-button color="accent" class="edit" [disabled]="loading === true || !form.valid" (click)="submit()">
+      <span class="fa fa-pencil"></span> Send</button>
 
-    <div class="fill-space"></div>
+  </sktn-form>
 
-    <button md-raised-button class="edit" [disabled]="loading === true || !role_form.valid" (click)="submit()">
-      <span *ngIf="loading === false"><span class="fa fa-pencil"></span> Add</span>
-      <span *ngIf="loading === true" class="fa fa-spin fa-cog"></span>
-    </button>
+</md-dialog-content>
 
-  </md-dialog-actions>
-
-</form>

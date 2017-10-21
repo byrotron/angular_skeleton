@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { ISktnResponse } from './../interfaces/interfaces';
@@ -11,6 +10,7 @@ import { SktnAdminPanelService } from './../admin-panel/admin-panel.service';
 import { SktnRoleService } from './role.service';
 
 import { SktnRoleFormComponent } from './role-form/role-form.component';
+import { SktnDataTableSource, ISktnDataTableEvent } from './../data-table';
 
 @Component({
   selector: 'sktn-roles',
@@ -25,29 +25,45 @@ export class SktnRolesComponent implements OnInit {
 
   confirm_form: MdDialogRef<SktnConfirmBoxComponent>;
 
+  total_items = 0;
+  
+  headers: string[] = ['edit', 'remove', 'name'];
+
+  data_source: SktnDataTableSource;
+
   constructor(
-    public router: Router,
-    public role_service: SktnRoleService,
-    public dialog: MdDialog
+    protected dialog: MdDialog,
+    protected admin_panel: SktnAdminPanelService,
+    protected role_service: SktnRoleService,
   ) { }
 
   ngOnInit() {
-    // this.role_service.admin.loading = 'show';
+    this.data_source = new SktnDataTableSource();
+
+    this.updateTable({
+      page: 1, 
+      limit: 50, 
+      orderby: 'surname', 
+      direction: 'ASC'
+    });
+
+  }
+
+  updateTable(event: ISktnDataTableEvent) {
+    
+    this.admin_panel.startLoading();
     this.role_service.getRoles().subscribe(
       (response: ISktnResponse) => {
         if(response.status === true) {
-          this.role_service.roles = response.result.roles;
-          // this.role_service.admin.loading = 'hide';
-        }
-        this.role_service.setPrivileges();
-      },
-      (error: any) => {
-        if(error.status === 403) {
-          this.router.navigate(['/admin']);
+          this.data_source.rows.next(response.result);
+          this.total_items = response.result.length;
+          this.admin_panel.stopLoading();
         }
       },
-      () => {
-        // this.role_service.admin.loading = 'hide';
+      (response: ISktnResponse) => {
+        if(response.code === 401) {
+          this.admin_panel.startError('unauthorized');
+        }
       }
     );
 
@@ -56,7 +72,7 @@ export class SktnRolesComponent implements OnInit {
   openForm(role: ISktnRole | undefined) {
 
       if(role) {
-        if(role.enabled === false || this.role_service.actions.update) {
+        if(role.enabled === false || this.admin_panel.auth.getPrivilege('update-role') === true) {
           return;
         }
         this.role_service.current_role = role;
@@ -71,7 +87,7 @@ export class SktnRolesComponent implements OnInit {
 
   confirm(role: ISktnRole) {
 
-    if(role.enabled === true && this.role_service.actions.update === true) {
+    if(role.enabled === true && this.admin_panel.auth.getPrivilege('delete-role') === true) {
 
       this.confirm_form = this.dialog.open(SktnConfirmBoxComponent, {
         width: '600px',
@@ -92,7 +108,7 @@ export class SktnRolesComponent implements OnInit {
 
   deleteRole(role: ISktnRole) {
 
-    if(role.enabled === true && this.role_service.actions.update === true) {
+    if(role.enabled === true && this.admin_panel.auth.getPrivilege('delete-role') === true) {
 
       this.role_service.deleteRole(role.id).subscribe(
         (response: ISktnResponse) => {

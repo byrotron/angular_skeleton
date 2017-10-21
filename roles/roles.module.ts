@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MdButtonModule } from '@angular/material';
+import { MdButtonModule, MdInputModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SktnConfirmBoxComponent } from './../confirm-box/confirm-box.component';
@@ -10,15 +10,21 @@ import { SktnConfirmBoxModule } from './../confirm-box/confirm-box.module';
 import { SktnRolesComponent } from './roles.component';
 import { SktnRoleService } from './role.service';
 import { SktnRoleFormComponent } from './role-form/role-form.component';
-
+import { SktnDataTableModule } from './../data-table';
+import { SktnFormErrorsModule } from './../form-errors';
+import { SktnFormModule } from './../form/form.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MdButtonModule,
+    MdInputModule,
     FlexLayoutModule,
-    SktnConfirmBoxModule
+    SktnConfirmBoxModule,
+    SktnDataTableModule,
+    SktnFormModule,
+    SktnFormErrorsModule
   ],
   entryComponents: [
     SktnRoleFormComponent,

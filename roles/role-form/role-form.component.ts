@@ -18,10 +18,10 @@ export class SktnRoleFormComponent implements OnInit {
 
   loading = false;
 
-  role_form: FormGroup;
+  form: FormGroup;
 
   constructor(
-    public form: FormBuilder,
+    public fb: FormBuilder,
     public admin: SktnAdminPanelService,
     public role: SktnRoleService,
     public dialog: MdDialogRef<SktnRoleFormComponent>
@@ -32,7 +32,7 @@ export class SktnRoleFormComponent implements OnInit {
   ngOnInit() {
 
     if(this.role.current_role) {
-      this.role_form.get('name').setValue(this.role.current_role.name);
+      this.form.get('name').setValue(this.role.current_role.name);
     }
 
     // Reset the current role if the form is closed
@@ -45,7 +45,7 @@ export class SktnRoleFormComponent implements OnInit {
   }
 
   createForm() {
-    this.role_form = this.form.group({
+    this.form = this.fb.group({
       name: [
         "", Validators.required
       ],
@@ -56,7 +56,7 @@ export class SktnRoleFormComponent implements OnInit {
 
     this.loading = true;
 
-    let name = this.role_form.get('name').value;
+    let name = this.form.get('name').value;
     this.role.createRole(name).subscribe(
       (response: ISktnResponse) => {
 
@@ -81,15 +81,14 @@ export class SktnRoleFormComponent implements OnInit {
 
     this.loading = true;
 
-    let name = this.role_form.get('name').value;
+    let name = this.form.get('name').value;
     this.role.updateRole(this.role.current_role.id, name).subscribe(
       (response: ISktnResponse) => {
 
-        this.role.current_role.name = name;
         this.role.current_role = undefined;
-
         this.dialog.close();
         this.loading = false;
+
       },
       (err: Error) => {
 
@@ -98,6 +97,10 @@ export class SktnRoleFormComponent implements OnInit {
       }
     );
 
+  }
+
+  close() {
+    this.dialog.close();
   }
 
   submit() {

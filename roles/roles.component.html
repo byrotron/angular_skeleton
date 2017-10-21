@@ -1,61 +1,42 @@
+<h1>Roles</h1>
 
-<div fxLayout="column" fxFlex  class="is-table">
+<sktn-data-table
+  fxFlex
+  orderby="name"
+  [total_items]="total_items"
+  (onChange)="updateTable($event)">
 
-  <h6>Roles</h6>
+  <button type="button" md-raised-button data-table-actions
+    [disabled]="!admin_panel.auth.getPrivilege('create-role')"
+    (click)="openForm()">
+    <span class="fa fa-plus add" [class.disabled]="!admin_panel.auth.getPrivilege('create-role')"></span> Add Role
+  </button>
 
-  <div fxLayout="row" class="admin-widget">
+  <md-table [dataSource]="data_source" data-table>
 
-    <div class="fill-space"></div>
+    <ng-container cdkColumnDef="edit">
+      <md-header-cell *cdkHeaderCellDef></md-header-cell>
+      <md-cell class="icon" *cdkCellDef="let row" (click)="openForm(row.id)"> 
+        <span class="fa fa-pencil edit" [class.disabled]="!admin_panel.auth.getPrivilege('update-role')" ></span>
+      </md-cell>
+    </ng-container>
 
-    <div>
+    <ng-container cdkColumnDef="remove">
+      <md-header-cell *cdkHeaderCellDef></md-header-cell>
+      <md-cell class="icon" *cdkCellDef="let row" (click)="confirm(row)"> 
+        <span class="fa fa-remove remove" [class.disabled]="!admin_panel.auth.getPrivilege('remove-role')" ></span>
+      </md-cell>
+    </ng-container>
 
-      <button type="button" md-raised-button
-        (click)="openForm(undefined)"
-        [disabled]="role_service.actions.create">
-        <span class="fa fa-plus add"></span> Add Role
+    <ng-container cdkColumnDef="name">
+      <md-header-cell *cdkHeaderCellDef>Name</md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+    </ng-container>
 
-      </button>
+    <md-header-row *cdkHeaderRowDef="headers"></md-header-row>
+    <md-row *cdkRowDef="let row; columns: headers;"></md-row>
 
-    </div>
+  </md-table>
 
-  </div>
+</sktn-data-table>
 
-  <div  class="admin-widget">
-
-    <table class="is-table" *ngIf="role_service.roles.length > 0">
-
-      <thead>
-        <tr>
-
-          <th class="icon"></th>
-          <th class="icon"></th>
-
-          <th>Name</th>
-          
-        </tr>
-      </thead>
-
-      <tbody>
-        
-        <tr *ngFor="let role of role_service.roles">
-          
-          <td class="icon edit" [class.disabled]="!role.enabled || role_service.actions.update">
-            <span class="fa fa-pencil" (click)="openForm(role)"></span>
-          </td>
-
-          <td class="icon remove" [class.disabled]="!role.enabled || role_service.actions.delete">
-            <span class="fa fa-remove" (click)="confirm(role)"></span>
-          </td>
-
-          <td>{{ role.name }}</td>
-
-        </tr>
-
-      </tbody>
-
-    </table>
-
-  </div>
-
-
-</div>

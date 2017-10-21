@@ -17,12 +17,6 @@ export class SktnRoleService {
 
   current_role: ISktnRole;
 
-  actions: any = {
-    create: false,
-    update: false,
-    delete: false
-  }
-
   constructor(
     protected http: Http,
     protected helper: SktnHttpHelperService
@@ -31,7 +25,7 @@ export class SktnRoleService {
   getRoles() {
 
     let options = new RequestOptions(this.helper.headers);
-    return this.http.get('/api/roles/view-roles', options)
+    return this.http.get('/api/roles/get-roles', options)
     .map((response: Response) => {
       return response.json() as ISktnResponse
     })
@@ -96,17 +90,6 @@ export class SktnRoleService {
       return this.helper.handleError(err);
     });
 
-  }
-
-  setPrivileges() {
-
-    // Set the privileges
-    this.actions = this.helper.validateActions({
-      create: 'create_role_action',
-      update: 'update_role_action',
-      delete: 'delete_role_action'
-    });
-    
   }
 
 }
