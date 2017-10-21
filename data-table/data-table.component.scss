@@ -15,8 +15,15 @@
 
   .sktn-data-table-content {
     border: solid 1px rgba(0, 0, 0, 0.12);
+    border-bottom: none;
   }
- 
+  
+  .no-data {
+    padding: 2rem;
+    text-align: center;
+    border: solid 1px lightgrey;
+    text-transform: uppercase;
+  }
 
   .icon {
     max-width: 2rem;
