@@ -29,13 +29,13 @@ export class SktnPrivilegesComponent implements OnInit {
   roles: ISktnRole[];
 
   constructor(
-    protected admin: SktnAdminPanelService,
+    protected admin_panel: SktnAdminPanelService,
     protected privs: SktnPrivilegesService,
     protected router: Router
   ) { }
 
   ngOnInit() {
-    // this.admin.loading = 'show';
+    this.admin_panel.startLoading();
 
     this.privs.getPrivileges().subscribe(
       (response: ISktnResponse) => {
@@ -48,15 +48,13 @@ export class SktnPrivilegesComponent implements OnInit {
         }
 
         this.set_data();
-
+        this.admin_panel.stopLoading();
       },
-      (error: any) => {
-        if(error.status === 403) {
-          this.router.navigate(['/admin']);
+      (response: ISktnResponse) => {
+        if(response.code === 401) {
+          this.admin_panel.startError('unauthorized');
         }
-      },
-      () => {
-        // this.admin.loading = 'hide';
+        this.admin_panel.stopLoading();
       }
     );
 
@@ -78,7 +76,7 @@ export class SktnPrivilegesComponent implements OnInit {
         return true;
       },
       (err: Error) => {
-        this.admin.addAdminMessage('warn', "Warning", err.message);
+        this.admin_panel.addAdminMessage('warn', "Warning", err.message);
 
         this.privileges.map((item: any) => {
             if(item.action_id === action && item.role_id === role) {
