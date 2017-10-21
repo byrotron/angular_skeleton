@@ -16,4 +16,7 @@
     <p><span class="fa fa-exclamation"></span> {{ name ? name : 'This' }} must be a number</p>
   </div>
 
+  <div *ngIf="element.hasError('email')" class="form-control-feedback">
+    <p><span class="fa fa-exclamation"></span> {{ name ? name : 'This' }} is not a valid email</p>
+  </div>
 </div>
