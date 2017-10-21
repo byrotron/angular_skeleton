@@ -2,57 +2,36 @@
 
   <sktn-form title="User Form" [formGroup]="form" (onClose)="close()">
 
-      <md-list>
-          
-        <md-list-item>
-          
-          <md-form-field mdLine class="fullwidth">
-            <input mdInput type="text"placeholder="Name" formControlName="name" name="name">
-            <sktn-form-errors mdLine [element]="form.get('name')" [reactive]="true"></sktn-form-errors>
-          </md-form-field> 
+    <md-form-field mdLine class="fullwidth">
+      <input mdInput type="text"placeholder="Name" formControlName="name" name="name">
+      <sktn-form-errors mdLine [element]="form.get('name')" [reactive]="true"></sktn-form-errors>
+    </md-form-field> 
 
-          
-        
-        </md-list-item>
-        
-        <md-list-item>
-            
-          <md-form-field class="fullwidth">
-            <input mdInput type="text"placeholder="Surname" formControlName="surname" name="surname">
-          </md-form-field>
-        
-        </md-list-item>
-        
-        <md-list-item>
-          
-          <md-form-field class="fullwidth">
-            <input mdInput type="text"placeholder="Email" formControlName="email" name="email">
-          </md-form-field>
-        
-        </md-list-item>
-        
-        <md-list-item>
-            
-          <md-radio-group formControlName="status" class="fullwidth">
-            <md-radio-button [value]="1">Active</md-radio-button>
-            <md-radio-button [value]="0">Inactive</md-radio-button>
-          </md-radio-group>   
+    <md-form-field class="fullwidth">
+      <input mdInput type="text"placeholder="Surname" formControlName="surname" name="surname">
+    </md-form-field>
+  
 
-        </md-list-item>
-        
-        <md-list-item>
+    <md-form-field class="fullwidth">
+      <input mdInput type="text"placeholder="Email" formControlName="email" name="email">
+    </md-form-field>
+  
 
-          <md-select placeholder="Role" class="fullwidth">
-            <md-option *ngFor="let role of roles" [value]="role.id">
-              {{ role.name }}
-            </md-option>
-          </md-select>
-        
-        </md-list-item>
+    <md-radio-group formControlName="status" class="fullwidth">
+      <md-radio-button [value]="1">Active</md-radio-button>
+      <md-radio-button [value]="0">Inactive</md-radio-button>
+    </md-radio-group>   
 
-      </md-list>
 
-      <button form-actions md-raised-button color="accent" class="edit" [disabled]="form.invalid"><span class="fa fa-pencil"></span> Edit</button>
+    <md-select placeholder="Role" formControlName="role"  class="fullwidth">
+      <md-option *ngFor="let role of roles" [value]="role.id">
+        {{ role.name }}
+      </md-option>
+    </md-select>
+      
+    <button form-actions md-raised-button color="accent" class="edit" [disabled]="form.invalid" (click)="submit()">
+      <span class="fa fa-pencil"></span> Send</button>
+
   </sktn-form>
 
 </md-dialog-content>

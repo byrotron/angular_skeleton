@@ -8,7 +8,7 @@ import { SktnAdminPanelService } from './../admin-panel/admin-panel.service';
 import { SktnDataTableSource, ISktnDataTableEvent } from './../data-table';
 import { ISktnResponse } from './../interfaces/interfaces';
 import { ISktnUser } from './interfaces';
-
+import { SktnConfirmBoxComponent } from './../confirm-box';
 import { FadeOut } from './../animations/animations';
 
 @Component({
@@ -24,10 +24,11 @@ import { FadeOut } from './../animations/animations';
 export class SktnUsersComponent {
 
   user_form: MdDialogRef<SktnUserFormComponent>;
+  confirm_form: MdDialogRef<SktnConfirmBoxComponent>;
 
   total_items = 0;
 
-  headers: string[] = ['name', 'surname', 'email', 'status', 'role', 'last_login'];
+  headers: string[] = ['edit', 'remove', 'name', 'surname', 'email', 'status', 'role', 'last_login'];
 
   data_source: SktnDataTableSource;
 
@@ -47,12 +48,11 @@ export class SktnUsersComponent {
       orderby: 'surname', 
       direction: 'ASC'
     });
-    this.user_service.setPrivileges();
 
   }
 
   open_form() {
-    if(this.user_service.actions.create === true) {
+    if(this.admin_panel.auth.getPrivilege('create-user') === true) {
       this.user_form = this.dialog.open(SktnUserFormComponent, {
         width: '600px',
       });
@@ -60,7 +60,7 @@ export class SktnUsersComponent {
   }
 
   editUser(user: ISktnUser) {
-    if(this.user_service.actions.read === true) {
+    if(this.admin_panel.auth.getPrivilege('view-user') === true) {
       this.router.navigate([ '/admin', 'users', user.id ]);
     }
   }
@@ -77,28 +77,51 @@ export class SktnUsersComponent {
             this.admin_panel.stopLoading();
           }
         },
-        (error: any) => {
-          if(error.status === 403) {
-            this.router.navigate(['/admin']);
+        (response: ISktnResponse) => {
+          if(response.code === 401) {
+            this.admin_panel.startError('unauthorized', response.message)
           }
         }
       );
 
   }
 
+  confirm(user: ISktnUser) {
+    
+    if(this.admin_panel.auth.getPrivilege('delete-user') === true) {
+
+      this.confirm_form = this.dialog.open(SktnConfirmBoxComponent, {
+        width: '600px',
+        data: 'Are you sure you want to delete: ' + user.name.toUpperCase() + ' ' + user.surname.toUpperCase() 
+      });
+
+      this.confirm_form.afterClosed().subscribe(
+        (result: boolean) => {
+
+          if(result === true) {
+            this.deleteUser(user);
+          }
+          
+        }
+      );
+
+    }
+    
+  }
+
   deleteUser(user: ISktnUser) {
 
-    if(this.user_service.actions.delete === true) {
+    if(this.admin_panel.auth.getPrivilege('delete-user') === true) {
 
       this.user_service.delete(user.id).subscribe(
         (response: ISktnResponse) => {
+
           if(response.status === true) {
             this.user_service.users = this.user_service.users.filter((item: ISktnUser) => {
-
               return user.id !== item.id;
-
-            })
+            });
           }
+
         }
       );
 

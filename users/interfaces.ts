@@ -6,7 +6,10 @@ export interface ISktnUser {
   name: string;
   surname: string;
   email: string;
-  status: boolean;
+  status: {
+    id: number;
+    name: string
+  };
   role: ISktnRole;
   lastLogin: Date;
 

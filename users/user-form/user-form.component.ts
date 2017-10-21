@@ -30,6 +30,14 @@ export class SktnUserFormComponent {
     this.createForm();
   }
 
+  ngOnInit() {
+    this.role.getRoles().subscribe(
+      (response: ISktnResponse) => {
+        this.roles = response.result;
+      }
+    )
+  }
+
   createForm() {
     this.form = this.fb.group({
       name: ["", Validators.required],
@@ -52,10 +60,14 @@ export class SktnUserFormComponent {
 
       this.user.create(this.form.value).subscribe(
         (response: ISktnResponse) => {
-  
-          this.user.users.push(response.result);
+          
+          if(response.status === true) {
+            this.user.users.push(response.result);
+            this.dialog.close();
+          } 
+         
           this.loading = false;
-          this.dialog.close();
+          
   
         }
       );
