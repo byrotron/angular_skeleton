@@ -34,8 +34,8 @@ export class SktnUsersComponent {
 
   constructor(
     protected router: Router,
-    protected admin_panel: SktnAdminPanelService,
     protected dialog: MdDialog,
+    public admin_panel: SktnAdminPanelService,
     public user_service: SktnUserService
   ) {}
 

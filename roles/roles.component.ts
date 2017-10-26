@@ -33,8 +33,8 @@ export class SktnRolesComponent implements OnInit {
 
   constructor(
     protected dialog: MdDialog,
-    protected admin_panel: SktnAdminPanelService,
     protected role_service: SktnRoleService,
+    public admin_panel: SktnAdminPanelService,
   ) { }
 
   ngOnInit() {
@@ -69,7 +69,7 @@ export class SktnRolesComponent implements OnInit {
 
   }
 
-  openForm(role: ISktnRole | undefined) {
+  openForm(role: ISktnRole | null) {
 
       if(role) {
         if(role.enabled === false || this.admin_panel.auth.getPrivilege('update-role') === true) {

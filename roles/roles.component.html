@@ -8,7 +8,7 @@
 
   <button type="button" md-raised-button data-table-actions
     [disabled]="!admin_panel.auth.getPrivilege('create-role')"
-    (click)="openForm()">
+    (click)="openForm(null)">
     <span class="fa fa-plus add" [class.disabled]="!admin_panel.auth.getPrivilege('create-role')"></span> Add Role
   </button>
 
