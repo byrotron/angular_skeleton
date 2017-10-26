@@ -15,7 +15,7 @@ export class SktnMessagesComponent implements OnInit {
   position = ['top', 'right'];
 
   @Input()
-  delay: number = 5000;
+  delay: number = 8000;
   
   constructor(
     public msg: SktnMessageService
