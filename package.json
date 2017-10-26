@@ -23,16 +23,28 @@
         "type": "tag"
       },
       "D:\\workspace\\admed\\public_html"
+    ],
+    [
+      {
+        "raw": "pangular@latest",
+        "scope": null,
+        "escapedName": "pangular",
+        "name": "pangular",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\workspace\\admed\\public_html"
     ]
   ],
-  "_from": "pangular",
-  "_id": "pangular@0.0.2",
+  "_from": "pangular@latest",
+  "_id": "pangular@0.0.5",
   "_inCache": true,
   "_location": "/pangular",
   "_nodeVersion": "6.11.2",
   "_npmOperationalInternal": {
     "host": "s3://npm-registry-packages",
-    "tmp": "tmp/pangular-0.0.2.tgz_1506279062322_0.2760638357140124"
+    "tmp": "tmp/pangular-0.0.5.tgz_1508268312333_0.18511659954674542"
   },
   "_npmUser": {
     "name": "byrotron",
@@ -41,11 +53,11 @@
   "_npmVersion": "3.10.10",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "pangular",
+    "raw": "pangular@latest",
     "scope": null,
     "escapedName": "pangular",
     "name": "pangular",
-    "rawSpec": "",
+    "rawSpec": "latest",
     "spec": "latest",
     "type": "tag"
   },
@@ -53,10 +65,10 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/pangular/-/pangular-0.0.2.tgz",
-  "_shasum": "e3a389919627675d7a089fe5ad0e21608bac7d42",
+  "_resolved": "https://registry.npmjs.org/pangular/-/pangular-0.0.5.tgz",
+  "_shasum": "c4672538b8337f1662df240526f7af8751e8e4df",
   "_shrinkwrap": null,
-  "_spec": "pangular",
+  "_spec": "pangular@latest",
   "_where": "D:\\workspace\\admed\\public_html",
   "author": {
     "name": "isArray.com Byron Georgiou"
@@ -69,8 +81,8 @@
   "devDependencies": {},
   "directories": {},
   "dist": {
-    "shasum": "e3a389919627675d7a089fe5ad0e21608bac7d42",
-    "tarball": "https://registry.npmjs.org/pangular/-/pangular-0.0.2.tgz"
+    "shasum": "c4672538b8337f1662df240526f7af8751e8e4df",
+    "tarball": "https://registry.npmjs.org/pangular/-/pangular-0.0.5.tgz"
   },
   "gitHead": "f7bf7e3b6714d43d40901b9c0d01e7d44e75da70",
   "homepage": "https://github.com/byrotron/pangular#readme",
@@ -92,5 +104,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.5"
+  "version": "0.0.6"
 }
