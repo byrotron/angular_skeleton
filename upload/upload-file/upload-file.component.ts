@@ -78,14 +78,14 @@ export class SktnUploadFileComponent {
   }
 
   allowedExtensions(file: File) {
-
+ 
     if(this.allowed.length > 0) {
 
       const str = '(' + this.setRegExpStr() + ')$';
       const patt = new RegExp( str, 'i');
 
       if(!patt.test(file.name)) {
-        this.errors.push(new Error(file.name + ' file extension is invalid'));
+        this.errors.push(new Error(file.name + ' file extension is invalid, must be one of the following ' + this.allowed.toString())); 
       }
 
     }
