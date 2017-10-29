@@ -12,6 +12,10 @@ import { SktnConfirmBoxComponent } from './confirm-box.component';
   ],
   declarations: [
     SktnConfirmBoxComponent
+  ],
+  exports: [
+    SktnConfirmBoxComponent,
+    MdDialogModule
   ]
 })
 export class SktnConfirmBoxModule { }
