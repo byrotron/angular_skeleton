@@ -36,11 +36,9 @@ import {
     ])
   ]
 })
-export class SktnLoaderComponent implements OnInit, OnChanges {
+export class SktnLoaderComponent {
 
   @Input()
-  loading: boolean = false;
-
   show: 'show' | 'hide';
 
   @Input()
@@ -51,22 +49,5 @@ export class SktnLoaderComponent implements OnInit, OnChanges {
   constructor(
     protected element: ElementRef
   ) { }
-
-  ngOnInit() {
-    this.toggleLoader();
-  }
-
-  ngOnChanges() {
-    this.toggleLoader();
-  }
-
-  toggleLoader() {
-    if(this.loading === true) {
-      this.show = 'show';
-    } else {
-      this.show = 'hide';
-    }
-  }
-
 
 }
