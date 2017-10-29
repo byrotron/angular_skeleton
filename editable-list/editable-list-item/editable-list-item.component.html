@@ -1,14 +1,15 @@
-<div class="editable-list-item alert-sm" 
+<div class="sktn-list-item" fxLayout="row"
   [class.alert-info]="item.status" 
   [class.alert-danger]="!item.status">
 
   <span *ngIf="editing === false">{{ item.value }}</span>
   <input *ngIf="editing === true" type="text" (keydown.enter)="update()" (blur)="update()" [(ngModel)]="item.value"/>
   
-  <span class="editable-list-item-actions">
-    <span *ngIf="editing === false && item.status === true" class="fa fa-pencil" (click)="editing = true"></span>
-    <span *ngIf="item.status === true" class="fa fa-remove" (click)="delete()"></span>
-    <span *ngIf="item.status === false" class="fa fa-undo" (click)="undo()"></span>
-  </span>
+
+  <span fxFlex fxFill></span>
+
+  <span *ngIf="editing === false && item.status === true" class="fa fa-pencil edit link" (click)="editing = true"></span>
+  <span *ngIf="item.status === true" class="fa fa-remove remove link" (click)="delete()"></span>
+  <span *ngIf="item.status === false" class="fa fa-undo remove link" (click)="undo() "></span>
 
 </div>

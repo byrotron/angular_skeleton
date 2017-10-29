@@ -1,20 +1,12 @@
-.editable-list-item {
-  position: relative;
-  padding: 0.3rem 0.75rem;
-  margin-bottom: 0.25rem;
+.sktn-list-item {
+  border-bottom: solid 1px lightgrey;
+  padding: 1rem;
 
-  span.editable-list-item-actions {
-    position:absolute;
-    top:.3rem;
-    right: 0.75rem;
+  .fa {
+    margin-left: 0.3rem;
+    opacity: 0.6;
 
-    span {
-      cursor: pointer;
-      margin-right: 0.5rem;
-      opacity: 0.5;
-    }
-
-    span:hover {
+    &:hover {
       opacity: 1;
     }
   }

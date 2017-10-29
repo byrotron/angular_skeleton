@@ -1,8 +1,5 @@
 <div class="editable-list-container">
 
-  <label *ngIf="label">
-    <span *ngIf="list_service.loading === true" class="fa fa-cog fa-spin"></span> {{ label }}</label>
-
   <ng-template [ngIf]="editable">
     <div class="edit-icon" *ngIf="editing === false && !inline" (click)="editing = true">Edit</div>
     <div class="edit-icon" *ngIf="editing === true && !inline" (click)="editing = false">Close</div>
@@ -10,25 +7,21 @@
 
   <div class="editable-list-selector" fxLayout="row" *ngIf="list">
     
-    <select
+    <md-select [placeholder]="label"
       *ngIf="editing === false || inline === true"
       [class.inline]="inline"
       [(ngModel)]="value">
-
-      <option value="">--Select--</option>
-      <option *ngFor="let item of list.items"
-        [hidden]="!item.status"
-        [value]="item.id">{{ item.value }}</option>
-    </select>
+      <md-option *ngFor="let item of list.items" [hidden]="!item.status" [value]="item.id" >{{ item.value }}</md-option>
+    </md-select>
     
     <ng-template [ngIf]="editable">
-      <div class="icon inline" *ngIf="inline" (click)="openEditor()">
+      <div class="icon inline" *ngIf="inline" (click)="openEditor()"  fxLayout="row" fxLayoutAlign="center center">
         <span class="fa fa-pencil"></span>
       </div>
     </ng-template>
 
   </div>
-
+  
   <sktn-editable-list-container 
     *ngIf="!inline && editing === true" 
     [id]="list.id"

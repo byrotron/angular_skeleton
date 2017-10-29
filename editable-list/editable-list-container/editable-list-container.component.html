@@ -1,12 +1,13 @@
 
-  <div class="editable-list-container">
+  <div class="sktn-list-container">
 
-    <div class="input-group">
-      <input type="text" class="form-control" [disabled]="list.loading === true" [(ngModel)]="new_item" placeholder="Add Item Here" (keydown.enter)="create()">
-      <button class="input-group-addon fa fa-plus" [disabled]="!new_item || new_item.length === 0 || list.loading === true" (click)="create()"></button>
-    </div>
+    <md-input-container>
+      <input mdInput type="text" [disabled]="list.loading === true" [(ngModel)]="new_item" placeholder="Add Item" (keydown.enter)="create()">
+    </md-input-container> 
+    <button fxFlex md-button (click)="create()"><span class="fa fa-plus"></span></button>
 
-    <div class="editable-list-items">
+    
+    <div class="sktn-list-items">
 
       <sktn-editable-list-item *ngFor="let item of items; let i='index'"
         [(item)]="items[i]">
@@ -21,4 +22,6 @@
     <div class="alert-sm alert-danger error" *ngFor="let err of list.errors">{{ err.message }}</div>
   </div>
 
-  <button md-raised-button (click)="save()">Save</button>
+<div class="actions">
+    <button md-raised-button (click)="save()">Save</button>    
+</div>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MdButtonModule } from '@angular/material';
+import { MdButtonModule, MdInputModule, MdSelectModule, MdToolbarModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SktnEditableListComponent } from './editable-list.component';
 import { SktnEditableListService } from './editable-list.service';
@@ -13,7 +13,10 @@ import { SktnEditableListContainerComponent } from './editable-list-container/ed
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MdSelectModule,
+    MdInputModule,
     MdButtonModule,
+    MdToolbarModule,
     FlexLayoutModule
   ],
   declarations: [
