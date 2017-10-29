@@ -23,7 +23,6 @@ export class SktnLoginComponent {
 
   constructor(
     public router: Router,
-    public web: SktnWebsitePanelService,
     public form: FormBuilder,
     public auth: SktnAuthService
   ) { 
@@ -43,10 +42,6 @@ export class SktnLoginComponent {
       ]
     });
 
-  }
-
-  ngAfterViewInit() {
-    this.web.loading = 'hide';
   }
 
   login() {
@@ -77,7 +72,6 @@ export class SktnLoginComponent {
             
           }
 
-          
         },
         (response: ISktnResponse) => {
 
