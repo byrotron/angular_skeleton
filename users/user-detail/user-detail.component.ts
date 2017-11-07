@@ -67,8 +67,7 @@ export class SktnUserDetailComponent implements OnInit {
 
           this.roles = response.result;
           this.setFormValues(response.result);
-          this.user.setPrivileges();
-        
+
         } 
 
         this.admin_panel.stopLoading();
@@ -106,7 +105,7 @@ export class SktnUserDetailComponent implements OnInit {
 
   update(e:any) {
 
-    if(this.user.actions.update === true) {
+    if(this.admin_panel.auth.getPrivilege('update-user') === true) {
       this.loading = true;
       this.user.update(this.user.current_user.id, this.form.value).subscribe(
         (response: ISktnResponse) => {
