@@ -33,8 +33,13 @@ export class SktnAdminPanelService {
   ){}
 
   startLoading() {
-    this.endError();
+    
     if(this.loading === 'hide') {
+      
+      setTimeout(() => {
+        this.endError();
+      }, 1);
+      
       this.loading = 'show';
     }
   }
