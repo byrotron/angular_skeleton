@@ -27,7 +27,7 @@ export class SktnDetailItemComponent {
   editable = true;
 
   @Input()
-  list: ISktnListItem[];
+  list: ISktnListItem[] = [];
 
   @Input()
   type: string;
@@ -42,11 +42,14 @@ export class SktnDetailItemComponent {
   ) {}
 
   findListValue() {
-    let result: ISktnListItem = this.list.find((item: ISktnListItem) => {
-      return item.id == this.panel.form.get(this.name).value
-    });
-    
-    return result.name;
+
+    if(this.panel.form.get(this.name).value) {
+      let result: ISktnListItem = this.list.find((item: ISktnListItem) => {
+        return item.id == this.panel.form.get(this.name).value
+      });
+
+      return result.name;
+    }
   }
 
   submitForm() {

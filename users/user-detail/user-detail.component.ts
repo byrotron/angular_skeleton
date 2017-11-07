@@ -7,6 +7,8 @@ import { SktnAdminPanelService } from './../../admin-panel/admin-panel.service';
 
 import { ISktnResponse } from './../../interfaces/interfaces';
 import { ISktnUser } from './../interfaces';
+import { SktnRoleService } from './../../roles/role.service';
+import { ISktnRole } from './../../roles/interfaces';
 
 @Component({
   selector: 'sktn-user-detail',
@@ -17,69 +19,73 @@ import { ISktnUser } from './../interfaces';
 })
 export class SktnUserDetailComponent implements OnInit {
 
-  user_form: FormGroup;
+  form: FormGroup;
 
   editing = false;
 
   loading = false;
 
   updater: any;
+
+  roles: ISktnRole[];
   
   constructor(
     protected route: ActivatedRoute,
-    protected form: FormBuilder,
+    protected fb: FormBuilder,
     protected admin_panel: SktnAdminPanelService,
-    public user: SktnUserService
+    public user: SktnUserService,
+    protected http_roles: SktnRoleService
   ) {
     this.createForm();
    }
 
   createForm() {
-    this.user_form = this.form.group({
-      name: ["", Validators.required],
-      surname: ["", Validators.required],
-      email: ["", Validators.required],
-      status: ["", Validators.required],
-      role: ["", Validators.required]
+    this.form = this.fb.group({
+      name: [null, Validators.required],
+      surname: [null, Validators.required],
+      email: [null, Validators.required],
+      status: [null, Validators.required],
+      role: [null, Validators.required]
     });
   }
 
   ngOnInit() {
 
-    this.route.params.subscribe(
-
+    this.route.params.switchMap(
       (params: Params) => {
+        return this.user.getUser(params["id"]);
+      }
+    ).switchMap(
+      (response: ISktnResponse) => {
+        this.user.current_user = response.result;
+        return this.http_roles.getRoles();
+      }
+    ).subscribe(
+      (response: ISktnResponse) => {
 
-        this.user.getUser(params["id"]).subscribe(
-          (response: ISktnResponse) => {
+        if(response.status === true) {
 
-            if(response.status === true) {
-              
-              this.setFormValues(response.result);
-              this.user.current_user = response.result;
-              this.user.setPrivileges();
-            
-            } 
+          this.roles = response.result;
+          this.setFormValues(response.result);
+          this.user.setPrivileges();
+        
+        } 
 
-          }
+        this.admin_panel.stopLoading();
 
-        );
-
-      },
-     
+      }
     );
+
   }
 
   setFormValues(user: ISktnUser) {
 
-    for(let element in user) {
-
-      if(this.user_form.contains(element)) {
-
-        this.user_form.get(element).setValue(user[element]);
-
-      }
-
+    if(this.user.current_user) {
+      this.form.get("name").setValue(this.user.current_user.name);
+      this.form.get("surname").setValue(this.user.current_user.surname);
+      this.form.get("email").setValue(this.user.current_user.email);
+      this.form.get("status").setValue(this.user.current_user.status.id);
+      this.form.get("role").setValue(this.user.current_user.role.id);
     }
 
   }
@@ -88,9 +94,9 @@ export class SktnUserDetailComponent implements OnInit {
 
     for(let element in this.user.current_user) {
 
-      if(this.user_form.contains(element)) {
+      if(this.form.contains(element)) {
 
-        this.user.current_user[element] = this.user_form.get(element).value;
+        this.user.current_user[element] = this.form.get(element).value;
 
       }
 
@@ -102,7 +108,7 @@ export class SktnUserDetailComponent implements OnInit {
 
     if(this.user.actions.update === true) {
       this.loading = true;
-      this.user.update(this.user.current_user.id, this.user_form.value).subscribe(
+      this.user.update(this.user.current_user.id, this.form.value).subscribe(
         (response: ISktnResponse) => {
 
           if(response.status === true) {
@@ -110,7 +116,7 @@ export class SktnUserDetailComponent implements OnInit {
             // Update the current user with new information
             this.update_user();
             // Then reset the form
-            this.user_form.reset();
+            this.form.reset();
             // Re-insert the values into the form
             this.setFormValues(this.user.current_user);
 

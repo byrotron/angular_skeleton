@@ -18,7 +18,12 @@ export class SktnUserService {
 
   current_user: ISktnUser;
 
-  actions: any;
+  actions: any = {
+    create: true,
+    read: true,
+    update: true,
+    delete: true
+  };
 
   constructor(
     public http: Http,

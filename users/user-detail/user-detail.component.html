@@ -6,7 +6,7 @@
 
       <sktn-detail-panel 
         *ngIf="user.current_user"
-        [form]="user_form"
+        [form]="form"
         [(editing)]="editing"
         [(loading)]="loading"
         [disabled]="!user.actions.update"
@@ -41,7 +41,7 @@
           title="Role" 
           name="role" 
           type="select"
-          [list]="[{id: 1, name: 'Super User'}, {id: 2, name: 'User'}]">
+          [list]="roles">
           
         </sktn-detail-item>
 

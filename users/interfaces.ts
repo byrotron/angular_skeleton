@@ -11,6 +11,6 @@ export interface ISktnUser {
     name: string
   };
   role: ISktnRole;
-  lastLogin: Date;
+  last_login: any;
 
 }

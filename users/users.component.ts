@@ -59,9 +59,9 @@ export class SktnUsersComponent {
     }
   }
 
-  editUser(user: ISktnUser) {
+  editUser(id: number) {
     if(this.admin_panel.auth.getPrivilege('view-user') === true) {
-      this.router.navigate([ '/admin', 'users', user.id ]);
+      this.router.navigate([ '/admin', 'users', id ]);
     }
   }
 
