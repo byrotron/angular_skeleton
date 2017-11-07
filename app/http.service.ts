@@ -1,14 +1,12 @@
 import { Injectable, Inject, forwardRef } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { SktnAuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { 
   ISktnResponse, 
   SktnMessageService
 } from 'pangular';
 
-export class TestService {
-
-}
 
 @Injectable()
 export class SktnHttpHelperService {
@@ -55,18 +53,5 @@ export class SktnHttpHelperService {
 
       }, 0); 
   } 
-
-  validateActions(actions: any) {
-
-    let updated_actions = [];
-
-    for(let action in actions) {
-
-      updated_actions[action] = true
-
-    }
-
-    return updated_actions;
-  }
 
 }
