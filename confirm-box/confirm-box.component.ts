@@ -9,11 +9,18 @@ import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 export class SktnConfirmBoxComponent {
 
   constructor(
-    @Inject(MD_DIALOG_DATA) public data: string,
+    @Inject(MD_DIALOG_DATA) public data: any,
     public dialog: MdDialogRef<SktnConfirmBoxComponent>
   ) { }
 
   confirm() {
+    
+    if(this.data.href) {
+      window.open(
+        this.data.href,
+        '_blank' // <- This is what makes it open in a new window.
+      );
+    }
     this.dialog.close(true);
   }
 
