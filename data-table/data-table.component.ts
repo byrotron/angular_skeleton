@@ -12,6 +12,7 @@ import { MdSort, MdSortable } from '@angular/material';
 import { Observable, Subscription } from 'rxjs';
 import { SktnPaginationComponent, ISktnPaginationEvent } from './../pagination';
 import { ISktnDataTableEvent } from './interfaces';
+import { SktnDataTableService } from './data-table.service';
 
 @Component({
   selector: 'sktn-data-table',
@@ -64,25 +65,29 @@ export class SktnDataTableComponent {
 
   subscriptions: Subscription[] = [];
 
-  table_data: ISktnDataTableEvent;
-
-  constructor() { }
+  constructor(
+    public table: SktnDataTableService
+  ) { }
 
   ngOnInit() {
-    this.table_data = {
-      page: this.page,
-      limit: this.limit,
-      orderby: this.orderby,
-      direction: this.direction
+
+    if(!this.table.event) {
+      this.table.event = {
+        page: this.page,
+        limit: this.limit,
+        orderby: this.orderby,
+        direction: this.direction
+      }
     }
+    
   }
 
   ngAfterContentInit() {
     if(this.sort) {
       this.subscriptions.push(this.sort.sortChange.subscribe(
         (sort: any) => {
-          this.table_data.orderby = sort.active;
-          this.table_data.direction = sort.direction.toUpperCase();
+          this.table.event.orderby = sort.active;
+          this.table.event.direction = sort.direction.toUpperCase();
           this._registerChange();
         }
       ));
@@ -98,7 +103,7 @@ export class SktnDataTableComponent {
       .debounceTime(500)
       .distinctUntilChanged()
       .subscribe(() => {
-        this.table_data.filter = this._filter.nativeElement.value;
+        this.table.event.filter = this._filter.nativeElement.value;
         this._registerChange();
       }));
     }
@@ -110,8 +115,8 @@ export class SktnDataTableComponent {
         .distinctUntilChanged()
         .subscribe(
           (page: ISktnPaginationEvent) => {
-            this.table_data.page = page.page;
-            this.table_data.limit = page.limit;
+            this.table.event.page = page.page;
+            this.table.event.limit = page.limit;
             this._registerChange();
           }
         ));
@@ -119,7 +124,7 @@ export class SktnDataTableComponent {
   }
   
   _registerChange() {
-    this.onChange.emit(this.table_data);
+    this.onChange.emit(this.table.event);
   }
 
   refresh() {

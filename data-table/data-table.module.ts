@@ -5,6 +5,7 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SktnDataTableComponent } from './data-table.component';
 import { SktnPaginationModule } from './../pagination';
+import { SktnDataTableService } from './data-table.service';
 
 @NgModule({
   imports: [
@@ -23,6 +24,9 @@ import { SktnPaginationModule } from './../pagination';
     SktnDataTableComponent,
     CdkTableModule,
     MdTableModule
+  ],
+  providers: [
+    SktnDataTableService
   ]
 })
 export class SktnDataTableModule { }

@@ -5,8 +5,8 @@
         <div fxFlex fxFlexAlign="start start" *ngIf="pagination">
     
           <sktn-pagination
-            [current_page]="table_data.page"
-            [limit]="table_data.limit"
+            [current_page]="table.event.page"
+            [limit]="table.event.limit"
             [total_items]="total_items"
             [active]="active">
           </sktn-pagination>
@@ -19,6 +19,7 @@
             <input mdInput 
               placeholder="Filter Results" 
               [disabled]="!active"
+              [value]="table.event.filter ? table.event.filter : ''"
               #filterinput/>
           </md-input-container>
           
