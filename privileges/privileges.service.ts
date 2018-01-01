@@ -14,10 +14,6 @@ export class SktnPrivilegesService {
     'Content-Type': 'application/json'
   });
 
-  actions = {
-    update: false
-  }
-
   options = new RequestOptions({ headers: this.headers });
 
   constructor(
@@ -58,10 +54,6 @@ export class SktnPrivilegesService {
       return this.helper.handleError(err);
     });
 
-  }
-
-  setPrivileges() {
-    // Set the privileges
   }
 
 }

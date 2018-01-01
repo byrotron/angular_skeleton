@@ -14,7 +14,7 @@
             <md-slide-toggle
               [checked]="find_privilege_status(action.id, role.id)"
               (change)="update_privilege($event, action.id, role.id)"
-              [disabled]="!privs.actions.update">
+              [disabled]="!admin_panel.auth.getPrivilege('update_privilege')">
               {{ action.label }}
             </md-slide-toggle>
             <p *ngIf="action.description">{{ action.description }}</p>

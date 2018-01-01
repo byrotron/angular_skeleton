@@ -44,7 +44,6 @@ export class SktnPrivilegesComponent implements OnInit {
           this.controllers = response.result.controllers;
           this.roles = response.result.roles
           this.privileges = response.result.privileges
-          this.privs.setPrivileges();
         }
 
         this.set_data();
