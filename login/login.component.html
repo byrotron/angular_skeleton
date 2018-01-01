@@ -6,41 +6,33 @@
 
     <form [formGroup]="login_form" novalidate>
 
-      <md-list>
+      <div class="form-messages" *ngFor="let message of messages">{{ message }}</div>
 
-        <md-list-item>
+      <div class="form-group">
+        <md-input-container class="fullwidth">
+          <input mdInput type="email" placeholder="Email" 
+            (keydown.enter)="login()"
+            formControlName="email" name="email">
+        </md-input-container>
+        <sktn-form-errors [reactive]="true" [element]="login_form.get('email')"></sktn-form-errors>
+      </div>
 
-          <md-input-container class="fullwidth">
-            <input mdInput type="email" placeholder="Email" 
-              (keydown.enter)="login()"
-              formControlName="email" name="email">
-          </md-input-container>
-
-        </md-list-item>
-
-        <sktn-form-errors [element]="login_form.get('email')"></sktn-form-errors>
-
-        <md-list-item>
-
-          <md-input-container class="fullwidth">
-            <input mdInput type="password" placeholder="Password" 
-              (keydown.enter)="login()"
-              formControlName="password" name="password">
-          </md-input-container>
-
-        </md-list-item>
-        
-        <sktn-form-errors [element]="login_form.get('password')"></sktn-form-errors>
-
-      </md-list>
+      <div class="form-group">
+        <md-input-container class="fullwidth">
+          <input mdInput type="password" placeholder="Password" 
+            (keydown.enter)="login()"
+            formControlName="password" name="password">
+        </md-input-container>
+        <sktn-form-errors [reactive]="true" [element]="login_form.get('password')"></sktn-form-errors>
+      </div>
 
       <md-list-item>
-          <div class="login-extras">
-            <div class="remember-me">
-                <md-checkbox [color]="'primary'">Remember Me</md-checkbox>
-            </div>
-            <div class="hyperlink forgot-my-password" [routerLink]="['/reset-account']">Forgot your password?</div>
+        <div class="login-extras">
+          <div class="remember-me">
+              <md-checkbox [color]="'primary'">Remember Me</md-checkbox>
           </div>
+          <div class="hyperlink forgot-my-password" [routerLink]="['/reset-account']">Forgot your password?</div>
+        </div>
       </md-list-item>
 
     </form>

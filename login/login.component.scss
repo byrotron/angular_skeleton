@@ -7,9 +7,15 @@
 
   .login {
     width :25%;
+    
+    .form-messages {
+      padding: 0 0 1rem;
+      color: #f44336;
+      font-size: 1rem;
+    }
 
     .form-group {
-      margin-top: 1rem;
+      font-size: 1rem;
     }
 
     div.login-submit {
@@ -46,6 +52,10 @@
         margin-top: 0.5rem;
         text-align: right;
       }
+    }
+
+    md-card-actions {
+      padding: 0 1rem;
     }
     
   }
