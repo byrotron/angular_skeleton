@@ -5,6 +5,7 @@ import { MdButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SktnSettingsComponent } from './settings.component';
+import { SktnSettingItemComponent } from './setting-item/setting-item.component';
 
 @NgModule({
   imports: [
@@ -14,10 +15,12 @@ import { SktnSettingsComponent } from './settings.component';
     FlexLayoutModule
   ],
   declarations: [ 
-    SktnSettingsComponent
+    SktnSettingsComponent,
+    SktnSettingItemComponent
   ],
   exports: [ 
-    SktnSettingsComponent
+    SktnSettingsComponent,
+    SktnSettingItemComponent
   ]
 })
 export class SktnSettingsModule { }

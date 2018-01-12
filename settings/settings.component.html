@@ -2,41 +2,14 @@
 
   <h1>Settings</h1>
 
-  <div fxLayout="row" fxLayoutGap="1rem">
+  <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="start start">
+    <sktn-setting-item title="users" icon="fa-users" [routerLink]="['/admin', 'users']"></sktn-setting-item>
 
-    <div fxFlex="0 1 8rem" fx>
+    <sktn-setting-item title="privileges" icon="fa-unlock-alt" [routerLink]="['/admin', 'settings', 'privileges']"></sktn-setting-item>
 
-      <button md-raised-button type="button" [routerLink]="['/admin', 'users']">
-        <div fxLayout="column" class="settings-icon">
-          <span class="fa fa-users"></span>
-          <p class="settings-title">Users</p>
-        </div>
-      </button>
-      
-    </div>
+    <sktn-setting-item title="roles" icon="fa-users" [routerLink]="['/admin', 'settings', 'roles']"></sktn-setting-item>
 
-    <div fxFlex="0 1 8rem" fx>
-
-      <button md-raised-button type="button" [routerLink]="['/admin', 'settings', 'privileges']">
-        <div fxLayout="column" class="settings-icon">
-          <span class="fa fa-unlock-alt"></span>
-          <p class="settings-title">Privileges</p>
-        </div>
-      </button>
-      
-    </div>
-
-    <div fxFlex="0 1 8rem">
-
-      <button md-raised-button type="button" [routerLink]="['/admin', 'settings', 'roles']">
-        <div fxLayout="column" class="settings-icon">
-          <span class="fa fa-users"></span>
-          <p class="settings-title">Roles</p>
-        </div>
-      </button>
-      
-    </div>
-
+    <ng-content></ng-content>
   </div>
 
 </div>
