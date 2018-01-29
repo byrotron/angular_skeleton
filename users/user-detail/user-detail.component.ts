@@ -105,7 +105,7 @@ export class SktnUserDetailComponent implements OnInit {
 
   update(e:any) {
 
-    if(this.admin_panel.auth.getPrivilege('update-user') === true) {
+    if(this.admin_panel.auth.getPrivilege('Users', 'update-user') === true) {
       this.loading = true;
       this.user.update(this.user.current_user.id, this.form.value).subscribe(
         (response: ISktnResponse) => {

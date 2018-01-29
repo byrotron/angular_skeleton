@@ -7,9 +7,9 @@
   (onChange)="updateTable($event)">
 
   <button type="button" md-raised-button data-table-actions
-    [disabled]="!admin_panel.auth.getPrivilege('create-role')"
+    [disabled]="!admin_panel.auth.getPrivilege('Roles', 'create-role')"
     (click)="openForm(null)">
-    <span class="fa fa-plus add" [class.disabled]="!admin_panel.auth.getPrivilege('create-role')"></span> Add Role
+    <span class="fa fa-plus add" [class.disabled]="!admin_panel.auth.getPrivilege('Roles', 'create-role')"></span> Add Role
   </button>
 
   <md-table [dataSource]="data_source" data-table>
@@ -17,14 +17,14 @@
     <ng-container cdkColumnDef="edit">
       <md-header-cell *cdkHeaderCellDef></md-header-cell>
       <md-cell class="icon" *cdkCellDef="let row" (click)="openForm(row.id)"> 
-        <span class="fa fa-pencil edit" [class.disabled]="!admin_panel.auth.getPrivilege('update-role')" ></span>
+        <span class="fa fa-pencil edit" [class.disabled]="!admin_panel.auth.getPrivilege('Roles', 'update-role')" ></span>
       </md-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="remove">
       <md-header-cell *cdkHeaderCellDef></md-header-cell>
       <md-cell class="icon" *cdkCellDef="let row" (click)="confirm(row)"> 
-        <span class="fa fa-remove remove" [class.disabled]="!admin_panel.auth.getPrivilege('remove-role')" ></span>
+        <span class="fa fa-remove remove" [class.disabled]="!admin_panel.auth.getPrivilege('Roles', 'remove-role')" ></span>
       </md-cell>
     </ng-container>
 

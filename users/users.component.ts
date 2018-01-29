@@ -52,7 +52,7 @@ export class SktnUsersComponent {
   }
 
   open_form() {
-    if(this.admin_panel.auth.getPrivilege('create-user') === true) {
+    if(this.admin_panel.auth.getPrivilege('Users', 'create-user') === true) {
       this.user_form = this.dialog.open(SktnUserFormComponent, {
         width: '600px',
       });
@@ -60,7 +60,7 @@ export class SktnUsersComponent {
   }
 
   editUser(id: number) {
-    if(this.admin_panel.auth.getPrivilege('view-user') === true) {
+    if(this.admin_panel.auth.getPrivilege('Users', 'view-user') === true) {
       this.router.navigate([ '/admin', 'users', id ]);
     }
   }
@@ -88,7 +88,7 @@ export class SktnUsersComponent {
 
   confirm(user: ISktnUser) {
     
-    if(this.admin_panel.auth.getPrivilege('delete-user') === true) {
+    if(this.admin_panel.auth.getPrivilege('Users', 'delete-user') === true) {
 
       this.confirm_form = this.dialog.open(SktnConfirmBoxComponent, {
         width: '600px',
@@ -111,7 +111,7 @@ export class SktnUsersComponent {
 
   deleteUser(user: ISktnUser) {
 
-    if(this.admin_panel.auth.getPrivilege('delete-user') === true) {
+    if(this.admin_panel.auth.getPrivilege('Users', 'delete-user') === true) {
 
       this.user_service.delete(user.id).subscribe(
         (response: ISktnResponse) => {

@@ -39,11 +39,11 @@ export class SktnAuthService {
 
   }
 
-  getPrivilege(action: string) {
+  getPrivilege(controller: string, action: string) {
 
     if(this.privileges.length > 0) {
       let priv = this.privileges.find((priviledge: any) => {
-        return priviledge.action === action;
+        return priviledge.action === action && priviledge.controller === controller;
       })
 
       if(priv) {

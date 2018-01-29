@@ -72,7 +72,7 @@ export class SktnRolesComponent implements OnInit {
   openForm(role: ISktnRole | null) {
 
       if(role) {
-        if(role.enabled === false || this.admin_panel.auth.getPrivilege('update-role') === true) {
+        if(role.enabled === false || this.admin_panel.auth.getPrivilege('Roles', 'update-role') === true) {
           return;
         }
         this.role_service.current_role = role;
@@ -87,7 +87,7 @@ export class SktnRolesComponent implements OnInit {
 
   confirm(role: ISktnRole) {
 
-    if(role.enabled === true && this.admin_panel.auth.getPrivilege('delete-role') === true) {
+    if(role.enabled === true && this.admin_panel.auth.getPrivilege('Roles', 'delete-role') === true) {
 
       this.confirm_form = this.dialog.open(SktnConfirmBoxComponent, {
         width: '600px',
@@ -108,7 +108,7 @@ export class SktnRolesComponent implements OnInit {
 
   deleteRole(role: ISktnRole) {
 
-    if(role.enabled === true && this.admin_panel.auth.getPrivilege('delete-role') === true) {
+    if(role.enabled === true && this.admin_panel.auth.getPrivilege('Roles', 'delete-role') === true) {
 
       this.role_service.deleteRole(role.id).subscribe(
         (response: ISktnResponse) => {

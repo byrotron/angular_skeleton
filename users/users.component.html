@@ -9,9 +9,9 @@
     (onChange)="updateTable($event)">
 
     <button type="button" md-raised-button data-table-actions
-      [disabled]="!admin_panel.auth.getPrivilege('create-user')"
+      [disabled]="!admin_panel.auth.getPrivilege('Users', 'create-user')"
       (click)="open_form()">
-      <span class="fa fa-plus add" [class.disabled]="!admin_panel.auth.getPrivilege('create-user')"></span> Add User
+      <span class="fa fa-plus add" [class.disabled]="!admin_panel.auth.getPrivilege('Users', 'create-user')"></span> Add User
     </button>
 
     <md-table #table [dataSource]="data_source" data-table>
@@ -19,14 +19,14 @@
       <ng-container cdkColumnDef="edit">
         <md-header-cell *cdkHeaderCellDef></md-header-cell>
         <md-cell class="icon" *cdkCellDef="let row" (click)="editUser(row.id)"> 
-          <span class="fa fa-pencil edit" [class.disabled]="!admin_panel.auth.getPrivilege('view-user')" ></span>
+          <span class="fa fa-pencil edit" [class.disabled]="!admin_panel.auth.getPrivilege('Users', 'view-user')" ></span>
         </md-cell>
       </ng-container>
 
       <ng-container cdkColumnDef="remove">
         <md-header-cell *cdkHeaderCellDef></md-header-cell>
         <md-cell class="icon" *cdkCellDef="let row" (click)="confirm(row)"> 
-          <span class="fa fa-remove remove" [class.disabled]="!admin_panel.auth.getPrivilege('remove-user')" ></span>
+          <span class="fa fa-remove remove" [class.disabled]="!admin_panel.auth.getPrivilege('Users', 'remove-user')" ></span>
         </md-cell>
       </ng-container>
 
