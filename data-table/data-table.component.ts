@@ -103,6 +103,7 @@ export class SktnDataTableComponent {
       .debounceTime(500)
       .distinctUntilChanged()
       .subscribe(() => {
+        this.table.event.page = 1;
         this.table.event.filter = this._filter.nativeElement.value;
         this._registerChange();
       }));
