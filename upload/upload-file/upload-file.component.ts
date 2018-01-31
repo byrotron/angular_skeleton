@@ -125,6 +125,7 @@ export class SktnUploadFileComponent {
   removeFile(ind: number) {
 
     this.files.splice(ind, 1);
+    this.onFileSelect.emit(this.files);
 
   }
 
