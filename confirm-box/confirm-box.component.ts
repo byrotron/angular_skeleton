@@ -13,7 +13,7 @@ export class SktnConfirmBoxComponent {
     public dialog: MdDialogRef<SktnConfirmBoxComponent>
   ) { }
 
-  confirm() {
+  confirm(confirm: boolean) {
     
     if(this.data.href) {
       window.open(
@@ -21,7 +21,7 @@ export class SktnConfirmBoxComponent {
         '_blank' // <- This is what makes it open in a new window.
       );
     }
-    this.dialog.close(true);
+    this.dialog.close(confirm);
   }
 
 }
