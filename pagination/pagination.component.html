@@ -6,14 +6,14 @@
     <span class="fa fa-chevron-left"></span>
   </div>
 
-  <md-input-container class="sktn-pagination-input">
-    <input mdInput 
+  <mat-input-container class="sktn-pagination-input">
+    <input matInput 
       #pageselect 
       [value]="current_page"
       [disabled]="active === false"
       (blur)="selectPage(pageselect.value)" 
       (keydown.enter)="selectPage(pageselect.value)"/>
-  </md-input-container>
+  </mat-input-container>
 
   <div class="sktn-pagination-item">
     <span> / {{ total_pages }}</span>
@@ -26,16 +26,16 @@
     <span class="fa fa-chevron-right"></span>
   </div>
 
-  <md-select 
+  <mat-select 
     class="sktn-pagination-input"
     [(ngModel)]="limit"
     (change)="changeLimit()"
     [disabled]="!active">
 
-    <md-option *ngFor="let limit of limits" [value]="limit">
+    <mat-option *ngFor="let limit of limits" [value]="limit">
         {{ limit }}
-    </md-option>
+    </mat-option>
 
-  </md-select>
+  </mat-select>
 
 </div>

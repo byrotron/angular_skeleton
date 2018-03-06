@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { SktnRoleService } from './../role.service';
 import { SktnAdminPanelService } from './../../admin-panel/admin-panel.service';
@@ -24,7 +24,7 @@ export class SktnRoleFormComponent implements OnInit {
     public fb: FormBuilder,
     public admin: SktnAdminPanelService,
     public role: SktnRoleService,
-    public dialog: MdDialogRef<SktnRoleFormComponent>
+    public dialog: MatDialogRef<SktnRoleFormComponent>
   ) {
     this.createForm();
    }

@@ -5,8 +5,8 @@ import { ISktnResponse } from './../../interfaces/interfaces';
 
 import { SktnEditableListService } from './../editable-list.service';
 
-import { MD_DIALOG_DATA } from '@angular/material';
-import { MdDialogRef } from '@angular/material';
+import { Mat_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'sktn-editable-list-container',
@@ -36,8 +36,8 @@ export class SktnEditableListContainerComponent implements OnInit {
 
   constructor(
     public list: SktnEditableListService,
-    @Optional() @Inject(MD_DIALOG_DATA) public data: any,
-    @Optional() public dialog: MdDialogRef<SktnEditableListContainerComponent>
+    @Optional() @Inject(Mat_DIALOG_DATA) public data: any,
+    @Optional() public dialog: MatDialogRef<SktnEditableListContainerComponent>
   ) { }
 
   ngOnInit() {

@@ -1,16 +1,16 @@
-<md-dialog-content>
+<mat-dialog-content>
     
   <sktn-form title="Role Form" [formGroup]="form" (onClose)="close()">
 
-    <md-form-field mdLine class="fullwidth">
-      <input mdInput type="text"placeholder="Name" formControlName="name" name="name">
-      <sktn-form-errors mdLine [element]="form.get('name')" [reactive]="true"></sktn-form-errors>
-    </md-form-field> 
+    <mat-form-field matLine class="fullwidth">
+      <input matInput type="text"placeholder="Name" formControlName="name" name="name">
+      <sktn-form-errors matLine [element]="form.get('name')" [reactive]="true"></sktn-form-errors>
+    </mat-form-field> 
 
-    <button form-actions md-raised-button color="accent" class="edit" [disabled]="loading === true || !form.valid" (click)="submit()">
+    <button form-actions mat-raised-button color="accent" class="edit" [disabled]="loading === true || !form.valid" (click)="submit()">
       <span class="fa fa-pencil"></span> Send</button>
 
   </sktn-form>
 
-</md-dialog-content>
+</mat-dialog-content>
 

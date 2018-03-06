@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { SktnUserFormComponent } from './user-form/user-form.component';
 import { SktnUserService } from './user.service';
@@ -23,8 +23,8 @@ import { FadeOut } from './../animations/animations';
 })
 export class SktnUsersComponent {
 
-  user_form: MdDialogRef<SktnUserFormComponent>;
-  confirm_form: MdDialogRef<SktnConfirmBoxComponent>;
+  user_form: MatDialogRef<SktnUserFormComponent>;
+  confirm_form: MatDialogRef<SktnConfirmBoxComponent>;
 
   total_items = 0;
 
@@ -34,7 +34,7 @@ export class SktnUsersComponent {
 
   constructor(
     protected router: Router,
-    protected dialog: MdDialog,
+    protected dialog: MatDialog,
     public admin_panel: SktnAdminPanelService,
     public user_service: SktnUserService
   ) {}

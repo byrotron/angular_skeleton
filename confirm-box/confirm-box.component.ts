@@ -1,5 +1,5 @@
 import { Component, Input, Inject,  } from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, Mat_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'sktn-confirm-box',
@@ -9,8 +9,8 @@ import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 export class SktnConfirmBoxComponent {
 
   constructor(
-    @Inject(MD_DIALOG_DATA) public data: any,
-    public dialog: MdDialogRef<SktnConfirmBoxComponent>
+    @Inject(Mat_DIALOG_DATA) public data: any,
+    public dialog: MatDialogRef<SktnConfirmBoxComponent>
   ) { }
 
   confirm(confirm: boolean) {

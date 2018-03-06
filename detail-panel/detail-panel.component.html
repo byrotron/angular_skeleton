@@ -1,9 +1,9 @@
 
-  <md-card class="is-panel">
+  <mat-card class="is-panel">
 
     <div class="is-panel-header">{{ title }}</div>
 
-    <md-card-content>
+    <mat-card-content>
 
       <form class="is-form" [formGroup]="form" novalidate>
 
@@ -15,14 +15,14 @@
 
       </form>
 
-    </md-card-content>
+    </mat-card-content>
 
     <div class="is-panel-footer">
 
         <div class="fill-space"></div>
 
         <button 
-          md-raised-button
+          mat-raised-button
           *ngIf="editing === false"
           [disabled]="disabled"
           type="button"
@@ -30,7 +30,7 @@
           <span class="fa fa-pencil edit"></span> Edit</button>
         
         <button type="button"
-          md-raised-button
+          mat-raised-button
           *ngIf="editing === true"
           type="button"
           [disabled]="loading === true"
@@ -38,7 +38,7 @@
           Close</button>
 
         <button type="button"
-          md-raised-button
+          mat-raised-button
           *ngIf="editing === true" 
           [disabled]="(panel.form.pristine || !panel.form.valid) || loading === true"
           type="button"
@@ -49,5 +49,5 @@
 
       </div>
 
-  </md-card>
+  </mat-card>
 

@@ -11,12 +11,12 @@
         <div *ngFor="let action of role.actions">
 
           <div style="margin-left: 1rem;">
-            <md-slide-toggle
+            <mat-slide-toggle
               [checked]="find_privilege_status(action.id, role.id)"
               (change)="update_privilege($event, action.id, role.id)"
               [disabled]="!admin_panel.auth.getPrivilege('Privileges', 'update_privilege')">
               {{ action.label }}
-            </md-slide-toggle>
+            </mat-slide-toggle>
             <p *ngIf="action.description">{{ action.description }}</p>
             
           </div>

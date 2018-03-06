@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MdCardModule, MdListModule, MdButtonModule, MdInputModule } from '@angular/material';
+import { MatCardModule, MatListModule, MatButtonModule, MatInputModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { SktnFormErrorsModule } from './../form-errors/form-errors.module';
 import { SktnSignUpComponent } from './sign-up.component';
@@ -10,10 +10,10 @@ import { SktnSignUpComponent } from './sign-up.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MdCardModule,
-    MdListModule,
-    MdButtonModule,
-    MdInputModule,
+    MatCardModule,
+    MatListModule,
+    MatButtonModule,
+    MatInputModule,
     RouterModule,
     SktnFormErrorsModule
   ],

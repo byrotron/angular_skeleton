@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdProgressSpinnerModule } from '@angular/material';
+import { MatProgressSpinnerModule } from '@angular/material';
 import { SktnMessagesModule } from './../messages'
 import { SktnWebsitePanelComponent } from './website-panel.component';
 import { SktnWebsitePanelService } from './website-panel.service';
@@ -12,7 +12,7 @@ import { SktnWebsitePanelService } from './website-panel.service';
     CommonModule,
     RouterModule,
     FlexLayoutModule,
-    MdProgressSpinnerModule,
+    MatProgressSpinnerModule,
     SktnMessagesModule
   ],
   declarations: [
