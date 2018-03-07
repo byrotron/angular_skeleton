@@ -6,37 +6,37 @@
   [total_items]="total_items"
   (onChange)="updateTable($event)">
 
-  <button type="button" md-raised-button data-table-actions
+  <button type="button" mat-raised-button data-table-actions
     [disabled]="!admin_panel.auth.getPrivilege('Roles', 'create-role')"
     (click)="openForm(null)">
     <span class="fa fa-plus add" [class.disabled]="!admin_panel.auth.getPrivilege('Roles', 'create-role')"></span> Add Role
   </button>
 
-  <md-table [dataSource]="data_source" data-table>
+  <mat-table [dataSource]="data_source" data-table>
 
     <ng-container cdkColumnDef="edit">
-      <md-header-cell *cdkHeaderCellDef></md-header-cell>
-      <md-cell class="icon" *cdkCellDef="let row" (click)="openForm(row.id)"> 
+      <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+      <mat-cell class="icon" *cdkCellDef="let row" (click)="openForm(row.id)"> 
         <span class="fa fa-pencil edit" [class.disabled]="!admin_panel.auth.getPrivilege('Roles', 'update-role')" ></span>
-      </md-cell>
+      </mat-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="remove">
-      <md-header-cell *cdkHeaderCellDef></md-header-cell>
-      <md-cell class="icon" *cdkCellDef="let row" (click)="confirm(row)"> 
+      <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+      <mat-cell class="icon" *cdkCellDef="let row" (click)="confirm(row)"> 
         <span class="fa fa-remove remove" [class.disabled]="!admin_panel.auth.getPrivilege('Roles', 'remove-role')" ></span>
-      </md-cell>
+      </mat-cell>
     </ng-container>
 
     <ng-container cdkColumnDef="name">
-      <md-header-cell *cdkHeaderCellDef>Name</md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+      <mat-header-cell *cdkHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *cdkCellDef="let row"> {{row.name}} </mat-cell>
     </ng-container>
 
-    <md-header-row *cdkHeaderRowDef="headers"></md-header-row>
-    <md-row *cdkRowDef="let row; columns: headers;"></md-row>
+    <mat-header-row *cdkHeaderRowDef="headers"></mat-header-row>
+    <mat-row *cdkRowDef="let row; columns: headers;"></mat-row>
 
-  </md-table>
+  </mat-table>
 
 </sktn-data-table>
 

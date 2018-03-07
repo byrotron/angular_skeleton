@@ -8,66 +8,66 @@
     [total_items]="total_items"
     (onChange)="updateTable($event)">
 
-    <button type="button" md-raised-button data-table-actions
+    <button type="button" mat-raised-button data-table-actions
       [disabled]="!admin_panel.auth.getPrivilege('Users', 'create-user')"
       (click)="open_form()">
       <span class="fa fa-plus add" [class.disabled]="!admin_panel.auth.getPrivilege('Users', 'create-user')"></span> Add User
     </button>
 
-    <md-table #table [dataSource]="data_source" data-table>
+    <mat-table #table [dataSource]="data_source" data-table>
 
       <ng-container cdkColumnDef="edit">
-        <md-header-cell *cdkHeaderCellDef></md-header-cell>
-        <md-cell class="icon" *cdkCellDef="let row" (click)="editUser(row.id)"> 
+        <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+        <mat-cell class="icon" *cdkCellDef="let row" (click)="editUser(row.id)"> 
           <span class="fa fa-pencil edit" [class.disabled]="!admin_panel.auth.getPrivilege('Users', 'view-user')" ></span>
-        </md-cell>
+        </mat-cell>
       </ng-container>
 
       <ng-container cdkColumnDef="remove">
-        <md-header-cell *cdkHeaderCellDef></md-header-cell>
-        <md-cell class="icon" *cdkCellDef="let row" (click)="confirm(row)"> 
+        <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+        <mat-cell class="icon" *cdkCellDef="let row" (click)="confirm(row)"> 
           <span class="fa fa-remove remove" [class.disabled]="!admin_panel.auth.getPrivilege('Users', 'remove-user')" ></span>
-        </md-cell>
+        </mat-cell>
       </ng-container>
 
       <ng-container cdkColumnDef="name">
-        <md-header-cell *cdkHeaderCellDef>Name</md-header-cell>
-        <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+        <mat-header-cell *cdkHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.name}} </mat-cell>
       </ng-container>
 
       <ng-container cdkColumnDef="surname">
-        <md-header-cell *cdkHeaderCellDef>Surname</md-header-cell>
-        <md-cell *cdkCellDef="let row">{{row.surname}}</md-cell>
+        <mat-header-cell *cdkHeaderCellDef>Surname</mat-header-cell>
+        <mat-cell *cdkCellDef="let row">{{row.surname}}</mat-cell>
       </ng-container>
 
       <ng-container cdkColumnDef="email">
-        <md-header-cell *cdkHeaderCellDef>Email</md-header-cell>
-        <md-cell *cdkCellDef="let row">{{row.email}}</md-cell>
+        <mat-header-cell *cdkHeaderCellDef>Email</mat-header-cell>
+        <mat-cell *cdkCellDef="let row">{{row.email}}</mat-cell>
       </ng-container>
 
       <ng-container cdkColumnDef="status">
-        <md-header-cell *cdkHeaderCellDef>Status</md-header-cell>
-        <md-cell *cdkCellDef="let row" 
+        <mat-header-cell *cdkHeaderCellDef>Status</mat-header-cell>
+        <mat-cell *cdkCellDef="let row" 
           [style.color]="row.status.id == 1 ? 'darkGreen' : 'firebrick'">
-          {{ row.status.name }}</md-cell>
+          {{ row.status.name }}</mat-cell>
       </ng-container>
 
       <ng-container cdkColumnDef="role">
-        <md-header-cell *cdkHeaderCellDef>Role</md-header-cell>
-        <md-cell *cdkCellDef="let row">{{ row.role.name }}</md-cell>
+        <mat-header-cell *cdkHeaderCellDef>Role</mat-header-cell>
+        <mat-cell *cdkCellDef="let row">{{ row.role.name }}</mat-cell>
       </ng-container>
 
       <ng-container cdkColumnDef="last_login">
-        <md-header-cell *cdkHeaderCellDef>Last Login</md-header-cell>
-        <md-cell *cdkCellDef="let row">
+        <mat-header-cell *cdkHeaderCellDef>Last Login</mat-header-cell>
+        <mat-cell *cdkCellDef="let row">
           <span *ngIf="row.last_login">{{ row.last_login.date | date :'dd-MM-y HH:mm' }}</span>
-        </md-cell>
+        </mat-cell>
       </ng-container>
 
-      <md-header-row *cdkHeaderRowDef="headers"></md-header-row>
-      <md-row *cdkRowDef="let row; columns: headers;"></md-row>
+      <mat-header-row *cdkHeaderRowDef="headers"></mat-header-row>
+      <mat-row *cdkRowDef="let row; columns: headers;"></mat-row>
 
-    </md-table>
+    </mat-table>
 
   </sktn-data-table>
 

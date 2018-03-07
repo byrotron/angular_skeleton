@@ -1,48 +1,48 @@
-<md-card class="login">
+<mat-card class="login">
 
-  <md-card-title>Lets Get Started</md-card-title>
+  <mat-card-title>Lets Get Started</mat-card-title>
 
-  <md-card-content>
+  <mat-card-content>
 
     <div class="messages">
       <p class="alert alert-warning" *ngFor="let message of messages">{{ message }}</p>
     </div>
 
     <form [formGroup]="signup_form" novalidate>
-      <md-list>
+      <mat-list>
 
-        <md-list-item>
+        <mat-list-item>
 
-          <md-input-container class="fullwidth">
-            <input mdInput type="email" placeholder="Email" 
+          <mat-input-container class="fullwidth">
+            <input matInput type="email" placeholder="Email" 
               (keydown.enter)="signup()"
               formControlName="email" name="email">
-          </md-input-container>
+          </mat-input-container>
 
-        </md-list-item>
+        </mat-list-item>
 
         <sktn-form-errors [element]="signup_form.get('email')"></sktn-form-errors>
 
-        <md-list-item>
+        <mat-list-item>
 
-          <md-input-container class="fullwidth">
-            <input mdInput type="password" placeholder="Password" 
+          <mat-input-container class="fullwidth">
+            <input matInput type="password" placeholder="Password" 
               (keydown.enter)="signup()"
               formControlName="password" name="password">
-          </md-input-container>
+          </mat-input-container>
 
-        </md-list-item>
+        </mat-list-item>
         
         <sktn-form-errors [element]="signup_form.get('password')"></sktn-form-errors>
 
-      </md-list>
+      </mat-list>
 
     </form>
 
-  </md-card-content>
+  </mat-card-content>
 
-  <md-card-actions>
-      <button md-button class="fullwidth" color="primary" (click)="signup()">Sign Up</button>
-  </md-card-actions>
+  <mat-card-actions>
+      <button mat-button class="fullwidth" color="primary" (click)="signup()">Sign Up</button>
+  </mat-card-actions>
 
-</md-card>
+</mat-card>
