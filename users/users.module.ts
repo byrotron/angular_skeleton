@@ -7,7 +7,8 @@ import {
   MatRadioModule, 
   MatSelectModule, 
   MatListModule, 
-  MatInputModule 
+  MatInputModule,
+  MatDialogModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SktnDataTableModule } from './../data-table/data-table.module';
@@ -29,6 +30,7 @@ import { SktnFormModule } from './../form/form.module';
     MatRadioModule,
     MatSelectModule,
     MatListModule,
+    MatDialogModule,
     SktnDataTableModule,
     FlexLayoutModule,
     SktnDetailPanelModule,

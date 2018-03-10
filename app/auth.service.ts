@@ -4,7 +4,8 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { ISktnResponse, ISktnUser, ISktnPrivilege, ISktnAction } from './../';
 
-import{ Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+
 
 @Injectable()
 export class SktnAuthService {
