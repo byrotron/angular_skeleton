@@ -14,6 +14,9 @@ import { SktnPaginationComponent, ISktnPaginationEvent } from './../pagination';
 import { ISktnDataTableEvent } from './interfaces';
 import { SktnDataTableService } from './data-table.service';
 
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+
 @Component({
   selector: 'sktn-data-table',
   templateUrl: './data-table.component.html',
