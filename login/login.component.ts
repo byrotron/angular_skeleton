@@ -61,7 +61,6 @@ export class SktnLoginComponent {
 
           if(response.status === true) {
 
-            this.auth.current_user = response.result;
             this.router.navigate(['/admin']);
 
           } else {

@@ -10,7 +10,11 @@ export interface ISktnSidenavItem {
   group?: string;
 
   disabled?: boolean;
+  
+  controller?: string;
   action?: string;
+
+  show?: boolean;
   active?: boolean;
   link?: string[];
   icon?: string;
