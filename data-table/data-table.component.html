@@ -1,7 +1,8 @@
 <div class="sktn-data-table">
     
-      <div fxLayout.mat="row" fxLayout.xs="column" class="sktn-data-table-header" *ngIf="filter || actions || pagination">
-    
+      <div fxLayout.md="row" fxLayout.xs="column" class="sktn-data-table-header" *ngIf="filter || actions || pagination">
+        
+        <!-- Desktop view -->
         <div fxFlex fxFlexAlign="start start" *ngIf="pagination">
     
           <sktn-pagination
@@ -13,8 +14,7 @@
     
         </div>
     
-        <div fxLayout.mat="row" fxLayoutAlign="end start" fxLayoutGap="0.5rem" fxFlex fxFlexAlign="end start">
-    
+        <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="0.5rem" fxFlex fxFlexAlign="end start" fxHide.xs="true" fxHide.md="false">
           <mat-input-container *ngIf="filter">
             <input matInput 
               placeholder="Filter Results" 
@@ -23,7 +23,7 @@
               #filterinput/>
           </mat-input-container>
           
-          <div class="sktn-data-table-actions" fxLayout.mat="row" fxLayoutGap="0.5rem" fxLayoutAlign="start start" *ngIf="actions">
+          <div class="sktn-data-table-actions" fxLayoutGap="0.5rem" fxLayoutAlign="start start" *ngIf="actions">
             <ng-content select="[data-table-actions]"></ng-content>
             
             <button 
@@ -34,9 +34,37 @@
               <span class="fa fa-refresh"></span>
             </button>
           </div>
-    
+        
         </div>
-    
+
+        <!-- Mobile view -->
+        <div fxHide.md="true" fxHide.lg="true" fxHide.xl="true" fxHide.xs="false">
+          <mat-input-container *ngIf="filter">
+            <input matInput 
+              placeholder="Filter Results" 
+              [disabled]="!active"
+              [value]="table.event.filter ? table.event.filter : ''"
+              #filterinput/>
+          </mat-input-container>
+            
+          <button mat-icon-button [matMenuTriggerFor]="appMenu" fxHide.xs="false">
+            <span class="fa fa-bars"></span>
+          </button> 
+
+          <mat-menu #appMenu="matMenu">
+
+            <ng-content select="[data-table-actions-mobile]"></ng-content>
+          
+            <button 
+              mat-menu-item
+              class="add"
+              (click)="refresh()" 
+              [disabled]="!active">
+              <span class="fa fa-refresh"> Refresh</span>
+            </button>
+          </mat-menu>
+        </div>
+
       </div>
     
       <div class="sktn-data-table-content" *ngIf="total_items > 0 || pagination === false">
