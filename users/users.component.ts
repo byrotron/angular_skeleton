@@ -41,6 +41,8 @@ export class SktnUsersComponent {
 
   ngOnInit() {
 
+    this.admin_panel.startLoading();
+
     this.data_source = new SktnDataTableSource();
     this.updateTable({
       page: 1, 
@@ -79,7 +81,8 @@ export class SktnUsersComponent {
         },
         (response: ISktnResponse) => {
           if(response.code === 401) {
-            this.admin_panel.startError('unauthorized', response.message)
+            this.admin_panel.startError('unauthorized', response.message);
+            this.admin_panel.stopLoading();
           }
         }
       );
