@@ -2,11 +2,10 @@
   
   text-align: center;
 
-  mat-input-container.sktn-pagination-input {
-    width: 3rem;
-  }
-  mat-select.sktn-pagination-input {
+
+  .sktn-pagination-input {
     width: 4rem;
+    line-height: 4rem;
   }
 
   .sktn-pagination-item {
