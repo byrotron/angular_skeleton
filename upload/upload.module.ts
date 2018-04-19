@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatProgressBarModule, MatCardModule, MatListModule, MatButtonModule } from '@angular/material';
+import { MatProgressBarModule, MatCardModule, MatListModule, MatButtonModule, MatIconModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { SktnUploadFileComponent } from './upload-file/upload-file.component';
@@ -16,6 +16,7 @@ import { SktnBase64 } from './base64.service';
     MatCardModule,
     MatListModule,
     MatButtonModule,
+    MatIconModule,
     FlexLayoutModule
   ],
   exports: [

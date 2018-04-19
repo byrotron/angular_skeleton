@@ -11,7 +11,7 @@
     <ng-template ngFor let-file let-i="index" [ngForOf]="files">
       <mat-list-item >
           <p mat-line> {{ file.name }} </p>
-          <mat-icon matListIcon (click)="removeFile(i)"><span class="fa fa-remove"></span></mat-icon>
+          <mat-icon mat-list-icon (click)="removeFile(i)"><span class="fa fa-remove"></span></mat-icon> 
       </mat-list-item>
       <mat-divider></mat-divider>
     </ng-template>
