@@ -1,12 +1,8 @@
-<div fxLayout="row" fxLayoutAlign="start center" class="sktn-breadcrumbs">
+<div fxLayout="row" fxLayoutAlign="start center" class="sktn-breadcrumbs" *ngIf="breadcrumbs.urls.length > 0">
 
-  <div fxFlex="nogrow" fxFlexAlign="start" class="sktn-breadcrumb-item hyperlink" [routerLink]="['/']">
-    <span>Home</span>
-  </div>
-  
-  <div fxFlex="nogrow" fxFlexAlign="start" *ngFor="let url of urls; let i='index'" class="sktn-breadcrumb-item" [class.hyperlink]="urls.length > i+1">
-    <span class="sktn-breadcrumb-separator">/</span>
-    <span [class.hyperlink]="urls.length > i+1" (click)="breadcrumbNavigator(i)">{{ url | ucwords }}</span>
+  <div fxFlex="nogrow" fxFlexAlign="start" *ngFor="let url of breadcrumbs.urls; let i='index'" class="sktn-breadcrumb-item" [class.hyperlink]="breadcrumbs.urls.length > i+1">
+    <span class="sktn-breadcrumb-separator" *ngIf="i > 0">/</span>
+    <span [class.hyperlink]="breadcrumbs.urls.length > i+1" (click)="breadcrumbNavigator(i)">{{ url.name | ucwords }}</span>
   </div>
 
 </div>
