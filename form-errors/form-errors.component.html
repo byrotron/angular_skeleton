@@ -19,4 +19,12 @@
   <div *ngIf="element.hasError('email')" class="form-control-feedback">
     <p><span class="fa fa-exclamation"></span> {{ name ? name : 'This' }} is not a valid email</p>
   </div>
+
+  <div *ngIf="element.hasError('match')" class="form-control-feedback">
+    <p><span class="fa fa-exclamation"></span> {{ name ? name : 'This' }} {{ element.getError('match') }}</p>
+  </div>
+
+  <div *ngIf="element.hasError('password')" class="form-control-feedback">
+    <p *ngFor="let error of element.getError('password')"><span class="fa fa-exclamation"></span> {{ name ? name : 'This' }} {{ error }}</p>
+  </div>
 </div>
