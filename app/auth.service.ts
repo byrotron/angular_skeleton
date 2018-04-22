@@ -40,6 +40,51 @@ export class SktnAuthService {
 
   }
 
+  resetNotification(params: any): Observable<ISktnResponse> {
+
+    let options = new RequestOptions({ headers: this.headers });
+    return this.http.post('/api/auth/reset-account-notification', params, options)
+    .map((response: Response) => {
+      return response.json() as ISktnResponse;
+    })
+    .catch((err: any) => {
+      let body:ISktnResponse = err.json();
+
+      return Observable.of<ISktnResponse>(body);
+    });
+
+  }
+
+  validToken(params: any): Observable<ISktnResponse> {
+    console.log("token");
+    let options = new RequestOptions({ headers: this.headers });
+    return this.http.post('/api/auth/valid-token', {token: params}, options)
+    .map((response: Response) => {
+      return response.json() as ISktnResponse;
+    })
+    .catch((err: any) => {
+      let body:ISktnResponse = err.json();
+
+      return Observable.of<ISktnResponse>(body);
+    });
+
+  }
+
+  resetAccount(params: any): Observable<ISktnResponse> {
+
+    let options = new RequestOptions({ headers: this.headers });
+    return this.http.post('/api/auth/reset-account', params, options)
+    .map((response: Response) => {
+      return response.json() as ISktnResponse;
+    })
+    .catch((err: any) => {
+      let body:ISktnResponse = err.json();
+
+      return Observable.of<ISktnResponse>(body);
+    });
+
+  }
+
   getPrivilege(controller: string, action: string) {
 
     if(this.privileges.length > 0) {
