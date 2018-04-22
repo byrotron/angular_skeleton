@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -16,6 +16,9 @@ import { ISktnResponse } from './../interfaces/interfaces';
 })
 export class SktnLoginComponent {
 
+  @Input()
+  reset_account = ['/reset-account'];
+  
   login_form: FormGroup;
   logging_in = false;
 
