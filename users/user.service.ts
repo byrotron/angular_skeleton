@@ -102,11 +102,9 @@ export class SktnUserService {
   update(id: string | number, user: any) {
 
     let options = new RequestOptions( this.helper.headers );
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('id', String(id));
-    options.params = params;
 
-    return this.http.put('/api/users/update-user', {
+    return this.http.post('/api/users/update-user', {
+      id: id,
       user: user
     }, options)
     .map((response: Response) => {
