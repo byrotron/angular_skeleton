@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MdButtonModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SktnSettingsComponent } from './settings.component';
@@ -11,7 +11,7 @@ import { SktnSettingItemComponent } from './setting-item/setting-item.component'
   imports: [
     CommonModule,
     RouterModule,
-    MdButtonModule,
+    MatButtonModule,
     FlexLayoutModule
   ],
   declarations: [ 

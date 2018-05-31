@@ -1,3 +1,5 @@
-<p>
-  reset-account works!
-</p>
+
+<sktn-notification *ngIf="!token"></sktn-notification> 
+<sktn-account *ngIf="token && valid_token" [redirect]="redirect" [token]="token"></sktn-account>
+
+<div *ngIf="token && !valid_token">{{ error_message }}</div> 

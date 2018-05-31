@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { 
-  MdButtonModule, 
+  MatButtonModule, 
   MatRadioModule, 
   MatSelectModule, 
   MatListModule, 
-  MatInputModule 
+  MatInputModule,
+  MatDialogModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SktnDataTableModule } from './../data-table/data-table.module';
@@ -25,10 +26,11 @@ import { SktnFormModule } from './../form/form.module';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MdButtonModule,
+    MatButtonModule,
     MatRadioModule,
     MatSelectModule,
     MatListModule,
+    MatDialogModule,
     SktnDataTableModule,
     FlexLayoutModule,
     SktnDetailPanelModule,

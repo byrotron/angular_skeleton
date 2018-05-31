@@ -7,6 +7,9 @@ import {
   SktnMessageService
 } from 'pangular';
 
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/scan';
+// import 'rxjs/add/observable/throw'
 
 @Injectable()
 export class SktnHttpHelperService {
@@ -25,10 +28,10 @@ export class SktnHttpHelperService {
   }
 
   handleError(error: Response): Observable<ISktnResponse> { 
-    
     let response:ISktnResponse = error.json();
+    console.log(response);
+    console.log(Observable.throw(response));
     return Observable.throw(response);
-
   } 
     
   reconnect(response: Observable<Response>) { 

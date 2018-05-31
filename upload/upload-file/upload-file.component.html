@@ -3,22 +3,22 @@
 <input style="position:absolute; left:-9999px; top:-99999px;" type="file" #fileinput [attr.multiple]="this.max > 1" 
     (change)="fileSelected(fileinput.files)"/>
 
-<md-card>
+<mat-card>
   <h3>{{ title }}</h3>
   
-  <md-list>
+  <mat-list>
       
     <ng-template ngFor let-file let-i="index" [ngForOf]="files">
-      <md-list-item >
-          <p md-line> {{ file.name }} </p>
-          <md-icon mdListIcon (click)="removeFile(i)"><span class="fa fa-remove"></span></md-icon>
-      </md-list-item>
-      <md-divider></md-divider>
+      <mat-list-item >
+          <p mat-line> {{ file.name }} </p>
+          <mat-icon mat-list-icon (click)="removeFile(i)"><span class="fa fa-remove"></span></mat-icon> 
+      </mat-list-item>
+      <mat-divider></mat-divider>
     </ng-template>
   
-  </md-list>
+  </mat-list>
 
-  <md-card-actions>
-    <button md-raised-button color="accent" (click)="fileinput.click()" [disabled]="files.length === max">Choose</button>
-  </md-card-actions>
-</md-card>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" (click)="fileinput.click()" [disabled]="files.length === max">Choose</button>
+  </mat-card-actions>
+</mat-card>

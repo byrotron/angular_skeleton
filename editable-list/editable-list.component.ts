@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, forwardRef, ContentChild } from '@angular/core';
 import { ControlValueAccessor,  NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, FormControl, NgModel } from '@angular/forms';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { SktnEditableListService } from './editable-list.service';
 import { ISktnEditableList, } from './interfaces';
@@ -50,7 +50,7 @@ export class SktnEditableListComponent implements OnInit, ControlValueAccessor  
 
   editing = false;
 
-  dialog_ref: MdDialogRef<SktnEditableListContainerComponent>;
+  dialog_ref: MatDialogRef<SktnEditableListContainerComponent>;
 
   list: ISktnEditableList;
 
@@ -59,7 +59,7 @@ export class SktnEditableListComponent implements OnInit, ControlValueAccessor  
 
   constructor(
     public list_service: SktnEditableListService,
-    protected dialog: MdDialog
+    protected dialog: MatDialog
   ) { }
 
   ngOnInit() {

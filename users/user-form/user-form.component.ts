@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
-import { MdDialogRef  } from '@angular/material';
+import { MatDialogRef  } from '@angular/material';
 
 import { SktnUserService } from './../user.service';
 import { SktnRoleService } from './../../roles/role.service';
@@ -25,7 +25,7 @@ export class SktnUserFormComponent {
     public fb: FormBuilder,
     public user: SktnUserService,
     public role: SktnRoleService,
-    public dialog: MdDialogRef<SktnUserFormComponent>
+    public dialog: MatDialogRef<SktnUserFormComponent>
   ) {
     this.createForm();
   }

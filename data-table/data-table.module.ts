@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MdInputModule, MdTableModule, MdButtonModule } from '@angular/material';
+import { MatInputModule, MatTableModule, MatButtonModule, MatMenuModule } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SktnDataTableComponent } from './data-table.component';
@@ -10,9 +10,10 @@ import { SktnDataTableService } from './data-table.service';
 @NgModule({
   imports: [
     CommonModule,
-    MdInputModule,
-    MdTableModule,
-    MdButtonModule,
+    MatInputModule,
+    MatTableModule,
+    MatButtonModule,
+    MatMenuModule,
     CdkTableModule,
     FlexLayoutModule,
     SktnPaginationModule
@@ -23,7 +24,7 @@ import { SktnDataTableService } from './data-table.service';
   exports: [
     SktnDataTableComponent,
     CdkTableModule,
-    MdTableModule
+    MatTableModule
   ],
   providers: [
     SktnDataTableService

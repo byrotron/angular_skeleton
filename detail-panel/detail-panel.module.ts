@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MdCardModule, MdButtonModule } from '@angular/material';
+import { MatCardModule, MatButtonModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { SktnDetailPanelComponent } from './detail-panel.component';
@@ -13,8 +13,8 @@ import { SktnDetailPanelService } from './detail-panel.service';
 @NgModule({
   imports: [
     CommonModule,
-    MdCardModule,
-    MdButtonModule,
+    MatCardModule,
+    MatButtonModule,
     ReactiveFormsModule,
     SktnFormErrorsModule
   ],

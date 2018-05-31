@@ -7,12 +7,12 @@
 
   <div class="editable-list-selector" fxLayout="row" *ngIf="list">
     
-    <md-select [placeholder]="label"
+    <mat-select [placeholder]="label"
       *ngIf="editing === false || inline === true"
       [class.inline]="inline"
       [(ngModel)]="value">
-      <md-option *ngFor="let item of list.items" [hidden]="!item.status" [value]="item.id" >{{ item.value }}</md-option>
-    </md-select>
+      <mat-option *ngFor="let item of list.items" [hidden]="!item.status" [value]="item.id" >{{ item.value }}</mat-option>
+    </mat-select>
     
     <ng-template [ngIf]="editable">
       <div class="icon inline" *ngIf="inline" (click)="openEditor()"  fxLayout="row" fxLayoutAlign="center center">

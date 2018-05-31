@@ -33,6 +33,7 @@ export class SktnPaginationComponent {
   ];
 
   total_pages: number;
+  page_options: number[] = [];
 
   show: boolean = true;
   
@@ -45,6 +46,15 @@ export class SktnPaginationComponent {
 
   ngOnInit() {
     this.total_pages = Math.ceil(this.total_items / this.limit);
+
+    if(this.total_pages > 0) {
+      for(let i=1; i<=this.total_pages; i++) {
+        this.page_options.push(i);
+      }
+    } else {
+      this.total_pages = 1;
+      this.page_options.push(1);
+    }
   }
   
   next() {

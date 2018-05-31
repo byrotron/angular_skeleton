@@ -19,11 +19,11 @@
 
   <div class="upload-image-elements"  [class.button]="show_btn" [class.no-button]="!show_btn">
     <section>
-      <md-progress-bar
+      <mat-progress-bar
           color="primary"
           mode="determinate"
           [value]="progress">
-      </md-progress-bar>
+      </mat-progress-bar>
     </section>
 
     <div *ngIf="show_btn" class="select-upload-image" (click)="fileinput.click()">Select Image</div>

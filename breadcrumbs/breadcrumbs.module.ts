@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { SktnBreadcrumbsComponent } from './breadcrumbs.component';
 import { SktnUcWordsPipe } from './../pipes';
+import { BreadcrumbService } from 'pangular/breadcrumbs/breadcrumb.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,9 @@ import { SktnUcWordsPipe } from './../pipes';
   ],
   exports: [
     SktnBreadcrumbsComponent
+  ],
+  providers: [
+    BreadcrumbService
   ]
 })
 export class SktnBreadcrumbsModule { }

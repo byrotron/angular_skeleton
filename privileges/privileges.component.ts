@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdSlideToggleChange  } from '@angular/material';
+import { MatSlideToggleChange  } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { ISktnResponse } from './../interfaces/interfaces';
@@ -68,7 +68,7 @@ export class SktnPrivilegesComponent implements OnInit {
   
   }
 
-  update_privilege(slide:MdSlideToggleChange, action: number, role: number) {
+  update_privilege(slide:MatSlideToggleChange, action: number, role: number) {
 
     this.privs.updatePrivilege(action, role, slide.checked).subscribe(
       (response: ISktnResponse) => {

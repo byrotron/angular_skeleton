@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MdInputModule, MdSelectModule } from '@angular/material';
+import { MatInputModule, MatSelectModule } from '@angular/material';
 
 import { SktnPaginationComponent }  from './pagination.component';
 
@@ -10,8 +10,8 @@ import { SktnPaginationComponent }  from './pagination.component';
     imports:      [ 
         CommonModule,
         FormsModule,
-        MdInputModule,
-        MdSelectModule,
+        MatInputModule,
+        MatSelectModule,
         FlexLayoutModule
     ],
     declarations: [

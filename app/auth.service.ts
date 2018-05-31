@@ -4,7 +4,8 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { ISktnResponse, ISktnUser, ISktnPrivilege, ISktnAction } from './../';
 
-import{ Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+
 
 @Injectable()
 export class SktnAuthService {
@@ -28,6 +29,51 @@ export class SktnAuthService {
       email: email,
       password: password
     }, options)
+    .map((response: Response) => {
+      return response.json() as ISktnResponse;
+    })
+    .catch((err: any) => {
+      let body:ISktnResponse = err.json();
+
+      return Observable.of<ISktnResponse>(body);
+    });
+
+  }
+
+  resetNotification(params: any): Observable<ISktnResponse> {
+
+    let options = new RequestOptions({ headers: this.headers });
+    return this.http.post('/api/auth/reset-account-notification', params, options)
+    .map((response: Response) => {
+      return response.json() as ISktnResponse;
+    })
+    .catch((err: any) => {
+      let body:ISktnResponse = err.json();
+
+      return Observable.of<ISktnResponse>(body);
+    });
+
+  }
+
+  validToken(params: any): Observable<ISktnResponse> {
+    console.log("token");
+    let options = new RequestOptions({ headers: this.headers });
+    return this.http.post('/api/auth/valid-token', {token: params}, options)
+    .map((response: Response) => {
+      return response.json() as ISktnResponse;
+    })
+    .catch((err: any) => {
+      let body:ISktnResponse = err.json();
+
+      return Observable.of<ISktnResponse>(body);
+    });
+
+  }
+
+  resetAccount(params: any): Observable<ISktnResponse> {
+
+    let options = new RequestOptions({ headers: this.headers });
+    return this.http.post('/api/auth/reset-account', params, options)
     .map((response: Response) => {
       return response.json() as ISktnResponse;
     })
@@ -118,16 +164,27 @@ export class SktnAuthService {
 
   isAuthenticated(): Observable<ISktnResponse> {
 
-    let options = new RequestOptions({ headers: this.headers });
-    return this.http.get('/api/auth/is_authd', options)
-      .map((response: Response) => {
-        return response.json() as ISktnResponse;
+    if(this.current_user) {
+      console.log("Already logged in");
+      return Observable.of({
+        status: true,
+        result: {
+          user: this.current_user,
+          privileges: this.privileges
+        }
       })
-      .catch((err: any) => {
-        let body:ISktnResponse = err.json();
+    } else {
+      let options = new RequestOptions({ headers: this.headers });
+      return this.http.get('/api/auth/is_authd', options)
+        .map((response: Response) => {
+          return response.json() as ISktnResponse;
+        })
+        .catch((err: any) => {
+          let body:ISktnResponse = err.json();
 
-        return Observable.of<ISktnResponse>(body);
-      });
+          return Observable.of<ISktnResponse>(body);
+        });
+    }
 
   }
 

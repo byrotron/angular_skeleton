@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MdButtonModule, MdInputModule } from '@angular/material';
+import { MatButtonModule, MatInputModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SktnConfirmBoxComponent } from './../confirm-box/confirm-box.component';
@@ -18,8 +18,8 @@ import { SktnFormModule } from './../form/form.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MdButtonModule,
-    MdInputModule,
+    MatButtonModule,
+    MatInputModule,
     FlexLayoutModule,
     SktnConfirmBoxModule,
     SktnDataTableModule,

@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .reset-account {
+    width :25%;
+    
+    .form-messages {
+      padding: 0 0 1rem;
+      color: #f44336;
+      font-size: 1rem;
+    }
+
+    .form-group {
+      font-size: 1rem;
+    }
+
+    mat-card-actions {
+      padding: 0 1rem;
+    }
+    
+  }
+}

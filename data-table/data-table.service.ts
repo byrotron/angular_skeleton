@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ISktnDataTableEvent } from './interfaces'
-;
+import { ISktnDataTableEvent } from './interfaces';
+
 @Injectable()
 export class SktnDataTableService {
 

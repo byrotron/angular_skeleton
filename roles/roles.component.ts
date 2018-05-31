@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { ISktnResponse } from './../interfaces/interfaces';
 import { SktnConfirmBoxComponent } from './../confirm-box/confirm-box.component';
@@ -21,9 +21,9 @@ import { SktnDataTableSource, ISktnDataTableEvent } from './../data-table';
 })
 export class SktnRolesComponent implements OnInit {
 
-  role_form: MdDialogRef<SktnRoleFormComponent>;
+  role_form: MatDialogRef<SktnRoleFormComponent>;
 
-  confirm_form: MdDialogRef<SktnConfirmBoxComponent>;
+  confirm_form: MatDialogRef<SktnConfirmBoxComponent>;
 
   total_items = 0;
   
@@ -32,7 +32,7 @@ export class SktnRolesComponent implements OnInit {
   data_source: SktnDataTableSource;
 
   constructor(
-    protected dialog: MdDialog,
+    protected dialog: MatDialog,
     protected role_service: SktnRoleService,
     public admin_panel: SktnAdminPanelService,
   ) { }

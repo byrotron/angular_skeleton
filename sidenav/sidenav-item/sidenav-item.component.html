@@ -1,6 +1,6 @@
 <div *ngIf="item.group" class="sidenav-group">{{ item.group }}</div>
 
-<div *ngIf="item.label" class="sidenav-item" 
+<div *ngIf="item.label && item.show" class="sidenav-item" 
   [class.disabled]="item.disabled" 
   [ngClass]="item.classes" 
   [class.active]="item.active"

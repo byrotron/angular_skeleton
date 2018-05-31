@@ -1,18 +1,18 @@
 
-<h4 md-dialog-title>Confirm</h4>
-<button md-dialog-close class="close-confirm-box"><span class="fa fa-remove"></span></button>
+<h4 mat-dialog-title>Confirm</h4>
+<button mat-dialog-close class="close-confirm-box"><span class="fa fa-remove"></span></button>
 
-<md-dialog-content>
+<mat-dialog-content>
 
   <p>{{ data.message }}</p>
 
-</md-dialog-content>
+</mat-dialog-content>
 
-<md-dialog-actions>
+<mat-dialog-actions>
 
   <div class="fill-space"></div>
 
-  <button md-raised-button (click)="confirm(false)">Cancel</button>
-  <button md-raised-button class="edit" (click)="confirm(true)">Confirm</button>
+  <button mat-raised-button (click)="confirm(false)">Cancel</button>
+  <button mat-raised-button class="edit" (click)="confirm(true)">Confirm</button>
 
-</md-dialog-actions>
+</mat-dialog-actions>

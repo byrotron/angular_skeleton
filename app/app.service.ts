@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Response } from '@angular/http';
-import { MdDialogRef, MdDialog } from '@angular/material';
+import { MatDialogRef, MatDialog } from '@angular/material';
 import { SktnConnectionComponent } from './../connection';
 import { Observable } from 'rxjs';
 
@@ -11,10 +11,10 @@ export class SktnAppService {
   connected: boolean;
   connection_attempt: number = 0;
 
-  connection_dialog: MdDialogRef<SktnConnectionComponent>;
+  connection_dialog: MatDialogRef<SktnConnectionComponent>;
   
   constructor(
-    public dialog: MdDialog
+    public dialog: MatDialog
   ) {
     this.connection = Observable.merge(
       Observable.of(navigator.onLine),

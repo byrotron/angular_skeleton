@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MdDialogModule, MdButtonModule } from '@angular/material';
+import { MatDialogModule, MatButtonModule } from '@angular/material';
 
 import { SktnConfirmBoxComponent } from './confirm-box.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    MdDialogModule,
-    MdButtonModule
+    MatDialogModule,
+    MatButtonModule
   ],
   declarations: [
     SktnConfirmBoxComponent
   ],
   exports: [
     SktnConfirmBoxComponent,
-    MdDialogModule
+    MatDialogModule
   ]
 })
 export class SktnConfirmBoxModule { }

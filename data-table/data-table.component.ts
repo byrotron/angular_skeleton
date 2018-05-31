@@ -8,11 +8,14 @@ import {
   ContentChild,
   EventEmitter,
   ViewEncapsulation } from '@angular/core';
-import { MdSort, MdSortable } from '@angular/material';
+import { MatSort, MatSortable } from '@angular/material';
 import { Observable, Subscription } from 'rxjs';
 import { SktnPaginationComponent, ISktnPaginationEvent } from './../pagination';
 import { ISktnDataTableEvent } from './interfaces';
 import { SktnDataTableService } from './data-table.service';
+
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 @Component({
   selector: 'sktn-data-table',
@@ -57,8 +60,8 @@ export class SktnDataTableComponent {
   @ViewChild(SktnPaginationComponent) 
   protected _page: SktnPaginationComponent;
 
-  @ContentChild(MdSort) 
-  sort: MdSort;
+  @ContentChild(MatSort) 
+  sort: MatSort;
 
   @Output()
   onChange: EventEmitter<ISktnDataTableEvent> = new EventEmitter();
