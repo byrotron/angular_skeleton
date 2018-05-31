@@ -10,10 +10,8 @@
     class="sktn-pagination-input"
     [value]="current_page"
     [disabled]="active === false || total_pages === 1"
-    (change)="selectPage($event.target.value)">
-    <mat-option *ngFor="let page of page_options" [value]="page">
-        {{ page }}
-    </mat-option>
+    (selectionChange)="selectPage($event)">
+    <mat-option *ngFor="let page of page_options" [value]="page">{{ page }}</mat-option>
   </mat-select>
 
   <div class="sktn-pagination-item">

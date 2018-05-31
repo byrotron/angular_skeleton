@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 import { ISktnPagination, ISktnPaginationEvent } from './interfaces';
+import { MatOption } from "@angular/material";
 
 @Component ({
     selector: "sktn-pagination",
@@ -42,10 +43,17 @@ export class SktnPaginationComponent {
 
   ngOnChanges() {
     this.total_pages = Math.ceil(this.total_items / this.limit);
+    this.pageSetup();
   }
 
   ngOnInit() {
     this.total_pages = Math.ceil(this.total_items / this.limit);
+    console.log(this.total_pages);
+    this.pageSetup();
+  }
+
+  pageSetup() {
+    this.page_options = [];
 
     if(this.total_pages > 0) {
       for(let i=1; i<=this.total_pages; i++) {
@@ -109,15 +117,11 @@ export class SktnPaginationComponent {
 
   }
 
-  selectPage(page: number) {
-    
+  selectPage(option: MatOption) {
+
     if(this.active == true) {
-
-      if(this.current_page + 1 <= this.total_pages && this.current_page - 1 > 0 ) {
-        this.current_page = page;
-        this.onChange.emit({page: this.current_page, limit: +this.limit});
-      }
-
+      this.current_page = option.value;
+      this.onChange.emit({page: this.current_page, limit: +this.limit});
     }
 
   }
