@@ -32,18 +32,13 @@ export class SktnMessageComponent implements OnInit {
 
   ngOnInit() {
 
-    // Hide the message after a set amount of time
-    this.start();
-
-  }
-
-  start() {
     this.source = Observable
-      .interval(2000)
+      .interval(this.delay)
       .timeInterval()
       .subscribe(() => {
         this.show = 'hide';
       })
+
   }
 
   // When the message is finished with fading remove it from the array
@@ -63,7 +58,16 @@ export class SktnMessageComponent implements OnInit {
   }
 
   onExit() {
-    this.start();
+    this.source = Observable
+      .interval(2000)
+      .timeInterval()
+      .subscribe(() => {
+        this.show = 'hide';
+      })
+  }
+
+  ngOnDestory() {
+    this.source.unsubscribe();
   }
 
 }
