@@ -1,4 +1,4 @@
-<div class="is-panel-item" >
+<!-- <div class="is-panel-item" >
 
     <p *ngIf="panel.editing === false" [ngSwitch]="type">
         <span class="is-panel-label">{{ title }}:</span> 
@@ -47,4 +47,31 @@
         <sktn-form-errors [element]="panel.form.get(name)"></sktn-form-errors>
     </div>
 
+</div> -->
+
+<div [ngSwitch]="type" [formGroup]="panel.form">
+  
+  <mat-form-field *ngSwitchCase="'text'" class="fullwidth">
+    <input matInput [placeholder]="title" [formControlName]="name">
+    <sktn-form-errors [reactive]="true" [element]="panel.form.get(name)"></sktn-form-errors>
+  </mat-form-field>
+
+  <mat-form-field *ngSwitchCase="'select'"  class="fullwidth">
+    <mat-select [placeholder]="title" [formControlName]="name">
+      <mat-option *ngFor="let item of list" [value]="item.id">
+          {{ item.name }}
+      </mat-option>
+    </mat-select>
+    <sktn-form-errors [reactive]="true" [element]="panel.form.get(name)"></sktn-form-errors>
+  </mat-form-field>
+
+  <div *ngSwitchCase="'boolean'" class="fullwidth checkbox">
+    <mat-radio-group [formControlName]="name">
+      <label>{{ title }}</label>
+      <mat-radio-button value="1">Active</mat-radio-button>
+      <mat-radio-button value="2">Inactive</mat-radio-button>
+      <sktn-form-errors [reactive]="true" [element]="panel.form.get(name)"></sktn-form-errors>
+    </mat-radio-group>
+  </div>
+  
 </div>
