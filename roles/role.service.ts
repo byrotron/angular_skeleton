@@ -10,13 +10,7 @@ import { ISktnRole } from './interfaces';
 
 @Injectable()
 export class SktnRoleService {
-
-  loader: 'hide' | 'show' = 'hide';
-
-  roles: ISktnRole[] = [];
-
-  current_role: ISktnRole;
-
+  
   constructor(
     protected http: Http,
     protected helper: SktnHttpHelperService

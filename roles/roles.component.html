@@ -1,42 +1,45 @@
-<h1>Roles</h1>
+<div class="main-view">
 
-<sktn-data-table
-  fxFlex
-  orderby="name"
-  [total_items]="total_items"
-  (onChange)="updateTable($event)">
-
-  <button type="button" mat-raised-button data-table-actions
-    [disabled]="!admin_panel.auth.getPrivilege('Roles', 'create-role')"
-    (click)="openForm(null)">
-    <span class="fa fa-plus add" [class.disabled]="!admin_panel.auth.getPrivilege('Roles', 'create-role')"></span> Add Role
-  </button>
-
-  <mat-table [dataSource]="data_source" data-table>
-
-    <ng-container cdkColumnDef="edit">
-      <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
-      <mat-cell class="icon" *cdkCellDef="let row" (click)="openForm(row.id)"> 
-        <span class="fa fa-pencil edit" [class.disabled]="!admin_panel.auth.getPrivilege('Roles', 'update-role')" ></span>
-      </mat-cell>
-    </ng-container>
-
-    <ng-container cdkColumnDef="remove">
-      <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
-      <mat-cell class="icon" *cdkCellDef="let row" (click)="confirm(row)"> 
-        <span class="fa fa-remove remove" [class.disabled]="!admin_panel.auth.getPrivilege('Roles', 'remove-role')" ></span>
-      </mat-cell>
-    </ng-container>
-
-    <ng-container cdkColumnDef="name">
-      <mat-header-cell *cdkHeaderCellDef>Name</mat-header-cell>
-      <mat-cell *cdkCellDef="let row"> {{row.name}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *cdkHeaderRowDef="headers"></mat-header-row>
-    <mat-row *cdkRowDef="let row; columns: headers;"></mat-row>
-
-  </mat-table>
-
-</sktn-data-table>
+  <sktn-data-table
+    fxFlex
+    orderby="name"
+    [total_items]="total_items"
+    [loading]="loading"
+    (onChange)="updateTable($event)">
+  
+    <button type="button" mat-raised-button data-table-actions
+      [disabled]="!admin_panel.auth.getPrivilege('Roles', 'create-role')"
+      (click)="createRole()">
+      <span class="fa fa-plus add" [class.disabled]="!admin_panel.auth.getPrivilege('Roles', 'create-role')"></span> Add Role
+    </button>
+  
+    <mat-table [dataSource]="data_source" data-table>
+  
+      <ng-container cdkColumnDef="edit">
+        <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+        <mat-cell class="icon" *cdkCellDef="let row" (click)="updateRole(row)"> 
+          <span class="fa fa-pencil edit" [class.disabled]="!admin_panel.auth.getPrivilege('Roles', 'update-role') || !row.enabled" ></span>
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container cdkColumnDef="remove">
+        <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+        <mat-cell class="icon" *cdkCellDef="let row" (click)="confirm(row)"> 
+          <span class="fa fa-remove remove" [class.disabled]="!admin_panel.auth.getPrivilege('Roles', 'remove-role') || !row.enabled" ></span>
+        </mat-cell>
+      </ng-container>
+  
+      <ng-container cdkColumnDef="name">
+        <mat-header-cell *cdkHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *cdkCellDef="let row"> {{row.name}} </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *cdkHeaderRowDef="headers"></mat-header-row>
+      <mat-row *cdkRowDef="let row; columns: headers;"></mat-row>
+  
+    </mat-table>
+  
+  </sktn-data-table>
+  
+</div>
 

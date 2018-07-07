@@ -13,4 +13,5 @@ export interface ISktnUser {
   role: ISktnRole;
   last_login: any;
 
+  loading?: boolean;
 }

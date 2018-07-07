@@ -21,15 +21,16 @@ import { SktnDataTableSource, ISktnDataTableEvent } from './../data-table';
 })
 export class SktnRolesComponent implements OnInit {
 
-  role_form: MatDialogRef<SktnRoleFormComponent>;
-
   confirm_form: MatDialogRef<SktnConfirmBoxComponent>;
 
+  roles: ISktnRole[] = [];
   total_items = 0;
   
   headers: string[] = ['edit', 'remove', 'name'];
 
   data_source: SktnDataTableSource;
+
+  loading = false;
 
   constructor(
     protected dialog: MatDialog,
@@ -39,24 +40,29 @@ export class SktnRolesComponent implements OnInit {
 
   ngOnInit() {
     this.data_source = new SktnDataTableSource();
+    this.tableSetup();
+  }
 
+  tableSetup() {
     this.updateTable({
       page: 1, 
       limit: 50, 
       orderby: 'surname', 
       direction: 'ASC'
     });
-
   }
 
   updateTable(event: ISktnDataTableEvent) {
     
-    this.admin_panel.startLoading();
+    this.loading = true;
+
     this.role_service.getRoles().subscribe(
       (response: ISktnResponse) => {
         if(response.status === true) {
-          this.data_source.rows.next(response.result);
+          this.roles = response.result;
+          this.data_source.rows.next(this.roles);
           this.total_items = response.result.length;
+          this.loading = false;
           this.admin_panel.stopLoading();
         }
       },
@@ -69,20 +75,42 @@ export class SktnRolesComponent implements OnInit {
 
   }
 
-  openForm(role: ISktnRole | null) {
+  findRole(role: ISktnRole) {
+    return this.roles.findIndex((item: ISktnRole) => {
+      return role.id === item.id;
+    })
+  }
 
-      if(role) {
-        if(role.enabled === false || this.admin_panel.auth.getPrivilege('Roles', 'update-role') === true) {
-          return;
-        }
-        this.role_service.current_role = role;
-      }
+  createRole() {
+    if(this.admin_panel.auth.getPrivilege('Roles', 'create-role') === true) {
 
-      this.role_form = this.dialog.open(SktnRoleFormComponent, {
-        width: '600px',
+      let form = this.dialog.open(SktnRoleFormComponent, {
+        width: '600px'
       });
+      
+      form.afterClosed().subscribe((role: ISktnRole) => {
+        this.roles.push(role);
+        this.data_source.rows.next(this.roles);
+      });
+      
+    }
+  }
 
-    
+  updateRole(role: ISktnRole) {
+    if(role.enabled === true && this.admin_panel.auth.getPrivilege('Roles', 'update-role') === true) {
+
+      let form = this.dialog.open(SktnRoleFormComponent, {
+        width: '600px',
+        data: role
+      });
+      
+      form.afterClosed().subscribe((role: ISktnRole) => {
+        let ind = this.findRole(role);
+        this.roles[ind] = role
+        this.data_source.rows.next(this.roles);
+      });
+      
+    }
   }
 
   confirm(role: ISktnRole) {
@@ -107,20 +135,28 @@ export class SktnRolesComponent implements OnInit {
   }
 
   deleteRole(role: ISktnRole) {
+    
 
     if(role.enabled === true && this.admin_panel.auth.getPrivilege('Roles', 'delete-role') === true) {
+
+      this.roles = this.roles.filter((item: ISktnRole) => {
+        return role.id !== item.id;
+      });
+      this.data_source.rows.next(this.roles);
+      this.total_items--;
 
       this.role_service.deleteRole(role.id).subscribe(
         (response: ISktnResponse) => {
 
-          if(response.status === true) {
-            
-            this.role_service.roles = this.role_service.roles.filter((delete_role: ISktnRole) => {
-              return delete_role.id !== role.id;
-            });
-
+          if(response.status === false) {
+            this.admin_panel.messages.addErrorMessage('Role Delete Failed', response.message);
+            this.tableSetup()
           }
 
+        },
+        (response: ISktnResponse) => {
+          this.admin_panel.messages.addErrorMessage('Role Delete Failed', response.message);
+          this.tableSetup();
         }
       );
 

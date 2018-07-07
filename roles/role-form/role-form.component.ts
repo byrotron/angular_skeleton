@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { SktnRoleService } from './../role.service';
 import { SktnAdminPanelService } from './../../admin-panel/admin-panel.service';
@@ -24,31 +24,23 @@ export class SktnRoleFormComponent implements OnInit {
     public fb: FormBuilder,
     public admin: SktnAdminPanelService,
     public role: SktnRoleService,
-    public dialog: MatDialogRef<SktnRoleFormComponent>
+    public dialog: MatDialogRef<SktnRoleFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.createForm();
    }
 
   ngOnInit() {
 
-    if(this.role.current_role) {
-      this.form.get('name').setValue(this.role.current_role.name);
+    if(this.data) {
+      this.form.get('name').setValue(this.data.name);
     }
-
-    // Reset the current role if the form is closed
-    this.dialog.afterClosed().subscribe(
-      () => {
-        this.role.current_role = undefined;
-      }
-    )
 
   }
 
   createForm() {
     this.form = this.fb.group({
-      name: [
-        "", Validators.required
-      ],
+      name: [null, Validators.required],
     });
   }
 
@@ -62,8 +54,7 @@ export class SktnRoleFormComponent implements OnInit {
 
         if(response.status === true) {
         
-          this.role.roles.push(response.result);
-          this.dialog.close();
+          this.dialog.close(response.result);
         
         }
         this.loading = false;
@@ -82,11 +73,11 @@ export class SktnRoleFormComponent implements OnInit {
     this.loading = true;
 
     let name = this.form.get('name').value;
-    this.role.updateRole(this.role.current_role.id, name).subscribe(
+    this.role.updateRole(this.data.id, name).subscribe(
       (response: ISktnResponse) => {
 
-        this.role.current_role = undefined;
-        this.dialog.close();
+        this.data.name = name;
+        this.dialog.close(this.data);
         this.loading = false;
 
       },
@@ -105,7 +96,7 @@ export class SktnRoleFormComponent implements OnInit {
 
   submit() {
 
-    if(this.role.current_role) {
+    if(this.data) {
       this.update();
     } else {
       this.create();
