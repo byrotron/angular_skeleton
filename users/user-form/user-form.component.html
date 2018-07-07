@@ -18,19 +18,23 @@
   
 
     <mat-radio-group formControlName="status" class="fullwidth">
+      <label>Status</label>
       <mat-radio-button [value]="1">Active</mat-radio-button>
-      <mat-radio-button [value]="0">Inactive</mat-radio-button>
+      <mat-radio-button [value]="2">Inactive</mat-radio-button>
     </mat-radio-group>   
 
-
-    <mat-select placeholder="Role" formControlName="role"  class="fullwidth">
-      <mat-option *ngFor="let role of roles" [value]="role.id">
-        {{ role.name }}
-      </mat-option>
-    </mat-select>
-      
-    <button form-actions mat-raised-button color="accent" class="edit" [disabled]="form.invalid" (click)="submit()">
-      <span class="fa fa-pencil"></span> Send</button>
+    <mat-form-field class="fullwidth">
+      <mat-select placeholder="Role" formControlName="role"  class="fullwidth">
+        <mat-option *ngFor="let role of roles" [value]="role.id">
+          {{ role.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+        
+    <button form-actions mat-raised-button color="accent" class="edit" [disabled]="form.invalid || loading" (click)="submit()">
+      <span class="fa fa-pencil" *ngIf="!loading"></span> Send
+      <span class="fa fa-cog fa-spin" *ngIf="loading"></span>
+    </button>
 
   </sktn-form>
 

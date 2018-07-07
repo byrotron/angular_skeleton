@@ -22,18 +22,16 @@ export class SktnUserDetailComponent implements OnInit {
   form: FormGroup;
 
   editing = false;
-
   loading = false;
 
-  updater: any;
-
   roles: ISktnRole[];
+  current_user: ISktnUser;
   
   constructor(
     protected route: ActivatedRoute,
     protected fb: FormBuilder,
-    protected admin_panel: SktnAdminPanelService,
-    public user: SktnUserService,
+    public admin_panel: SktnAdminPanelService,
+    public users: SktnUserService,
     protected http_roles: SktnRoleService
   ) {
     this.createForm();
@@ -50,26 +48,24 @@ export class SktnUserDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.admin_panel.startLoading();
 
     this.route.params.switchMap(
       (params: Params) => {
-        return this.user.getUser(params["id"]);
+        return this.users.getUser(params["id"]);
       }
     ).switchMap(
       (response: ISktnResponse) => {
-        this.user.current_user = response.result;
+        this.current_user = response.result;
         return this.http_roles.getRoles();
       }
     ).subscribe(
       (response: ISktnResponse) => {
 
         if(response.status === true) {
-
           this.roles = response.result;
-          this.setFormValues(response.result);
-
         } 
-
+        this.setFormValues(this.current_user);
         this.admin_panel.stopLoading();
 
       }
@@ -79,26 +75,12 @@ export class SktnUserDetailComponent implements OnInit {
 
   setFormValues(user: ISktnUser) {
 
-    if(this.user.current_user) {
-      this.form.get("name").setValue(this.user.current_user.name);
-      this.form.get("surname").setValue(this.user.current_user.surname);
-      this.form.get("email").setValue(this.user.current_user.email);
-      this.form.get("status").setValue(this.user.current_user.status.id);
-      this.form.get("role").setValue(this.user.current_user.role.id);
-    }
-
-  }
-
-  update_user() {
-
-    for(let element in this.user.current_user) {
-
-      if(this.form.contains(element)) {
-
-        this.user.current_user[element] = this.form.get(element).value;
-
-      }
-
+    if(user) {
+      this.form.get("name").setValue(user.name);
+      this.form.get("surname").setValue(user.surname);
+      this.form.get("email").setValue(user.email);
+      this.form.get("status").setValue(user.status.id);
+      this.form.get("role").setValue(user.role.id);
     }
 
   }
@@ -107,35 +89,26 @@ export class SktnUserDetailComponent implements OnInit {
 
     if(this.admin_panel.auth.getPrivilege('Users', 'update-user') === true) {
       this.loading = true;
-      this.user.update(this.user.current_user.id, this.form.value).subscribe(
+      this.users.update(this.current_user.id, this.form.value).subscribe(
         (response: ISktnResponse) => {
 
-          if(response.status === true) {
-
-            // Update the current user with new information
-            this.update_user();
-            // Then reset the form
-            this.form.reset();
-            // Re-insert the values into the form
-            this.setFormValues(this.user.current_user);
-
-            this.editing = false;
-            this.loading = false;
-
-          } else {
-
+          if(response.status === false) {
+            this.setFormValues(this.current_user);
             this.admin_panel.addAdminMessage('warn', 'Warning', response.message);
-
           }
 
+          this.loading = false;
+          this.editing = false;
+        },
+        (response: ISktnResponse) => {
+          this.admin_panel.messages.addErrorMessage('Update User Failed', response.message);
+          this.loading = false;
+          this.editing = false;
         }
       );
     }
     
   }
-  
-  ngOnDestroy() {
-    this.user.current_user = undefined;
-  }
+
 
 }

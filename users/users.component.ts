@@ -23,13 +23,12 @@ import { FadeOut } from './../animations/animations';
 })
 export class SktnUsersComponent {
 
-  user_form: MatDialogRef<SktnUserFormComponent>;
   confirm_form: MatDialogRef<SktnConfirmBoxComponent>;
-
+  users: ISktnUser[] = [];
   total_items = 0;
+  loading = false;
 
   headers: string[] = ['edit', 'remove', 'name', 'surname', 'email', 'status', 'role', 'last_login'];
-
   data_source: SktnDataTableSource;
 
   constructor(
@@ -40,24 +39,29 @@ export class SktnUsersComponent {
   ) {}
 
   ngOnInit() {
-
-    this.admin_panel.startLoading();
-
     this.data_source = new SktnDataTableSource();
+    this.tableSetup();
+  }
+
+  tableSetup() {
     this.updateTable({
       page: 1, 
       limit: 50, 
       orderby: 'surname', 
       direction: 'ASC'
     });
-
   }
 
-  open_form() {
+  openForm() {
     if(this.admin_panel.auth.getPrivilege('Users', 'create-user') === true) {
-      this.user_form = this.dialog.open(SktnUserFormComponent, {
+      let form = this.dialog.open(SktnUserFormComponent, {
         width: '600px',
       });
+
+      form.afterClosed().subscribe((user: ISktnUser) => {
+        this.users.push(user);
+        this.data_source.rows.next(this.users);
+      })
     }
   }
 
@@ -69,13 +73,16 @@ export class SktnUsersComponent {
 
   updateTable(event: ISktnDataTableEvent) {
 
-    // this.user_service.admin.loading = 'show';
+    this.loading = true;
     this.user_service.getUsers(event)
       .subscribe(
         (response: ISktnResponse) => {
           if(response.status) {
-            this.data_source.rows.next(response.result.users);
+            this.users = response.result.users;
             this.total_items = response.result.total_items;
+            console.log(this.users);
+            this.data_source.rows.next(this.users);
+            this.loading = false;
             this.admin_panel.stopLoading();
           }
         },
@@ -90,7 +97,8 @@ export class SktnUsersComponent {
   }
 
   confirm(user: ISktnUser) {
-    
+    user.loading = true;
+
     if(this.admin_panel.auth.getPrivilege('Users', 'delete-user') === true) {
 
       this.confirm_form = this.dialog.open(SktnConfirmBoxComponent, {
@@ -113,18 +121,26 @@ export class SktnUsersComponent {
   }
 
   deleteUser(user: ISktnUser) {
+    this.users = this.users.filter((item: ISktnUser) => {
+      return user.id !== item.id;
+    });
+    this.data_source.rows.next(this.users);
+    this.total_items--;
 
     if(this.admin_panel.auth.getPrivilege('Users', 'delete-user') === true) {
 
       this.user_service.delete(user.id).subscribe(
         (response: ISktnResponse) => {
 
-          if(response.status === true) {
-            this.user_service.users = this.user_service.users.filter((item: ISktnUser) => {
-              return user.id !== item.id;
-            });
+          if(response.status === false) {
+            this.admin_panel.messages.addErrorMessage('User Delete Failed', response.message);
+            this.tableSetup()
           }
 
+        },
+        (response: ISktnResponse) => {
+          this.admin_panel.messages.addErrorMessage('User Delete Failed', response.message);
+          this.tableSetup();
         }
       );
 

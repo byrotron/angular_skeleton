@@ -40,11 +40,11 @@ export class SktnUserFormComponent {
 
   createForm() {
     this.form = this.fb.group({
-      name: ["", Validators.required],
-      surname: "",
-      email: "",
-      status: "",
-      role: ""
+      name: [null, Validators.required],
+      surname: [null, Validators.required],
+      email: [null, Validators.required],
+      status: [null, Validators.required],
+      role: [null, Validators.required],
     });
   }
 
@@ -62,8 +62,7 @@ export class SktnUserFormComponent {
         (response: ISktnResponse) => {
           
           if(response.status === true) {
-            this.user.users.push(response.result);
-            this.dialog.close();
+            this.dialog.close(response.result);
           } 
          
           this.loading = false;

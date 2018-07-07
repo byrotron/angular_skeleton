@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers, Response, URLSearchParams } from '@angular/http';
 
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 import { ISktnDataTableEvent } from './../data-table/interfaces';
 import { SktnAdminPanelService } from './../admin-panel/admin-panel.service';
@@ -12,19 +12,6 @@ import { ISktnUser } from './../users/interfaces';
 @Injectable()
 export class SktnUserService {
   
-  loader: 'hide' | 'show' = 'hide';
-
-  users: ISktnUser[] = [];
-
-  current_user: ISktnUser;
-
-  actions: any = {
-    create: true,
-    read: true,
-    update: true,
-    delete: true
-  };
-
   constructor(
     public http: Http,
     protected helper: SktnHttpHelperService
@@ -102,11 +89,9 @@ export class SktnUserService {
   update(id: string | number, user: any) {
 
     let options = new RequestOptions( this.helper.headers );
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('id', String(id));
-    options.params = params;
 
-    return this.http.put('/api/users/update-user', {
+    return this.http.post('/api/users/update-user', {
+      id: id,
       user: user
     }, options)
     .map((response: Response) => {
@@ -122,14 +107,12 @@ export class SktnUserService {
   }
 
   delete(id: number | string) {
-    
 
     let options = new RequestOptions( this.helper.headers );
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('id', String(id));
-    options.params = params;
 
-    return this.http.delete('/api/users/delete-user', options)
+    return this.http.post('/api/users/delete-user', {
+      id: id
+    }, options)
       .map((response: Response) => {
         return response.json() as ISktnResponse
       })
