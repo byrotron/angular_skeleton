@@ -28,31 +28,34 @@ import 'rxjs/add/operator/distinctUntilChanged';
 export class SktnDataTableComponent {
 
   @Input()
-  pagination: boolean = true;
+  pagination = true;
 
   @Input()
-  filter: boolean = true;
+  filter = true;
 
   @Input()
-  actions: boolean = true;
+  actions = true;
 
   @Input()
-  page: number = 1;
+  page = 1;
 
   @Input()
-  total_items: number = 0;
+  total_items = 0;
   
   @Input()
-  limit: number = 50;
+  limit = 50;
   
   @Input()
-  orderby:string;
+  orderby: string;
 
   @Input()
   direction: 'ASC' | 'DESC' = 'ASC';
 
   @Input()
-  active: boolean = true;
+  active = true;
+
+  @Input()
+  loading = false;
 
   @ViewChild('filterinput') 
   protected _filter: ElementRef;

@@ -67,10 +67,15 @@
 
       </div>
     
-      <div class="sktn-data-table-content" *ngIf="total_items > 0 || pagination === false">
+      <div class="sktn-data-table-content" *ngIf="(total_items > 0 || pagination === false) && !loading">
         <ng-content select="[data-table]"></ng-content>
       </div>
       
-      <div class="no-data" *ngIf="total_items == 0 && pagination === true">No data found</div>
+      <div class="no-data" *ngIf="total_items == 0 && pagination === true && !loading">No data found</div>
+
+      <div class="table-loading" *ngIf="loading">
+          <mat-spinner style="margin: 0 auto"></mat-spinner>
+          <p>Loading</p>
+      </div> 
     
     </div>

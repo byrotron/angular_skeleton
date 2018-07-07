@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatInputModule, MatTableModule, MatButtonModule, MatMenuModule } from '@angular/material';
+import { MatInputModule, MatTableModule, MatButtonModule, MatMenuModule, MatProgressSpinnerModule } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SktnDataTableComponent } from './data-table.component';
@@ -16,7 +16,8 @@ import { SktnDataTableService } from './data-table.service';
     MatMenuModule,
     CdkTableModule,
     FlexLayoutModule,
-    SktnPaginationModule
+    SktnPaginationModule,
+    MatProgressSpinnerModule
   ],
   declarations: [
     SktnDataTableComponent
