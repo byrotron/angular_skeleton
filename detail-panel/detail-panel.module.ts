@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule, MatButtonModule } from '@angular/material';
+import { MatCardModule, MatButtonModule, MatInputModule, MatRadioModule, MatSelectModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { SktnDetailPanelComponent } from './detail-panel.component';
-
 import { SktnDetailItemComponent } from './detail-item/detail-item.component';
 import { SktnFormErrorsModule } from'./../form-errors/form-errors.module';
-
 import { SktnDetailPanelService } from './detail-panel.service';
 
 @NgModule({
@@ -16,7 +13,10 @@ import { SktnDetailPanelService } from './detail-panel.service';
     MatCardModule,
     MatButtonModule,
     ReactiveFormsModule,
-    SktnFormErrorsModule
+    SktnFormErrorsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule
   ],
   declarations: [
     SktnDetailPanelComponent,

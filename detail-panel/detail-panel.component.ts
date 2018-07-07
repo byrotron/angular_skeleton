@@ -1,15 +1,11 @@
 import { Component, 
   Input, 
   Output, 
-  EventEmitter, 
-  ContentChildren, 
-  QueryList,
-  ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-
-import { SktnDetailItemComponent } from './detail-item/detail-item.component';
+  EventEmitter
+} from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { SktnDetailPanelService } from'./detail-panel.service';
-import { ISktnListItem } from './interfaces';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'sktn-detail-panel',
@@ -49,10 +45,11 @@ export class SktnDetailPanelComponent {
 
   constructor(
     public panel: SktnDetailPanelService,
-    private changer: ChangeDetectorRef
+    public location: Location
   ) {}
 
   ngOnInit() {
+    // this.form.disable();
 
     this.panel.form = this.form;
     this.panel.editing = this.editing;
@@ -67,6 +64,11 @@ export class SktnDetailPanelComponent {
 
   ngOnChanges() {
     this.panel.editing = this.editing;
+    if(this.editing === true) {
+      this.form.enable();
+    } else {
+      this.form.disable();
+    }
   }
 
   startEditing() {
