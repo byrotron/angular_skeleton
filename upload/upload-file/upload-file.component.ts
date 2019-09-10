@@ -9,6 +9,7 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 })
 export class SktnUploadFileComponent {
 
+  @Input()
   files: File[] = [];
 
   @Input()
