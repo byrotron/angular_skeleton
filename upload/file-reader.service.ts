@@ -16,7 +16,7 @@ export class SktnFileReaderService {
       reader.onload = (event: ProgressEvent & any) => {
         resolve(event.target.result);
       }
-      reader.onerror = (err: ProgressEvent) => {
+      reader.onerror = (err: ErrorEvent | ProgressEvent) => {
         reject(err); 
       }
     });
