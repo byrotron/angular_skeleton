@@ -3,7 +3,12 @@
 <input style="position:absolute; left:-9999px; top:-99999px;" type="file" #fileinput [attr.multiple]="this.max > 1" 
     (change)="fileSelected(fileinput.files)"/>
 
-<mat-card>
+<mat-card class="sktn-uploader" draggable="true" (dragenter)="dragStart($event)" (dragleave)="dragEnd($event)" (drop)="drop($event)" (dragover)="dragOver($event);">
+  <div class="sktn-drag" fxLayout="row" fxLayoutAlign="center center" [style.z-index]="drag ? 200 : 1" >
+    <p *ngIf="!drag">DRAG FILES HERE</p>
+    <p *ngIf="drag">DROP NOW</p>
+  </div>
+
   <h3>{{ title }}</h3>
   
   <mat-list>

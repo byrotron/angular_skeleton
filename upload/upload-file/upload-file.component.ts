@@ -23,6 +23,8 @@ export class SktnUploadFileComponent {
 
   errors: Error[] = [];
 
+  protected drag = false;
+
   @Output()
   onFileSelect: EventEmitter<File[]> = new EventEmitter();
 
@@ -130,5 +132,24 @@ export class SktnUploadFileComponent {
 
   }
 
+  drop(ev) {
+    ev.preventDefault();
+    this.fileSelected(ev.dataTransfer.files);
+    this.drag = false;
+  }
+
+  dragOver(ev) {
+    ev.preventDefault();
+  }
+
+  dragStart(ev) {
+    ev.preventDefault();
+    this.drag = true;
+  }
+
+  dragEnd(ev) {
+    ev.preventDefault();
+    this.drag = false;
+  }
 
 }
